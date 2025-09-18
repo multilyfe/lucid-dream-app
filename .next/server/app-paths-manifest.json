@@ -1,4 +1,6 @@
 {
-  "/rpg/journal/page": "app/rpg/journal/page.js",
-  "/rpg/dashboard/page": "app/rpg/dashboard/page.js"
+  "/page": "app/page.js",
+  "/rpg/page": "app/rpg/page.js",
+  "/rpg/dashboard/page": "app/rpg/dashboard/page.js",
+  "/rpg/settings/page": "app/rpg/settings/page.js"
 }

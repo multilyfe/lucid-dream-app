@@ -1,5 +1,5 @@
 import QuestLayout from "../../layouts/QuestLayout";
-import RPGDashboard from "../../RPGDashboard_simple";
+import RPGDashboard from "../../RPGDashboard";
 
 export default function DashboardPage() {
   return (

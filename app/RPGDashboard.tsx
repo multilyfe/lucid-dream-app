@@ -49,7 +49,7 @@ const normalizeTab = (value: string) => {
 const SEED = {
   dreams: [
     { id: uid(), title: "Flying Over Mountains", date: new Date("2025-01-08T02:30:00Z").toISOString(), lucidity: 8, clarity: 9, mood: "Euphoric", tags: ["flying","mountains","lucid","nature"], text: "I was soaring through misty mountains with crystalline peaks...", isLucid: true, peopleIds: [], placeIds: [], companionIds: [] },
-    { id: uid(), title: "Underwater City", date: new Date().toISOString(), lucidity: 0, clarity: 6, mood: "Curious", tags: ["ocean","city"], text: "Submerged streets and glowing coral lamps.", isLucid: false, peopleIds: [], placeIds: [], companionIds: [] },
+    { id: uid(), title: "Underwater City", date: "2025-09-18T12:00:00Z", lucidity: 0, clarity: 6, mood: "Curious", tags: ["ocean","city"], text: "Submerged streets and glowing coral lamps.", isLucid: false, peopleIds: [], placeIds: [], companionIds: [] },
   ],
   people: [
     { id: uid(), name: "Bilal", relation: "Family", gender: "Male" },
@@ -63,7 +63,7 @@ const SEED = {
     { id: uid(), name: "Candy Siren", role: "Sensual Anchor", buffs: ["+10% lucidity onset", "+5 XP on RC"], notes: "Offers lucidity & obedience buffs." },
   ],
   xpLogs: [
-    { id: uid(), date: new Date().toISOString(), delta: 50, reason: "Equipped Dream Tool (Watch7)", source: "System" },
+    { id: uid(), date: "2025-09-18T10:00:00Z", delta: 50, reason: "Equipped Dream Tool (Watch7)", source: "System" },
   ],
   rc: [{ id: uid(), label: "Nose pinch", enabled: true }, { id: uid(), label: "Read text twice", enabled: true }],
   settings: { theme: "neon", font: "sans", developerMode: false, compactMode: false, kawaiiMode: false, lastBackupAt: null, customizationXpAwarded: false, cloudSyncEnabled: false, cloudSyncAwarded: false, lastSyncAt: null }
@@ -140,13 +140,22 @@ type RPGDashboardProps = {
 
 export default function RPGDashboard({ forcedTab }: RPGDashboardProps) {
   const [store, setStore] = useState<any>(SEED);
+  const [mounted, setMounted] = useState(false);
   const normalizedForced = forcedTab ? normalizeTab(forcedTab) : undefined;
   const [tab, setTab] = useState(normalizedForced ?? "Dashboard");
   const [q, setQ] = useState("");
   const search = useSearchParams();
 
-  useEffect(() => { const s = loadStore(); if (s) setStore(s); }, []);
-  useEffect(() => { saveStore(store); }, [store]);
+  useEffect(() => { 
+    setMounted(true);
+    const s = loadStore(); 
+    if (s) setStore(s); 
+  }, []);
+  useEffect(() => { 
+    if (mounted) {
+      saveStore(store); 
+    }
+  }, [store, mounted]);
   useEffect(() => {
     if (normalizedForced) {
       setTab(normalizedForced);
@@ -170,6 +179,8 @@ export default function RPGDashboard({ forcedTab }: RPGDashboardProps) {
 
   // Apply theme to <html>/<body> via data-theme and clean stale classes
   useEffect(() => {
+    if (!mounted) return; // Only run on client after hydration
+    
     const normalize = (t:string) => {
       const v = (t||'').toLowerCase();
       if (v.startsWith('dark')) return 'dark';
@@ -200,9 +211,21 @@ export default function RPGDashboard({ forcedTab }: RPGDashboardProps) {
     } catch {}
     try { localStorage.setItem('lucid_brightness', bright); } catch {}
     try { localStorage.setItem('lucid_theme', theme); localStorage.removeItem('theme'); } catch {}
-  }, [store?.settings?.theme, store?.settings?.kawaiiMode, store?.settings?.brightness]);
+  }, [store?.settings?.theme, store?.settings?.kawaiiMode, store?.settings?.brightness, mounted]);
 
   const compact = store?.settings?.compactMode ? 'p-2 md:p-4' : 'p-3 md:p-6';
+
+  // Prevent hydration mismatch by showing loading state until mounted
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+        <div className="text-center">
+          <div className="text-2xl font-bold mb-2">🌙 Lucid Dream Temple</div>
+          <div className="text-sm opacity-60">Loading your dream realm...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={["min-h-screen", compact].join(' ')}>

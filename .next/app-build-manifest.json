@@ -19,12 +19,13 @@
     "/rpg/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/rpg/dashboard/page.css",
       "static/chunks/app/rpg/dashboard/page.js"
     ],
-    "/rpg/journal/page": [
+    "/rpg/settings/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/journal/page.js"
+      "static/chunks/app/rpg/settings/page.js"
     ]
   }
 }

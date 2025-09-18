@@ -29,6 +29,7 @@ import {
 import { BUFF_TYPE_OPTIONS, type Buff, type BuffType } from "../../lib/buffEngine";
 import { type Questline } from "../../lib/questlines";
 import { JournalManager } from "../../components/JournalManager";
+import { JournalSettingsUltra } from "../../components/JournalSettingsUltra";
 import { type CompanionBuff } from "../../lib/companions";
 import { type ProfileTheme } from "../../lib/profile";
 import { type Npc } from "../../lib/npcs";
@@ -377,6 +378,10 @@ function cloneDefault(): ControlNexus {
 }
 
 function generateId(prefix: string): string {
+  // Use deterministic IDs during SSR to prevent hydration errors
+  if (typeof window === "undefined") {
+    return `${prefix}-STATIC`;
+  }
   const unique = Math.random().toString(36).slice(2, 8).toUpperCase();
   return `${prefix}-${unique}`;
 }
@@ -754,7 +759,7 @@ const DreamMechanicsExtras = ({ control, setControl }: PanelRenderProps) => {
   const addOrbAction = () => {
     if (!newActionLabel.trim() || !newActionHref.trim()) return;
     const newAction: OrbActionConfig = {
-      id: `custom-${Date.now()}`,
+      id: typeof window === "undefined" ? "custom-STATIC" : `custom-${Date.now()}`,
       label: newActionLabel.trim(),
       icon: newActionIcon.trim() || "✨",
       type: "link",
@@ -2457,9 +2462,33 @@ const EventsManagerExtras = (_props: PanelRenderProps) => {
 };
 
 const JournalManagerExtras = (_props: PanelRenderProps) => {
+  const [showUltraSettings, setShowUltraSettings] = useState(false);
+
   return (
     <div className="space-y-4">
       <JournalManager />
+      
+      {/* Ultra Settings Toggle */}
+      <div className="bg-slate-800/60 rounded-xl p-6 border border-purple-500/30">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-lg font-semibold text-purple-300">🌟 Ultra AI Settings</h3>
+            <p className="text-slate-400 text-sm">Advanced AI integration, ComfyUI, multimedia features</p>
+          </div>
+          <button
+            onClick={() => setShowUltraSettings(!showUltraSettings)}
+            className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg shadow-purple-500/25"
+          >
+            {showUltraSettings ? '🔽 Hide Ultra Settings' : '🚀 Show Ultra Settings'}
+          </button>
+        </div>
+        
+        {showUltraSettings && (
+          <div className="mt-6">
+            <JournalSettingsUltra />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -3093,7 +3122,7 @@ const PANEL_CONFIGS: PanelConfig[] = [
     id: "journal-manager",
     icon: "📖",
     title: "Dream Journal Manager",
-    description: "Manage dream entries, XP settings, and export journals.",
+    description: "Manage dream entries, AI settings, multimedia features, and ultra customization.",
     extras: [JournalManagerExtras],
   },
   {
@@ -3725,7 +3754,17 @@ function createPanels(
 
 function ControlNexusSettings() {
   const [control, setControl] = usePersistentState<ControlNexus>("controlNexus", cloneDefault);
-  const [expanded, setExpanded] = useState<string | null>(PANEL_CONFIGS.length > 0 ? PANEL_CONFIGS[0].id : null);
+  const [expanded, setExpanded] = useState<string | null>("events"); // Use static default instead of dynamic
+  const [mounted, setMounted] = useState(false);
+
+  // Add hydration safety
+  useEffect(() => {
+    setMounted(true);
+    // Set the actual default after mount if needed
+    if (!expanded && PANEL_CONFIGS.length > 0) {
+      setExpanded(PANEL_CONFIGS[0].id);
+    }
+  }, [expanded]);
 
   const panels = useMemo(() => createPanels(control, setControl), [control, setControl]);
   const summaryCards = useMemo(

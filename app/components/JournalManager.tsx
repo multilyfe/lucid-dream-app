@@ -145,6 +145,13 @@ export function JournalManager() {
           </button>
           
           <button
+            onClick={() => window.location.href = '/rpg/settings'}
+            className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 border border-purple-400/40 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg shadow-purple-500/25"
+          >
+            🌟 Ultra AI Settings
+          </button>
+          
+          <button
             onClick={resetStreak}
             className="px-4 py-2 bg-orange-600/20 border border-orange-400/40 text-orange-200 rounded-lg hover:bg-orange-600/30 transition-colors"
           >
