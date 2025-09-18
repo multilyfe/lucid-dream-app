@@ -1,6 +1,4 @@
 {
-  "/rpg/dashboard/page": "app/rpg/dashboard/page.js",
   "/rpg/shame/page": "app/rpg/shame/page.js",
-  "/rpg/achievements/page": "app/rpg/achievements/page.js",
-  "/rpg/quests/page": "app/rpg/quests/page.js"
+  "/rpg/dashboard/page": "app/rpg/dashboard/page.js"
 }

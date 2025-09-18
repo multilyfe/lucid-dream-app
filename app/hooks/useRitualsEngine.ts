@@ -113,6 +113,7 @@ export function useRitualsEngine() {
         const updatedLogs = [...previousLogs, completedLog];
 
         setXp((prev) => prev + finalXp);
+        gainXpForCompanions("ritual", finalXp);
         setObedience((prev) => prev + finalObedience);
         setRituals((prev) =>
           prev.map((item) =>
@@ -146,16 +147,9 @@ export function useRitualsEngine() {
         return updatedLogs;
       });
 
-      if (outcome.status === "already-completed" && companions.length > 0) {
-        gainXpForCompanions(
-          companions.map((companion) => companion.id),
-          "ritual"
-        );
-      }
-
       return outcome;
     },
-    [adjustNpcShame, companions, gainXpForCompanions, logs, npcs, readStreakMultiplierEnabled, rituals, setLogs, setObedience, setRituals, setXp]
+    [adjustNpcShame, applyEvent, gainXpForCompanions, logs, npcs, readStreakMultiplierEnabled, rituals, setLogs, setObedience, setRituals, setXp, triggerBuffBySource]
   );
 
   const resetRitualStreak = useCallback(

@@ -3,6 +3,7 @@
 import { useCallback, useMemo } from 'react';
 import { usePersistentState } from './usePersistentState';
 import { useInventory } from './useInventory';
+import { useCompanions } from './useCompanions';
 import { 
   DreamJournalEntry, 
   JournalStreak, 
@@ -40,6 +41,7 @@ export function useDreamJournal() {
   );
 
   const { awardXp } = useInventory();
+  const { gainXpForCompanions } = useCompanions();
 
   const calculateEntryXp = useCallback((entry: DreamJournalEntry): number => {
     let xp = xpConfig.baseEntry;
@@ -94,9 +96,11 @@ export function useDreamJournal() {
     
     // Award streak bonus XP
     if (streak.current > 0) {
-      awardXp(xpConfig.streakBonus);
+      const streakBonus = xpConfig.streakBonus * Math.min(streak.current, 10); // Cap bonus at 10 days
+      awardXp(streakBonus);
+      gainXpForCompanions('dream', streakBonus);
     }
-  }, [streak.current, xpConfig.streakBonus, awardXp, setStreak]);
+  }, [streak.current, xpConfig.streakBonus, awardXp, setStreak, gainXpForCompanions]);
 
   const checkAchievements = useCallback((newEntries: DreamJournalEntry[]) => {
     const newAchievements: string[] = [];
@@ -146,29 +150,43 @@ export function useDreamJournal() {
     setEntries(updatedEntries);
     updateStreak(newEntry.date);
     awardXp(newEntry.xpEarned);
+    gainXpForCompanions('dream', newEntry.xpEarned);
     checkAchievements(updatedEntries);
     
     return newEntry;
-  }, [entries, calculateEntryXp, setEntries, updateStreak, awardXp, checkAchievements]);
+  }, [entries, calculateEntryXp, setEntries, updateStreak, awardXp, checkAchievements, gainXpForCompanions]);
 
   const updateEntry = useCallback((id: string, updates: Partial<DreamJournalEntry>) => {
+    let xpDifference = 0;
     setEntries(prev => prev.map(entry => {
       if (entry.id === id) {
+        const originalXp = entry.xpEarned;
         const updated = { 
           ...entry, 
           ...updates, 
           updatedAt: new Date().toISOString() 
         };
         updated.xpEarned = calculateEntryXp(updated);
+        xpDifference = updated.xpEarned - originalXp;
         return updated;
       }
       return entry;
     }));
-  }, [setEntries, calculateEntryXp]);
+
+    if (xpDifference !== 0) {
+      awardXp(xpDifference);
+      gainXpForCompanions('dream', xpDifference);
+    }
+  }, [setEntries, calculateEntryXp, awardXp, gainXpForCompanions]);
 
   const deleteEntry = useCallback((id: string) => {
+    const entryToDelete = entries.find(entry => entry.id === id);
+    if (entryToDelete) {
+      awardXp(-entryToDelete.xpEarned);
+      gainXpForCompanions('dream', -entryToDelete.xpEarned);
+    }
     setEntries(prev => prev.filter(entry => entry.id !== id));
-  }, [setEntries]);
+  }, [setEntries, entries, awardXp, gainXpForCompanions]);
 
   const filterEntries = useCallback((filter: Partial<JournalFilter>) => {
     return entries.filter(entry => {

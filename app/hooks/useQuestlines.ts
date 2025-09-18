@@ -134,11 +134,20 @@ export function useQuestlines() {
             }
             stage.chosenBranchId = chosen;
             const branch = stage.branchChoices.find((option) => option.id === chosen);
-            awardReward(branch?.reward);
+            if (branch?.reward) {
+              awardReward(branch.reward);
+              if (branch.reward.xp) {
+                gainXpForCompanions("quest", branch.reward.xp);
+              }
+            }
           }
 
           stage.completed = true;
-          awardReward({ xp: stage.xp, ...stage.reward });
+          const stageReward = { xp: stage.xp, ...stage.reward };
+          awardReward(stageReward);
+          if (stageReward.xp) {
+            gainXpForCompanions("quest", stageReward.xp);
+          }
 
           const stageText = `${stage.title ?? ''} ${stage.description ?? ''} ${questline.name ?? ''}`.toLowerCase();
           npcs.forEach((npc) => {
@@ -151,7 +160,12 @@ export function useQuestlines() {
 
           if (isQuestlineComplete(working)) {
             working.completed = true;
-            awardReward(working.reward);
+            if (working.reward) {
+              awardReward(working.reward);
+              if (working.reward.xp) {
+                gainXpForCompanions("quest", working.reward.xp);
+              }
+            }
             completion = "questline-completed";
           }
 
@@ -159,16 +173,9 @@ export function useQuestlines() {
         })
       );
 
-      if ((completion === "completed" || completion === "questline-completed") && companions.length > 0) {
-        gainXpForCompanions(
-          companions.map((companion) => companion.id),
-          "quest"
-        );
-      }
-
       return completion;
     },
-    [adjustNpcTrust, awardReward, companions, gainXpForCompanions, npcs, setQuestlines]
+    [adjustNpcTrust, awardReward, gainXpForCompanions, npcs, setQuestlines]
   );
 
   const chooseBranch = useCallback(
