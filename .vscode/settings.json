@@ -3,7 +3,7 @@
   "chat.tools.autoApprove": true,
 
   // make agent run many requests before asking to continue again
-  "chat.agent.maxRequests": 10000,
+  "chat.agent.maxRequests": 10001,
 
   // terminal auto-approve: match any command (regex) and auto-approve it
   // this will allow every terminal command the agent tries to run
@@ -14,5 +14,10 @@
   // disable workspace trust so VS Code won't block extension/tool execution
   "security.workspace.trust.enabled": false,
   "security.workspace.trust.banner": "never",
+
+  // never ask "Terminate batch job (Y/N)?"
+  "terminal.integrated.confirmOnKill": false,
+
+  // misc
   "git.ignoreLimitWarning": true
 }

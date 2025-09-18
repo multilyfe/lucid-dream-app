@@ -1,6 +1,8 @@
 'use client';
 
+import { useMemo } from 'react';
 import { DreamJournalEntry, TAG_COLORS } from '../types/journal';
+import useHydrated from '../hooks/useHydrated';
 
 interface JournalEntryCardProps {
   entry: DreamJournalEntry;
@@ -9,6 +11,7 @@ interface JournalEntryCardProps {
 }
 
 export function JournalEntryCard({ entry, onEdit, onDelete }: JournalEntryCardProps) {
+  const hydrated = useHydrated();
   const isLucid = entry.tags.includes('lucid');
   const contentPreview = entry.content.length > 200 
     ? entry.content.slice(0, 200) + '...' 
@@ -64,7 +67,7 @@ export function JournalEntryCard({ entry, onEdit, onDelete }: JournalEntryCardPr
             
             <div className="flex items-center gap-4 text-sm text-slate-400">
               <span className="flex items-center gap-1">
-                📅 {new Date(entry.date).toLocaleDateString()}
+                📅 {hydrated ? new Date(entry.date).toLocaleDateString() : '...'}
               </span>
               <span className="flex items-center gap-1">
                 {getMoodEmoji(entry.mood)} {entry.mood || 'No mood'}
@@ -151,10 +154,10 @@ export function JournalEntryCard({ entry, onEdit, onDelete }: JournalEntryCardPr
 
         {/* Timestamp */}
         <div className="mt-4 pt-4 border-t border-slate-600/40 text-xs text-slate-500">
-          Created: {new Date(entry.createdAt).toLocaleString()}
+          Created: {hydrated ? new Date(entry.createdAt).toLocaleString() : '...'}
           {entry.updatedAt !== entry.createdAt && (
             <span className="ml-4">
-              Updated: {new Date(entry.updatedAt).toLocaleString()}
+              Updated: {hydrated ? new Date(entry.updatedAt).toLocaleString() : '...'}
             </span>
           )}
         </div>

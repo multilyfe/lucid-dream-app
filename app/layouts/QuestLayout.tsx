@@ -99,8 +99,8 @@ export default function QuestLayout({ children, xp, orbDisabled = false }: Quest
   }
 
   return (
-    <div className="gradient-bg relative min-h-screen overflow-hidden text-slate-100">
-      <div className="flex min-h-screen">
+    <div className="gradient-bg relative min-h-screen text-slate-100">
+      <div className="flex min-h-screen overflow-hidden">
         <Sidebar activeKey={activeKey} />
         <div className="flex min-h-screen flex-1 flex-col overflow-hidden">
           <TopBar

@@ -8,6 +8,7 @@ import {
   resolveEventSourceLabel,
   resolveEventType,
 } from '../lib/eventMeta';
+import useHydrated from '../hooks/useHydrated';
 
 type EventDetailProps = {
   event: CalendarEvent | null;
@@ -15,6 +16,7 @@ type EventDetailProps = {
 };
 
 export function EventDetail({ event, onComplete }: EventDetailProps) {
+  const hydrated = useHydrated();
   if (!event) {
     return (
       <div className="rounded-3xl border border-dashed border-slate-700/60 bg-slate-950/70 px-4 py-8 text-center text-xs uppercase tracking-[0.3em] text-slate-400">
@@ -88,7 +90,7 @@ export function EventDetail({ event, onComplete }: EventDetailProps) {
         <span>
           Status ·{' '}
           {event.completed
-            ? 'Completed' + (event.completedAt ? ' ' + new Date(event.completedAt).toLocaleDateString() : '')
+            ? 'Completed' + (event.completedAt ? ' ' + (hydrated ? new Date(event.completedAt).toLocaleDateString() : '...') : '')
             : 'Pending'}
         </span>
         <button

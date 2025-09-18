@@ -3059,13 +3059,6 @@ function renderPanelContent(config: PanelConfig, control: ControlNexus, setContr
 
 const PANEL_CONFIGS: PanelConfig[] = [
   {
-    id: "events",
-    icon: "📅",
-    title: "Event Manager",
-    description: "Manage events, rituals, and calendar settings.",
-    render: () => <EventManager />
-  },
-  {
     id: "appearance",
     icon: "🎨",
     title: "Appearance & Themes",

@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import type { CalendarEvent } from '../lib/events';
 import { EVENT_TYPE_AURAS, EVENT_TYPE_ICONS, resolveEventType } from '../lib/eventMeta';
 import styles from '../styles/CalendarView.module.css';
+import useHydrated from '../hooks/useHydrated';
 
 type CalendarViewProps = {
   month: number; // 0-11
@@ -15,14 +16,16 @@ type CalendarViewProps = {
 const WEEKDAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export function CalendarView({ month, year, events, onSelectAction }: CalendarViewProps) {
+  const hydrated = useHydrated();
   const weeks = useMemo(() => buildCalendar(year, month, events), [events, month, year]);
 
   const monthName = useMemo(() => {
+    if (!hydrated) return '...';
     return new Date(year, month, 1).toLocaleString(undefined, {
       month: 'long',
       year: 'numeric',
     });
-  }, [month, year]);
+  }, [month, year, hydrated]);
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-purple-500/25 p-5 shadow-[0_0_45px_rgba(126,58,242,0.25)]">

@@ -377,6 +377,18 @@ header :where(input, textarea, select):hover {
 .orb {
   animation: orb-rotate 8s linear infinite, orb-glow 6s ease-in-out infinite;
 }
+
+/* Dynamic orb action positioning */
+.orb-action-item {
+  position: absolute;
+  transition: transform 300ms;
+}
+
+/* Allow CSS custom properties for transforms */
+.orb-action-item[style*="transform"] {
+  /* This allows the inline transform while keeping linting happy */
+  transform: var(--transform, translate(0, 0));
+}
 @keyframes gradientCycle {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }

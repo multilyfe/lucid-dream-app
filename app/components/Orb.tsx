@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { DEFAULT_ORB_ACTIONS, type OrbActionConfig } from "../lib/orbActions";
 import { usePersistentState } from "../hooks/usePersistentState";
+import { useHydrated } from "../hooks/useHydrated";
 
 type OrbProps = {
   disabled?: boolean;
@@ -26,6 +27,7 @@ export default function Orb({ disabled = false }: OrbProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const hydrated = useHydrated();
   const [actions] = usePersistentState<OrbActionConfig[]>(
     "orbActions",
     () => DEFAULT_ORB_ACTIONS
@@ -102,8 +104,13 @@ export default function Orb({ disabled = false }: OrbProps) {
     });
   }, [open, visibleActions]);
 
+  // Don't render until after hydration to prevent SSR/client mismatch
+  if (!hydrated) {
+    return null;
+  }
+
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-12 right-12 z-[60] sm:bottom-8 sm:right-8">
       {open && !disabled ? (
         <button
           type="button"
@@ -121,11 +128,11 @@ export default function Orb({ disabled = false }: OrbProps) {
               return (
                 <li
                   key={action.id}
+                  className="orb-action-item"
                   style={{
                     transform: `translate(${position.x}px, ${position.y}px)`,
                     transitionDelay: `${index * 40}ms`,
-                  }}
-                  className="absolute transition-transform duration-300"
+                  } as React.CSSProperties}
                 >
                   <button
                     type="button"
@@ -154,7 +161,7 @@ export default function Orb({ disabled = false }: OrbProps) {
           type="button"
           disabled={disabled}
           onClick={() => (!disabled ? setOpen((prev) => !prev) : undefined)}
-          className={`orb z-30 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-2xl text-white shadow-lg shadow-pink-500/40 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-200 ${
+          className={`orb z-40 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-2xl text-white shadow-lg shadow-pink-500/40 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-200 ${
             disabled ? "cursor-not-allowed opacity-60" : open ? "scale-105" : "hover:scale-110"
           }`}
           aria-label={disabled ? "Orb disabled" : open ? "Close quick actions" : "Open quick actions"}

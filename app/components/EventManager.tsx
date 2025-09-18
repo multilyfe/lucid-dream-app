@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { useEvents } from '../hooks/useEvents';
 import { CalendarEvent, EventType, normaliseDate } from '../lib/events';
+import { useHydrated } from '../hooks/useHydrated';
 
 export default function EventManager() {
+  const hydrated = useHydrated();
   const { events, addEvent, removeEvent, deleteAllEvents, toggles, toggleAutoDaily, toggleAutoPanty } = useEvents();
   const [newEvent, setNewEvent] = useState<Partial<CalendarEvent>>({
     title: '',
@@ -158,7 +160,7 @@ export default function EventManager() {
               <div className="flex-1">
                 <div className="font-medium">{event.title}</div>
                 <div className="text-sm opacity-70">
-                  {event.date} • {event.xp} XP
+                  {hydrated ? new Date(event.date).toLocaleDateString() : event.date} • {event.xp} XP
                   {event.source && ` • ${event.source}`}
                 </div>
               </div>

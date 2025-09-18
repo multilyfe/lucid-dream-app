@@ -1,6 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import useHydrated from '../hooks/useHydrated';
 import type { Buff } from "../lib/buffEngine";
+import { useBuffs } from '../hooks/useBuffs';
 
 const TYPE_COLORS: Record<Buff["type"], string> = {
   xpMultiplier: "from-amber-400/70 via-amber-300/40 to-yellow-300/30",
@@ -18,7 +21,6 @@ const TYPE_LABEL: Record<Buff["type"], string> = {
 
 type BuffBadgeProps = {
   buff: Buff;
-  remainingMs?: number | null;
 };
 
 function formatRemaining(ms?: number | null): string | null {
@@ -38,10 +40,19 @@ function formatRemaining(ms?: number | null): string | null {
   return `${seconds}s`;
 }
 
-export function BuffBadge({ buff, remainingMs }: BuffBadgeProps) {
+export function BuffBadge({ buff }: BuffBadgeProps) {
+  const hydrated = useHydrated();
+  const { getRemainingForBuff } = useBuffs();
+  const [timestamp, setTimestamp] = useState(() => Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTimestamp(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const gradient = TYPE_COLORS[buff.type];
   const label = TYPE_LABEL[buff.type];
-  const remaining = formatRemaining(remainingMs);
+  const remaining = hydrated ? formatRemaining(getRemainingForBuff(buff, timestamp)) : null;
 
   return (
     <div className="relative inline-flex overflow-hidden rounded-full border border-white/15 bg-slate-950/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 shadow-[0_0_18px_rgba(15,23,42,0.55)]">

@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { DreamJournalEntry } from "../types/journal";
+import useHydrated from "../hooks/useHydrated";
 
 interface JournalModalProps {
   isOpen: boolean;
@@ -433,9 +434,10 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
 }
 
 export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: JournalModalProps) {
-  const [formData, setFormData] = useState({
+  const hydrated = useHydrated();
+  const [formData, setFormData] = useState(() => ({
     title: editEntry?.title || '',
-    date: editEntry?.date || new Date().toISOString().split('T')[0],
+    date: '', // Initialize with an empty string on the server
     content: editEntry?.content || '',
     tags: editEntry?.tags?.join(', ') || '',
     companions: editEntry?.companions?.join(', ') || '',
@@ -449,7 +451,17 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
     control: editEntry?.control || 5,
     memory: editEntry?.memory || 5,
     emotionalDepth: editEntry?.emotionalDepth || 5,
-  });
+  }));
+
+  // Set the date only after hydration
+  useEffect(() => {
+    if (hydrated) {
+      setFormData(prev => ({
+        ...prev,
+        date: editEntry?.date || new Date().toISOString().split('T')[0],
+      }));
+    }
+  }, [hydrated, editEntry]);
 
   const [activeTab, setActiveTab] = useState<'basic' | 'lucid' | 'details' | 'insights' | 'media'>('basic');
 
@@ -729,21 +741,29 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
 
   if (!isOpen) return null;
 
+  // Defer particle generation until after hydration
+  const particles = useMemo(() => {
+    if (!hydrated) {
+      return null;
+    }
+    return [...Array(25)].map((_, i) => (
+      <div
+        key={i}
+        className="particle"
+        style={{
+          left: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 8}s`,
+          animationDuration: `${8 + Math.random() * 4}s`
+        }}
+      />
+    ));
+  }, [hydrated]);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
       {/* ULTRA Floating Particles */}
       <div className="floating-particles">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${8 + Math.random() * 4}s`
-            }}
-          />
-        ))}
+        {particles}
       </div>
       
       <div className="journal-modal-container animate-fadeIn dream-glow relative mx-4 w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-slate-600/40 bg-slate-900/95 shadow-2xl backdrop-blur-md">

@@ -36,7 +36,7 @@ const CALENDAR_ACHIEVEMENTS_KEY = 'eventAchievements';
 
 const DEFAULT_TOGGLES: CalendarToggles = {
   autoDailyRitual: true,
-  autoPantyReset: true,
+  autoPantyReset: false,
 };
 
 export function useEvents() {

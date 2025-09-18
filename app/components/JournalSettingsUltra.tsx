@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { usePersistentState } from '../hooks/usePersistentState';
+import { useHydrated } from '../hooks/useHydrated';
 
 // Ultra-Advanced Dream Journal Settings Interface
 interface JournalAISettings {
@@ -138,6 +139,7 @@ export function JournalSettingsUltra() {
   const [settings, setSettings] = usePersistentState<JournalAISettings>('journalAISettings', () => DEFAULT_SETTINGS);
   const [activeTab, setActiveTab] = useState('ai-integration');
   const [testingConnection, setTestingConnection] = useState<string | null>(null);
+  const hydrated = useHydrated();
 
   const updateSetting = <K extends keyof JournalAISettings>(key: K, value: JournalAISettings[K]) => {
     setSettings(prev => ({ ...prev, [key]: value }));
@@ -249,7 +251,7 @@ export function JournalSettingsUltra() {
     <div className="ultra-journal-settings min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 p-6">
       {/* Floating Particles Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {hydrated && [...Array(30)].map((_, i) => (
           <div
             key={i}
             className="absolute w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-60"

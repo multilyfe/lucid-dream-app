@@ -7,16 +7,26 @@ import { useSearchParams } from "next/navigation";
 import { useCompanions, type DetailedCompanion } from "./hooks/useCompanions";
 import { type CompanionXpEvent } from "./lib/companions";
 import { useNpcs } from "./hooks/useNpcs";
+import { useHydrated } from "./hooks/useHydrated";
 
-// helpers
-const uid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
+// helpers - made hydration-safe
+const uid = () => {
+  if (typeof window === "undefined") return "ssr-id";
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+};
 const fmtDate = (d: any) => new Date(d).toLocaleDateString();
 const clamp = (n: any, a=0, b=10) => Math.max(a, Math.min(b, Number(n||0)));
 
-// storage
+// storage - made hydration-safe
 const STORAGE_KEY = "lucid_rpg_v3";
-const loadStore = () => { try { const raw = localStorage.getItem(STORAGE_KEY); return raw? JSON.parse(raw): null; } catch { return null; } };
-const saveStore = (data: any) => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {} };
+const loadStore = () => { 
+  if (typeof window === "undefined") return null;
+  try { const raw = localStorage.getItem(STORAGE_KEY); return raw? JSON.parse(raw): null; } catch { return null; } 
+};
+const saveStore = (data: any) => { 
+  if (typeof window === "undefined") return;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {} 
+};
 
 const normalizeTab = (value: string) => {
   const lower = (value || "").toLowerCase();
@@ -140,22 +150,23 @@ type RPGDashboardProps = {
 
 export default function RPGDashboard({ forcedTab }: RPGDashboardProps) {
   const [store, setStore] = useState<any>(SEED);
-  const [mounted, setMounted] = useState(false);
+  const hydrated = useHydrated();
   const normalizedForced = forcedTab ? normalizeTab(forcedTab) : undefined;
   const [tab, setTab] = useState(normalizedForced ?? "Dashboard");
   const [q, setQ] = useState("");
   const search = useSearchParams();
 
   useEffect(() => { 
-    setMounted(true);
+    if (!hydrated) return;
     const s = loadStore(); 
     if (s) setStore(s); 
-  }, []);
+  }, [hydrated]);
+  
   useEffect(() => { 
-    if (mounted) {
+    if (hydrated) {
       saveStore(store); 
     }
-  }, [store, mounted]);
+  }, [store, hydrated]);
   useEffect(() => {
     if (normalizedForced) {
       setTab(normalizedForced);
@@ -179,7 +190,7 @@ export default function RPGDashboard({ forcedTab }: RPGDashboardProps) {
 
   // Apply theme to <html>/<body> via data-theme and clean stale classes
   useEffect(() => {
-    if (!mounted) return; // Only run on client after hydration
+    if (!hydrated) return; // Only run on client after hydration
     
     const normalize = (t:string) => {
       const v = (t||'').toLowerCase();
@@ -205,18 +216,18 @@ export default function RPGDashboard({ forcedTab }: RPGDashboardProps) {
     body.setAttribute('data-brightness', bright === 'low' ? 'low' : 'bright');
     // Auto-dim bright themes flag (persisted separately)
     try {
-      const autoDim = (localStorage.getItem('autoDimBrightThemes') || 'off').toLowerCase();
+      const autoDim = typeof window !== "undefined" ? (localStorage.getItem('autoDimBrightThemes') || 'off').toLowerCase() : 'off';
       root.setAttribute('data-auto-dim', (autoDim === 'on' || autoDim === 'true') ? 'on' : 'off');
       body.setAttribute('data-auto-dim', (autoDim === 'on' || autoDim === 'true') ? 'on' : 'off');
     } catch {}
-    try { localStorage.setItem('lucid_brightness', bright); } catch {}
-    try { localStorage.setItem('lucid_theme', theme); localStorage.removeItem('theme'); } catch {}
-  }, [store?.settings?.theme, store?.settings?.kawaiiMode, store?.settings?.brightness, mounted]);
+    try { if (typeof window !== "undefined") localStorage.setItem('lucid_brightness', bright); } catch {}
+    try { if (typeof window !== "undefined") { localStorage.setItem('lucid_theme', theme); localStorage.removeItem('theme'); } } catch {}
+  }, [store?.settings?.theme, store?.settings?.kawaiiMode, store?.settings?.brightness, hydrated]);
 
   const compact = store?.settings?.compactMode ? 'p-2 md:p-4' : 'p-3 md:p-6';
 
   // Prevent hydration mismatch by showing loading state until mounted
-  if (!mounted) {
+  if (!hydrated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
         <div className="text-center">
@@ -1187,7 +1198,11 @@ function Settings({store, setStore}:{store:any; setStore:(s:any)=>void}){
   const [kawaii, setKawaii] = useState(!!store?.settings?.kawaiiMode);
   const [brightness, setBrightness] = useState((store?.settings?.brightness || 'bright') as 'bright'|'low');
   const [autoDim, setAutoDim] = useState<boolean>(() => {
-    try { const v = (localStorage.getItem('autoDimBrightThemes') || 'off').toLowerCase(); return v === 'on' || v === 'true'; } catch { return false; }
+    try { 
+      if (typeof window === "undefined") return false;
+      const v = (localStorage.getItem('autoDimBrightThemes') || 'off').toLowerCase(); 
+      return v === 'on' || v === 'true'; 
+    } catch { return false; }
   });
   const [changes, setChanges] = useState(0);
   const [quote, setQuote] = useState("Lucidity blooms where attention lingers.");
@@ -1200,7 +1215,10 @@ function Settings({store, setStore}:{store:any; setStore:(s:any)=>void}){
     "Tonight, your mind is the map.",
     "You are the dream architect.",
   ];
-  const spinQuote = () => setQuote(quotes[Math.floor(Math.random()*quotes.length)]);
+  const spinQuote = () => {
+    if (typeof window === "undefined") return;
+    setQuote(quotes[Math.floor(Math.random()*quotes.length)]);
+  };
 
   const pushSettings = (patch:any) => {
     setStore((s:any)=> ({...s, settings: {...s.settings, ...patch} }));
