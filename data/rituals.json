@@ -1,0 +1,6 @@
+[
+  { "id": "r1", "name": "Lucid Pulse", "type": "daily", "xp": 25, "obedience": 5, "completedToday": false, "streak": 0 },
+  { "id": "r2", "name": "Astral Obedience", "type": "weekly", "xp": 100, "obedience": 20, "completedThisWeek": false, "streak": 0 },
+  { "id": "r3", "name": "Full Moon Offering", "type": "monthly", "xp": 300, "obedience": 50, "completedThisMonth": false, "streak": 0 },
+  { "id": "r4", "name": "Celestial Submission", "type": "yearly", "xp": 800, "obedience": 120, "completedThisYear": false, "streak": 0 }
+]

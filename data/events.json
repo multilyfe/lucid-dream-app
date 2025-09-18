@@ -1,0 +1,5 @@
+[
+    { "id": "e1", "title": "Daily Lucid Pulse", "type": "ritual", "date": "2025-09-17", "xp": 25, "completed": false },
+    { "id": "e2", "title": "Panty Submission Reset", "type": "pantyReset", "date": "2025-10-01", "xp": 100, "completed": false },
+    { "id": "e3", "title": "Full Moon Offering", "type": "ritual", "date": "2025-09-29", "xp": 300, "completed": false }
+]

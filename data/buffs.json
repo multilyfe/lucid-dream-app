@@ -1,0 +1,30 @@
+[
+  {
+    "id": "b1",
+    "name": "Lucid Boost",
+    "source": "Lucid Amulet",
+    "type": "xpMultiplier",
+    "value": 1.2,
+    "active": true,
+    "icon": "🌙"
+  },
+  {
+    "id": "b2",
+    "name": "Panty Shame",
+    "source": "Ekram's Panties",
+    "type": "obedienceGain",
+    "value": 1.5,
+    "active": false,
+    "icon": "🩲"
+  },
+  {
+    "id": "b3",
+    "name": "Dream Shard Aura",
+    "source": "Dream Shard",
+    "type": "tokenMultiplier",
+    "value": 2,
+    "active": false,
+    "duration": "1h",
+    "icon": "💎"
+  }
+]

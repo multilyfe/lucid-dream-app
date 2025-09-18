@@ -1,0 +1,30 @@
+[
+  {
+    "id": "d1",
+    "name": "Caves of Shame",
+    "rooms": [
+      {
+        "id": "r1",
+        "type": "encounter",
+        "desc": "A swarm of shadow panties attack!",
+        "loot": ["i2"],
+        "xp": 100
+      },
+      {
+        "id": "r2",
+        "type": "event",
+        "desc": "You found a hidden dream shard cache.",
+        "loot": ["i3"],
+        "xp": 50
+      },
+      {
+        "id": "r3",
+        "type": "boss",
+        "desc": "Face the Mistress of Chains.",
+        "loot": ["i1"],
+        "xp": 500
+      }
+    ],
+    "completed": false
+  }
+]

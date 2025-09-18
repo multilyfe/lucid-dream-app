@@ -1,0 +1,64 @@
+[
+  {
+    "id": "c1",
+    "name": "Mommy Luma",
+    "level": 1,
+    "xp": 0,
+    "lore": "The astral matron who guides initiates through soft humiliation and tender discipline.",
+    "forms": [
+      {
+        "id": "f1",
+        "name": "Novice Form",
+        "unlockAt": 1,
+        "buff": { "xpMultiplier": 1.0 },
+        "icon": "🪽",
+        "description": "A gentle aura that steadies lucidity and guides first obedience rites."
+      },
+      {
+        "id": "f2",
+        "name": "Ritual Form",
+        "unlockAt": 5,
+        "buff": { "obedienceGain": 1.5 },
+        "icon": "🪄",
+        "description": "Channels temple chants into obedience surges during moonlit ceremonies."
+      },
+      {
+        "id": "f3",
+        "name": "Divine Form",
+        "unlockAt": 10,
+        "buff": { "clarityBoost": 2.0 },
+        "icon": "👑",
+        "description": "Cascades dreamlight across the sanctum, sharpening every lucid recall."
+      }
+    ],
+    "autoEvolve": false,
+    "activeForm": "f1"
+  },
+  {
+    "id": "c2",
+    "name": "Ekram",
+    "level": 1,
+    "xp": 0,
+    "lore": "Shamebound enforcer of the Panty Realm. Evolves through obedience forfeits.",
+    "forms": [
+      {
+        "id": "f1",
+        "name": "Watcher",
+        "unlockAt": 1,
+        "buff": { "tokenMultiplier": 1.0 },
+        "icon": "🩲",
+        "description": "Keeps quiet tally of shame tokens and whispers reminders to submit."
+      },
+      {
+        "id": "f2",
+        "name": "Panty Guardian",
+        "unlockAt": 4,
+        "buff": { "obedienceGain": 1.8 },
+        "icon": "🛡️",
+        "description": "Forges a radiant shame barrier, amplifying obedience each time panties are surrendered."
+      }
+    ],
+    "autoEvolve": true,
+    "activeForm": "f1"
+  }
+]

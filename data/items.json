@@ -1,0 +1,44 @@
+[
+  {
+    "id": "i1",
+    "name": "Lucid Amulet",
+    "type": "relic",
+    "icon": "🪬",
+    "desc": "Ancient charm that boosts focus in the dream temple.",
+    "owned": 1,
+    "equipped": true
+  },
+  {
+    "id": "i2",
+    "name": "Ekram's Panties",
+    "type": "panty",
+    "icon": "🩲",
+    "desc": "Faint shame aura that doubles Dirty Token rewards.",
+    "owned": 1,
+    "equipped": false
+  },
+  {
+    "id": "i3",
+    "name": "Dream Shard",
+    "type": "shard",
+    "icon": "💎",
+    "desc": "Crystalline currency of the Astral Map.",
+    "owned": 12
+  },
+  {
+    "id": "i4",
+    "name": "Moonwater Elixir",
+    "type": "consumable",
+    "icon": "🧪",
+    "desc": "Drink to restore lucidity after a nightmare crawl.",
+    "owned": 3
+  },
+  {
+    "id": "i5",
+    "name": "Quest Glyph",
+    "type": "quest",
+    "icon": "📜",
+    "desc": "Unlocks the next stage of a temple storyline.",
+    "owned": 0
+  }
+]

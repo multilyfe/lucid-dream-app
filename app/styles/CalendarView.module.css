@@ -1,0 +1,70 @@
+/* Update styles to match calendar.module.css */
+.calendar {
+  @apply grid grid-cols-7 gap-1 bg-[#0c0014] p-4 rounded-lg relative;
+  background-image: 
+    radial-gradient(circle at center, rgba(168, 85, 247, 0.05) 0%, transparent 70%),
+    linear-gradient(45deg, rgba(168, 85, 247, 0.02) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(168, 85, 247, 0.02) 25%, transparent 25%);
+  background-size: 100% 100%, 20px 20px, 20px 20px;
+}
+
+.calendar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/rune-glyphs.svg') repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.day {
+  @apply relative flex flex-col items-center justify-center p-2 min-h-[80px] bg-black/40 rounded transition-all;
+}
+
+.day:hover {
+  @apply bg-black/60;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+.eventDot {
+  @apply w-3 h-3 rounded-full relative;
+  animation: pulse 2s infinite;
+}
+
+.eventDot[data-type="ritual"] {
+  @apply bg-purple-500;
+  box-shadow: 0 0 10px theme('colors.purple.500');
+}
+
+.eventDot[data-type="quest"] {
+  @apply bg-blue-500;
+  box-shadow: 0 0 10px theme('colors.blue.500');
+}
+
+.eventDot[data-type="pantyReset"] {
+  @apply bg-pink-500;
+  box-shadow: 0 0 10px theme('colors.pink.500');
+}
+
+.tooltip {
+  @apply absolute z-10 p-3 rounded-lg bg-black/90 text-white min-w-[200px];
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 
+    0 0 20px rgba(168, 85, 247, 0.2),
+    inset 0 0 8px rgba(168, 85, 247, 0.1);
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}

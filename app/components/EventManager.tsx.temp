@@ -1,0 +1,53 @@
+'use client';
+
+import { useState } from 'react';
+import { useEvents } from '../hooks/useEvents';
+import { CalendarEvent, EventType, normaliseDate } from '../lib/events';
+
+export default function EventManager() {
+  const { events, addEvent, removeEvent, toggles, toggleAutoDaily, toggleAutoPanty } = useEvents();
+  const [newEvent, setNewEvent] = useState<Partial<CalendarEvent>>({
+    title: '',
+    type: 'ritual',
+    date: normaliseDate(new Date().toISOString()),
+    xp: 25
+  });
+
+  const handleAddEvent = () => {
+    if (!newEvent.title || !newEvent.type || !newEvent.date) return;
+
+    const event: CalendarEvent = {
+      id: `e${Date.now()}`,
+      title: newEvent.title,
+      type: newEvent.type as EventType,
+      date: newEvent.date,
+      xp: newEvent.xp || 0,
+      completed: false,
+      source: 'manual'
+    };
+
+    addEvent(event);
+    setNewEvent({
+      title: '',
+      type: 'ritual',
+      date: normaliseDate(new Date().toISOString()),
+      xp: 25
+    });
+  };
+
+  const handleDeleteEvent = (id: string) => {
+    removeEvent(id);
+  };
+
+  const handleExportEvents = () => {
+    const data = JSON.stringify(events, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'events-export.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };

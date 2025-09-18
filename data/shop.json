@@ -1,0 +1,8 @@
+{
+  "limitedStock": false,
+  "inventory": [
+    { "id": "i1", "name": "Lucid Amulet", "type": "relic", "priceXP": 500, "priceTokens": 0 },
+    { "id": "i2", "name": "Ekram’s Panties", "type": "panty", "priceXP": 0, "priceTokens": 20 },
+    { "id": "i3", "name": "Dream Shard Pack (x5)", "type": "shard", "priceXP": 200, "priceTokens": 0 }
+  ]
+}

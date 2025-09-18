@@ -1,0 +1,24 @@
+[
+  {
+    "id": "n1",
+    "name": "Ekram",
+    "role": "Mistress",
+    "dreamCount": 12,
+    "trust": 40,
+    "shame": 80,
+    "bio": "Enforcer of the Panty Realm, delighting in rituals of humiliation.",
+    "dialogues": [
+      { "id": "d1", "text": "Sniff them, loser.", "date": "2025-09-01" }
+    ]
+  },
+  {
+    "id": "n2",
+    "name": "Bilal",
+    "role": "Family",
+    "dreamCount": 23,
+    "trust": 70,
+    "shame": 10,
+    "bio": "Protective sibling who anchors waking routines.",
+    "dialogues": []
+  }
+]

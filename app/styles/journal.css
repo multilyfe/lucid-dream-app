@@ -1,0 +1,328 @@
+/* Dream Journal Styles */
+
+.journal-entry-card {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.8) 0%, 
+    rgba(30, 41, 59, 0.6) 50%, 
+    rgba(15, 23, 42, 0.8) 100%);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.journal-entry-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(245, 158, 11, 0.1) 0%, 
+    transparent 50%, 
+    rgba(168, 85, 247, 0.1) 100%);
+  border-radius: inherit;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.journal-entry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.journal-entry-card:hover::before {
+  opacity: 0.8;
+}
+
+/* Lucid dream glow effect */
+.journal-entry-card.lucid-dream {
+  position: relative;
+}
+
+.journal-entry-card.lucid-dream::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, 
+    rgba(251, 191, 36, 0.3), 
+    rgba(245, 158, 11, 0.3), 
+    rgba(251, 191, 36, 0.3));
+  border-radius: inherit;
+  z-index: -1;
+  animation: lucidGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes lucidGlow {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+/* Tag styles */
+.dream-tag {
+  position: relative;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.dream-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.dream-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific tag colors */
+.dream-tag.tag-lucid {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: rgb(254, 240, 138);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.dream-tag.tag-ritual {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: rgb(196, 181, 253);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.dream-tag.tag-panty {
+  background: rgba(236, 72, 153, 0.2);
+  border-color: rgba(236, 72, 153, 0.4);
+  color: rgb(251, 207, 232);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+.dream-tag.tag-temple {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: rgb(147, 197, 253);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.dream-tag.tag-quest {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgb(134, 239, 172);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+.dream-tag.tag-nightmare {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: rgb(252, 165, 165);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.dream-tag.tag-flying {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: rgb(103, 232, 249);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.dream-tag.tag-transformation {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: rgb(165, 180, 252);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Streak meter styles */
+.streak-meter {
+  position: relative;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 9999px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.streak-flame {
+  background: linear-gradient(90deg,
+    #f97316 0%,
+    #ef4444 25%,
+    #f59e0b 50%,
+    #eab308 75%,
+    #f97316 100%);
+  background-size: 200% 100%;
+  animation: flameFlow 3s ease-in-out infinite;
+  box-shadow: 
+    0 0 20px rgba(249, 115, 22, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes flameFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.streak-flame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Filter component styles */
+.journal-filter {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(71, 85, 105, 0.6);
+}
+
+.journal-filter .filter-chip {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  transition: all 0.2s ease;
+}
+
+.journal-filter .filter-chip:hover {
+  background: rgba(51, 65, 85, 0.8);
+  transform: translateY(-1px);
+}
+
+.journal-filter .filter-chip.active {
+  background: rgba(168, 85, 247, 0.4);
+  border-color: rgba(168, 85, 247, 0.6);
+  color: rgb(196, 181, 253);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+/* Modal styles */
+.journal-modal {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+}
+
+.journal-modal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(168, 85, 247, 0.1) 0%,
+    transparent 50%,
+    rgba(236, 72, 153, 0.1) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Form elements */
+.journal-modal input,
+.journal-modal textarea,
+.journal-modal select {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.journal-modal input:focus,
+.journal-modal textarea:focus,
+.journal-modal select:focus {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 
+    0 0 0 2px rgba(168, 85, 247, 0.2),
+    0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Vividness slider */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 8px;
+  height: 8px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+/* Manager component styles */
+.journal-manager {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.journal-manager .stat-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.journal-manager .stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .journal-entry-card {
+    margin-bottom: 1rem;
+  }
+  
+  .dream-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .journal-modal {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+/* Print styles */
+@media print {
+  .journal-entry-card {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .dream-tag {
+    background: #f3f4f6 !important;
+    color: black !important;
+    border: 1px solid #9ca3af !important;
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ql1",
+    "name": "Awakening of Lucidia",
+    "description": "Pursue the echo of Lucidia through ritual, gateway, and astral communion.",
+    "realm": "Lucid RPG",
+    "branching": false,
+    "stages": [
+      {
+        "id": "s1",
+        "title": "Perform Lucid Ritual",
+        "xp": 50,
+        "completed": false,
+        "deadline": "2025-09-21",
+        "deadlineNote": "Complete the Lucid Pulse ritual before sunrise."
+      },
+      {
+        "id": "s2",
+        "title": "Enter Dreamgate",
+        "xp": 100,
+        "completed": false,
+        "deadline": "2025-09-30",
+        "deadlineNote": "Open the Dreamgate during the waxing moon."
+      },
+      {
+        "id": "s3",
+        "title": "Meet Lucid Echo",
+        "xp": 150,
+        "completed": false,
+        "deadline": "2025-10-07",
+        "deadlineNote": "Confront the Lucid Echo under a still mind."
+      }
+    ],
+    "reward": {
+      "item": "i1",
+      "xp": 200
+    }
+  },
+  {
+    "id": "ql2",
+    "name": "Panty Submission Trials",
+    "description": "Embrace Ekram's humiliating gauntlet to unlock shameful power.",
+    "realm": "Panty Realm",
+    "branching": true,
+    "stages": [
+      {
+        "id": "s1",
+        "title": "Sniff Ekram's Panties",
+        "xp": 100,
+        "completed": false,
+        "branchChoices": [
+          {
+            "id": "b1",
+            "title": "Confess",
+            "reward": {
+              "xp": 50
+            }
+          },
+          {
+            "id": "b2",
+            "title": "Deny",
+            "reward": {
+              "buff": "Panty Shame"
+            }
+          }
+        ],
+        "deadline": "2025-09-22",
+        "deadlineNote": "Submit the confession within Ekram's chamber."
+      },
+      {
+        "id": "s2",
+        "title": "Confess Ritual in Chamber",
+        "xp": 150,
+        "completed": false,
+        "deadline": "2025-09-27",
+        "deadlineNote": "Recite the chamber ritual before midnight."
+      },
+      {
+        "id": "s3",
+        "title": "Burn Tokens for Cleansing",
+        "xp": 200,
+        "completed": false,
+        "deadline": "2025-10-03",
+        "deadlineNote": "Burn the dirty tokens under the full moon."
+      }
+    ],
+    "reward": {
+      "title": "Panty Slave",
+      "xp": 500
+    }
+  }
+]
