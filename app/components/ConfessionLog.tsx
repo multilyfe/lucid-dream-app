@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useShame } from '../../hooks/useShame';
+import { useShame } from '../hooks/useShame';
 
 export default function ConfessionLog() {
   const { shame, addConfession } = useShame();

@@ -50,6 +50,7 @@ type RitualCardProps = {
   progress?: RitualProgress;
   aura: string;
   onComplete: () => void;
+  onFail: () => void;
   disabled: boolean;
 };
 
@@ -57,7 +58,7 @@ function combineClasses(parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(' ');
 }
 
-function RitualCard({ ritual, progress, aura, onComplete, disabled }: RitualCardProps) {
+function RitualCard({ ritual, progress, aura, onComplete, onFail, disabled }: RitualCardProps) {
   const streak = progress?.streak ?? 0;
   const completed = Boolean(progress?.completed);
   const multiplier = progress?.multiplier ?? 0;
@@ -115,9 +116,14 @@ function RitualCard({ ritual, progress, aura, onComplete, disabled }: RitualCard
 
         <div className="mt-auto flex items-center justify-between gap-3 text-xs uppercase tracking-[0.3em]">
           <span className="text-slate-300">{statusLabel}</span>
-          <button type="button" onClick={onComplete} disabled={disabled || completed} className={buttonClasses}>
-            Complete
-          </button>
+          <div className="flex gap-2">
+            <button type="button" onClick={onFail} disabled={disabled || completed} className="rounded-2xl border border-rose-400/40 px-4 py-2 text-[0.7rem] font-semibold text-white transition hover:bg-rose-500/20">
+              Fail
+            </button>
+            <button type="button" onClick={onComplete} disabled={disabled || completed} className={buttonClasses}>
+              Complete
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -125,7 +131,7 @@ function RitualCard({ ritual, progress, aura, onComplete, disabled }: RitualCard
 }
 
 export default function RitualsPage() {
-  const { rituals, logs, progressById, completeRitual, xp, obedience } = useRitualsEngine();
+  const { rituals, logs, progressById, completeRitual, failRitual, xp, obedience } = useRitualsEngine();
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const [processingId, setProcessingId] = useState<string | null>(null);
 
@@ -165,6 +171,16 @@ export default function RitualsPage() {
         message: 'Ritual not found. Refresh and try again.',
       });
     }
+    setProcessingId(null);
+  };
+
+  const handleFail = (ritualId: string) => {
+    setProcessingId(ritualId);
+    failRitual(ritualId);
+    setFeedback({
+      tone: 'warning',
+      message: 'Ritual failed. Your shame deepens.',
+    });
     setProcessingId(null);
   };
 
@@ -210,6 +226,7 @@ export default function RitualsPage() {
                       aura={section.aura}
                       disabled={processingId === ritual.id}
                       onComplete={() => handleComplete(ritual.id)}
+                      onFail={() => handleFail(ritual.id)}
                     />
                   ))}
                 </div>

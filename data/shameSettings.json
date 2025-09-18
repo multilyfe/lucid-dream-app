@@ -1,0 +1,16 @@
+{
+  "filthThresholds": [
+    { "level": 1, "name": "Tainted", "threshold": 10 },
+    { "level": 2, "name": "Soiled", "threshold": 25 },
+    { "level": 3, "name": "Stained", "threshold": 50 },
+    { "level": 4, "name": "Filthy", "threshold": 100 },
+    { "level": 5, "name": "Depraved", "threshold": 200 }
+  ],
+  "punishmentTiers": [
+    { "tier": 1, "name": "Minor Penance", "filthRequired": 20 },
+    { "tier": 2, "name": "Standard Chastisement", "filthRequired": 50 },
+    { "tier": 3, "name": "Severe Admonishment", "filthRequired": 100 },
+    { "tier": 4, "name": "Extreme Reprimand", "filthRequired": 250 },
+    { "tier": 5, "name": "Ultimate Degradation", "filthRequired": 500 }
+  ]
+}

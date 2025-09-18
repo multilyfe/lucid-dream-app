@@ -40,6 +40,7 @@ export type SidebarNavKey =
   | "places"
   | "companions"
   | "achievements"
+  | "shame"
   | "settings";
 
 export type SidebarProps = {
@@ -68,6 +69,7 @@ const NAV_ITEMS: Array<{
   { key: "places", label: "Astral Map", href: "/rpg/places", Icon: MapIcon },
   { key: "companions", label: "Companions", href: "/rpg/companions", Icon: Sparkles },
   { key: "achievements", label: "Achievements", href: "/rpg/achievements", Icon: Trophy },
+  { key: "shame", label: "Shame", href: "/rpg/shame", Icon: Skull },
   { key: "settings", label: "Settings", href: "/rpg/settings", Icon: Cog },
 ];
 

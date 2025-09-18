@@ -5,6 +5,7 @@ import { usePersistentState } from "./usePersistentState";
 import { useBuffs } from "./useBuffs";
 import { useCompanions } from "./useCompanions";
 import { useNpcs } from "./useNpcs";
+import { useShame } from "./useShame";
 import {
   cloneDefaultRitualLogs,
   cloneDefaultRituals,
@@ -45,6 +46,7 @@ export function useRitualsEngine() {
   const { applyEvent, triggerBuffBySource } = useBuffs();
   const { companions, gainXpForCompanions } = useCompanions();
   const { npcs, adjustShame: adjustNpcShame } = useNpcs();
+  const { incrementCounter } = useShame();
 
   const progressById = useMemo(() => {
     const now = new Date();
@@ -173,6 +175,14 @@ export function useRitualsEngine() {
     [setLogs, setRituals]
   );
 
+  const failRitual = useCallback(
+    (ritualId: string) => {
+      incrementCounter('ritualsFailed', 1);
+      resetRitualStreak(ritualId);
+    },
+    [incrementCounter, resetRitualStreak]
+  );
+
   const addRitual = useCallback(
     (ritual: Ritual) => {
       setRituals((prev) => [...prev, ritual]);
@@ -217,6 +227,7 @@ export function useRitualsEngine() {
     updateRitual,
     deleteRitual,
     resetRitualStreak,
+    failRitual,
     xp,
     obedience,
     setXp,

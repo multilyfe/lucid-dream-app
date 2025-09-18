@@ -8,6 +8,7 @@ import { useInventory } from "../../hooks/useInventory";
 import { usePersistentState } from "../../hooks/usePersistentState";
 import { type ShopItem } from "../../lib/shop";
 import { useHydrated } from "../../hooks/useHydrated";
+import { useShame } from "../../hooks/useShame";
 
 type SellModalProps = {
   open: boolean;
@@ -72,6 +73,7 @@ function SellModal({ open, items, onClose, onSell }: SellModalProps) {
 export default function ShopPage() {
   const hydrated = useHydrated();
   const { shop, updateItem, appendLog } = useShop();
+  const { incrementCounter } = useShame();
   const {
     inventory,
     gainItem,
@@ -115,8 +117,15 @@ export default function ShopPage() {
   const handlePurchase = (item: ShopItem) => {
     if (shop.limitedStock && item.stock != null && item.stock <= 0) return;
     if (item.priceXP > xp || item.priceTokens > tokens) return;
+    
+    const spentTokens = item.priceTokens;
     spendXp(item.priceXP);
-    spendTokens(item.priceTokens);
+    spendTokens(spentTokens);
+
+    if (spentTokens > 0) {
+      incrementCounter('dirtyTokensBurned', spentTokens);
+    }
+
     gainItem(item.id, 1, { name: item.name, type: item.type });
 
     if (shop.limitedStock && item.stock != null) {

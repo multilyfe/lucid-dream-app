@@ -32,6 +32,8 @@ import { JournalManager } from "../../components/JournalManager";
 import { JournalSettingsUltra } from "../../components/JournalSettingsUltra";
 import { type CompanionBuff } from "../../lib/companions";
 import { type ProfileTheme } from "../../lib/profile";
+import { SectionLabel } from "../../components/SectionLabel";
+import { ShameManagerExtras } from "../../components/ShameManagerSettings";
 import { type Npc } from "../../lib/npcs";
 
 const DEFAULT_CONTROL_NEXUS = {
@@ -426,13 +428,7 @@ function runeToggleClasses(active: boolean) {
   }`;
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300">
-      {children}
-    </h3>
-  );
-}
+
 
 type PanelShellProps = {
   icon: string;
@@ -3103,6 +3099,13 @@ const PANEL_CONFIGS: PanelConfig[] = [
     title: "NPC Manager",
     description: "Manage relationships, trust, and shame stats.",
     extras: [NpcManagerExtras],
+  },
+  {
+    id: "shame-manager",
+    icon: "😳",
+    title: "Shame Manager",
+    description: "Configure filth thresholds and punishment tiers.",
+    extras: [ShameManagerExtras],
   },
   {
     id: "event-manager",

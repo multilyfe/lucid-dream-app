@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import QuestLayout from "../../layouts/QuestLayout";
 import { useCompanions } from "../../hooks/useCompanions";
 import { useNpcs } from "../../hooks/useNpcs";
+import { useShame } from "../../hooks/useShame";
 
 export default function PantyRealmPage() {
   const { companions, gainXpForCompanions } = useCompanions();
   const { npcs, adjustShame: adjustNpcShame } = useNpcs();
+  const { incrementCounter } = useShame();
   const [recent, setRecent] = useState<string | null>(null);
   const [selectedNpcId, setSelectedNpcId] = useState<string>(npcs[0]?.id ?? "");
 
@@ -25,6 +27,7 @@ export default function PantyRealmPage() {
     if (selectedNpcId) {
       adjustNpcShame(selectedNpcId, 15);
     }
+    incrementCounter('pantiesSniffed', 1);
     setRecent(
       `Panty shame ritual sealed · ${new Intl.DateTimeFormat(undefined, {
         hour: "2-digit",
@@ -51,7 +54,9 @@ export default function PantyRealmPage() {
           </p>
           <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-rose-200/80">
             <span>Shame Offering Target</span>
+            <label htmlFor="npc-shame-target" className="sr-only">Shame Offering Target</label>
             <select
+              id="npc-shame-target"
               value={selectedNpcId}
               onChange={(event) => setSelectedNpcId(event.target.value)}
               className="rounded-full border border-rose-400/40 bg-rose-500/10 px-3 py-1 text-xs text-rose-100 focus:border-rose-300 focus:outline-none"

@@ -1,6 +1,6 @@
 'use client';
 
-import { useShame } from '../../hooks/useShame';
+import { useShame } from '../hooks/useShame';
 import { useSpring, animated } from '@react-spring/web';
 
 export default function PunishmentMeter() {
@@ -26,9 +26,9 @@ export default function PunishmentMeter() {
   };
 
   return (
-    <div className="bg-black/50 border border-pink-500/30 rounded-2xl p-6">
-      <h2 className="text-2xl font-bold text-pink-200 mb-4 text-center">Punishment Meter</h2>
-      <div className="w-full bg-gray-700 rounded-full h-8 border-2 border-gray-900 shadow-inner">
+    <div className="bg-gradient-to-b from-[#1a0c2e] to-[#0e0517] border border-pink-500/30 rounded-2xl p-6 shadow-lg shadow-black/50">
+      <h2 className="text-2xl font-bold text-pink-200 mb-4 text-center tracking-widest uppercase">Punishment Meter</h2>
+      <div className="w-full bg-slate-900/50 rounded-full h-8 border-2 border-slate-700 shadow-inner">
         <animated.div
           className={`h-full rounded-full ${getBarColor()} transition-colors duration-500`}
           style={{
@@ -37,7 +37,7 @@ export default function PunishmentMeter() {
           }}
         />
       </div>
-      <div className="text-center mt-2 text-white font-bold text-2xl drop-shadow-[0_0_5px_#fff]">
+      <div className="text-center mt-3 text-white font-bold text-2xl drop-shadow-[0_0_8px_#fff]">
         {filthLevel.toFixed(0)}% Filth
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useShame } from '../../hooks/useShame';
+import { useShame } from '../hooks/useShame';
 import { useSpring, animated } from '@react-spring/web';
 
 const ShameCounterCard = ({ title, value, icon }: { title: string; value: number; icon: string }) => {
@@ -12,8 +12,8 @@ const ShameCounterCard = ({ title, value, icon }: { title: string; value: number
   });
 
   return (
-    <div className="bg-pink-900/30 border border-pink-500/50 rounded-2xl p-4 text-center shadow-[0_0_20px_rgba(255,105,180,0.4)]">
-      <div className="text-5xl drop-shadow-[0_0_5px_rgba(255,105,180,0.7)]">{icon}</div>
+    <div className="bg-[#2c1b47]/60 border border-[#ff007f]/50 rounded-2xl p-4 text-center shadow-[0_0_20px_rgba(255,0,127,0.5)] transition-all hover:shadow-[0_0_30px_rgba(255,0,127,0.8)] hover:scale-105">
+      <div className="text-5xl drop-shadow-[0_0_5px_rgba(255,0,127,0.7)]">{icon}</div>
       <animated.div className="text-4xl font-bold text-white mt-2">
         {number.to(n => n.toFixed(0))}
       </animated.div>
