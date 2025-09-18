@@ -32,10 +32,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/rpg/shame/page.js"
     ],
-    "/_not-found/page": [
+    "/rpg/achievements/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/rpg/achievements/page.js"
+    ],
+    "/rpg/quests/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/rpg/quests/page.css",
+      "static/chunks/app/rpg/quests/page.js"
     ]
   }
 }

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-shadow-amber {
+    text-shadow: 0 0 15px rgba(252, 211, 77, 0.6);
+  }
+}
+
 /* Import journal styles */
 @import './styles/journal.css';
 

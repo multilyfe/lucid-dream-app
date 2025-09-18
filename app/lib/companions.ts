@@ -19,7 +19,7 @@ export const COMPANION_BUFF_KEYS: CompanionBuffKey[] = [
 export type CompanionForm = {
   id: string;
   name: string;
-  unlockAt: number;
+  unlockLevel: number;
   buff?: CompanionBuff;
   icon?: string;
   description?: string;
@@ -30,9 +30,10 @@ export type Companion = {
   name: string;
   level: number;
   xp: number;
+  bond: number;
   lore?: string;
-  forms: CompanionForm[];
-  activeForm: string;
+  evolutionTree: CompanionForm[];
+  currentForm: string;
   autoEvolve?: boolean;
 };
 
@@ -41,13 +42,13 @@ export type CompanionXpEvent = "dream" | "ritual" | "quest" | "panty";
 const DEFAULT_COMPANIONS = (defaultCompanions as Companion[]).map((companion) => cloneCompanion(companion));
 
 export function cloneCompanion(companion: Companion): Companion {
-  const normalisedForms = [...companion.forms]
+  const normalisedForms = [...companion.evolutionTree]
     .map((form, index) => normaliseForm(form, index))
-    .sort((a, b) => (a.unlockAt ?? 0) - (b.unlockAt ?? 0));
+    .sort((a, b) => (a.unlockLevel ?? 0) - (b.unlockLevel ?? 0));
 
-  const activeForm = normalisedForms.find((form) => form.id === companion.activeForm)?.id
+  const currentForm = normalisedForms.find((form) => form.id === companion.currentForm)?.id
     ?? normalisedForms[0]?.id
-    ?? companion.activeForm;
+    ?? companion.currentForm;
 
   const level = Math.max(1, Number(companion.level) || 1);
   const carryOverXp = Math.max(0, Number(companion.xp) || 0);
@@ -58,8 +59,8 @@ export function cloneCompanion(companion: Companion): Companion {
     level,
     xp: sanitisedXp,
     autoEvolve: Boolean(companion.autoEvolve),
-    activeForm,
-    forms: normalisedForms,
+    currentForm,
+    evolutionTree: normalisedForms,
   };
 }
 
@@ -68,15 +69,15 @@ export function cloneDefaultCompanions(): Companion[] {
 }
 
 function normaliseForm(form: CompanionForm, index: number): CompanionForm {
-  const unlockAt = typeof form.unlockAt === "number"
-    ? Math.max(1, form.unlockAt)
+  const unlockLevel = typeof form.unlockLevel === "number"
+    ? Math.max(1, form.unlockLevel)
     : index === 0
       ? 1
       : 1 + index * 2;
 
   return {
     ...form,
-    unlockAt,
+    unlockLevel,
     buff: form.buff ? { ...form.buff } : undefined,
   };
 }
@@ -88,20 +89,20 @@ function clampXp(xp: number, level: number): number {
 }
 
 export function getActiveForm(companion: Companion): CompanionForm | undefined {
-  return companion.forms.find((form) => form.id === companion.activeForm);
+  return companion.evolutionTree.find((form) => form.id === companion.currentForm);
 }
 
 export function getNextForm(companion: Companion): CompanionForm | undefined {
-  const next = companion.forms
-    .filter((form) => form.unlockAt > (getActiveForm(companion)?.unlockAt ?? 0))
-    .sort((a, b) => a.unlockAt - b.unlockAt)[0];
+  const next = companion.evolutionTree
+    .filter((form) => form.unlockLevel > (getActiveForm(companion)?.unlockLevel ?? 0))
+    .sort((a, b) => a.unlockLevel - b.unlockLevel)[0];
   return next;
 }
 
 export function canEvolve(companion: Companion): boolean {
   const next = getNextForm(companion);
   if (!next) return false;
-  return companion.level >= next.unlockAt;
+  return companion.level >= next.unlockLevel;
 }
 
 export const XP_EVENT_VALUES: Record<CompanionXpEvent, number> = {

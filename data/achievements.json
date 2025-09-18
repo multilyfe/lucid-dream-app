@@ -1,0 +1,79 @@
+[
+  {
+    "id": "DREAM_LUCID_FIRST",
+    "title": "First Lucid Dream",
+    "desc": "You took control and realized you were dreaming.",
+    "category": "Dream",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DREAM_TAG", "value": "lucid" },
+    "reward": { "xp": 50 }
+  },
+  {
+    "id": "SHAME_PANTY_WHISPERER",
+    "title": "Panty Whisperer",
+    "desc": "Sniffed 10 pairs of panties. You're developing a refined taste.",
+    "category": "Shame",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "SHAME_COUNTER", "counter": "pantiesSniffed", "value": 10 },
+    "reward": { "xp": 100, "title": "Panty Whisperer" }
+  },
+  {
+    "id": "SHAME_SHAMEBOUND",
+    "title": "Shamebound",
+    "desc": "Confessed your first filthy act in the tracker. Welcome to the fold.",
+    "category": "Shame",
+    "secret": true,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "CONFESSION_LOGGED", "value": 1 },
+    "reward": { "xp": 200, "tokens": 5, "title": "Shamebound" }
+  },
+  {
+    "id": "DUNGEON_BOSS_SLAYER",
+    "title": "Boss Slayer",
+    "desc": "Cleared your first Nightmare Dungeon. The darkness fears you.",
+    "category": "Dungeon",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DUNGEON_CLEARED", "value": 1 },
+    "reward": { "xp": 250 }
+  },
+  {
+    "id": "COMPANION_DREAM_GUARDIAN",
+    "title": "Dream Guardian",
+    "desc": "Evolved a companion to their final form. A bond that transcends dreams.",
+    "category": "Companion",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "COMPANION_EVOLVED", "value": 1 },
+    "reward": { "xp": 500, "title": "Dream Guardian" }
+  },
+  {
+    "id": "RITUAL_OBEDIENCE_MASTER",
+    "title": "Obedience Master",
+    "desc": "Completed 25 obedience rituals. Your devotion is absolute.",
+    "category": "Ritual",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "RITUAL_COMPLETED", "value": 25 },
+    "reward": { "xp": 300, "title": "Obedience Master" }
+  },
+  {
+    "id": "SHAME_ULTIMATE_DEGRADATION",
+    "title": "Ultimate Degradation",
+    "desc": "Reached the highest tier of punishment. There is no redemption from this depth.",
+    "category": "Shame",
+    "secret": true,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "PUNISHMENT_TIER_REACHED", "value": 5 },
+    "reward": { "xp": 1000, "tokens": 50, "title": "Utterly Degraded" }
+  }
+]
