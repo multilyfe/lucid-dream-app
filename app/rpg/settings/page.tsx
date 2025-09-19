@@ -2425,15 +2425,188 @@ const JournalManagerExtras = (_props: PanelRenderProps) => {
 };
 
 const DungeonManagerExtras = (_props: PanelRenderProps) => {
-  const { dungeons } = useDungeons();
+  const { 
+    dungeons, 
+    addDungeon, 
+    updateDungeon, 
+    removeDungeon,
+    totalClearedDungeons,
+    totalBossesDefeated,
+    abandonDungeon,
+    replaceAll
+  } = useDungeons();
+  
+  const [selectedDungeon, setSelectedDungeon] = useState<string | null>(null);
+  const [newDungeonName, setNewDungeonName] = useState('');
+  
+  const handleAddDungeon = () => {
+    if (!newDungeonName.trim()) return;
+    
+    const newDungeon = {
+      id: `d${Date.now()}`,
+      name: newDungeonName,
+      description: "A mysterious dungeon filled with trials and treasures.",
+      difficulty: 1,
+      cleared: false,
+      timesCleared: 0,
+      unlocked: true,
+      background: "cave",
+      roomPool: [
+        { type: "trial", subtype: "shame", desc: "Face your deepest shame", weight: 3 },
+        { type: "trial", subtype: "combat", desc: "Fight shadow creatures", weight: 2 },
+        { type: "loot", desc: "Discover hidden treasures", weight: 2 },
+        { type: "boss", desc: "Confront the dungeon guardian", weight: 1 }
+      ],
+      lootPool: [
+        { id: "basic_relic", name: "Basic Relic", type: "artifact", effect: "+10 XP", rarity: "common" }
+      ],
+      boss: {
+        name: "Shadow Guardian",
+        health: 100,
+        attacks: ["Dark Strike", "Shadow Bolt"],
+        weakness: "confession",
+        rewards: { xp: 300, tokens: 30, items: ["basic_relic"] }
+      }
+    };
+    
+    addDungeon(newDungeon as any);
+    setNewDungeonName('');
+  };
+  
+  const handleResetDungeon = (dungeonId: string) => {
+    updateDungeon(dungeonId, (dungeon) => ({
+      ...dungeon,
+      cleared: false,
+      completed: false,
+      timesCleared: 0
+    }));
+  };
+  
+  const handleDeleteDungeon = (dungeonId: string) => {
+    if (confirm('Are you sure you want to delete this dungeon?')) {
+      removeDungeon(dungeonId);
+    }
+  };
+  
+  const handleResetAllProgress = () => {
+    if (confirm('Are you sure you want to reset ALL dungeon progress? This cannot be undone.')) {
+      dungeons.forEach(dungeon => {
+        updateDungeon(dungeon.id, (d) => ({
+          ...d,
+          cleared: false,
+          completed: false,
+          timesCleared: 0
+        }));
+      });
+      abandonDungeon();
+    }
+  };
   
   return (
     <div className="space-y-5 rounded-3xl border border-orange-500/30 bg-slate-950/70 p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <SectionLabel>Dungeon Management</SectionLabel>
       </div>
-      <div className="text-sm text-slate-400">
-        Available dungeons: {dungeons.length}. Advanced dungeon management coming soon...
+      
+      {/* Stats Overview */}
+      <div className="grid grid-cols-3 gap-4 text-sm">
+        <div className="bg-purple-900/30 rounded-lg p-3 text-center">
+          <div className="text-lg font-bold text-purple-400">{dungeons.length}</div>
+          <div className="text-purple-300">Total Dungeons</div>
+        </div>
+        <div className="bg-green-900/30 rounded-lg p-3 text-center">
+          <div className="text-lg font-bold text-green-400">{totalClearedDungeons}</div>
+          <div className="text-green-300">Cleared</div>
+        </div>
+        <div className="bg-red-900/30 rounded-lg p-3 text-center">
+          <div className="text-lg font-bold text-red-400">{totalBossesDefeated}</div>
+          <div className="text-red-300">Bosses Defeated</div>
+        </div>
+      </div>
+
+      {/* Add New Dungeon */}
+      <div className="space-y-3">
+        <h4 className="text-sm font-bold text-slate-300">Add New Dungeon</h4>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={newDungeonName}
+            onChange={(e) => setNewDungeonName(e.target.value)}
+            placeholder="Dungeon name..."
+            className="flex-1 px-3 py-2 bg-slate-800 border border-slate-600 rounded text-white text-sm"
+          />
+          <button
+            onClick={handleAddDungeon}
+            disabled={!newDungeonName.trim()}
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-600 text-white rounded text-sm transition-colors"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+
+      {/* Existing Dungeons */}
+      <div className="space-y-3">
+        <h4 className="text-sm font-bold text-slate-300">Existing Dungeons</h4>
+        <div className="space-y-2 max-h-48 overflow-y-auto">
+          {dungeons.map((dungeon) => (
+            <div key={dungeon.id} className="bg-slate-800/50 rounded p-3 text-sm">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-white">{dungeon.name}</span>
+                  {dungeon.cleared && <span className="text-green-400">✓</span>}
+                  <span className="text-xs text-slate-400">
+                    {dungeon.timesCleared || 0}x cleared
+                  </span>
+                </div>
+                <div className="flex gap-1">
+                  <button
+                    onClick={() => handleResetDungeon(dungeon.id)}
+                    className="px-2 py-1 bg-yellow-600 hover:bg-yellow-500 text-white rounded text-xs transition-colors"
+                    title="Reset Progress"
+                  >
+                    Reset
+                  </button>
+                  <button
+                    onClick={() => handleDeleteDungeon(dungeon.id)}
+                    className="px-2 py-1 bg-red-600 hover:bg-red-500 text-white rounded text-xs transition-colors"
+                    title="Delete Dungeon"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div className="text-xs text-slate-400">
+                Difficulty: {dungeon.difficulty || 1} | 
+                Unlocked: {dungeon.unlocked ? 'Yes' : 'No'} |
+                Boss: {dungeon.boss?.name || 'None'}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Global Actions */}
+      <div className="space-y-3 pt-3 border-t border-slate-700">
+        <h4 className="text-sm font-bold text-slate-300">Global Actions</h4>
+        <div className="flex gap-2">
+          <button
+            onClick={handleResetAllProgress}
+            className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded text-sm transition-colors"
+          >
+            Reset All Progress
+          </button>
+          <button
+            onClick={abandonDungeon}
+            className="px-4 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded text-sm transition-colors"
+          >
+            Abandon Current Run
+          </button>
+        </div>
+      </div>
+      
+      <div className="text-xs text-slate-500">
+        ⚠️ Use caution with these controls. Some actions cannot be undone.
       </div>
     </div>
   );

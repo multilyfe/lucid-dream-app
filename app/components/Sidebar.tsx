@@ -21,6 +21,7 @@ import {
   UserCircle2,
   CalendarDays,
   Wand2,
+  Castle,
 } from "lucide-react";
 import { usePersistentState } from "../hooks/usePersistentState";
 
@@ -30,7 +31,7 @@ export type SidebarNavKey =
   | "temple"
   | "analytics"
   | "quests"
-  | "dungeon"
+  | "dungeons"
   | "shop"
   | "profile"
   | "npcs"
@@ -62,7 +63,7 @@ const NAV_ITEMS: Array<{
   { key: "map", label: "Map", href: "/rpg/map", Icon: MapIcon },
   { key: "companions", label: "Companions", href: "/rpg/companions", Icon: Sparkles },
   { key: "inventory", label: "Inventory", href: "/rpg/inventory", Icon: Backpack },
-  { key: "dungeon", label: "Dungeon", href: "/rpg/dungeon", Icon: Skull },
+  { key: "dungeons", label: "Dungeons", href: "/rpg/dungeons", Icon: Castle },
   { key: "rituals", label: "Rituals", href: "/rpg/rituals", Icon: Lock },
   { key: "buffs", label: "Buffs & Curses", href: "/rpg/buffs", Icon: Wand2 },
   { key: "temple", label: "Temple", href: "/rpg/temple", Icon: Landmark },

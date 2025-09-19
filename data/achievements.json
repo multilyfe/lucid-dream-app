@@ -97,5 +97,60 @@
     "date": null,
     "trigger": { "type": "MAP_NODE_UNLOCKED", "value": "r2" },
     "reward": { "xp": 250, "tokens": 20 }
+  },
+  {
+    "id": "DUNGEON_EXPLORER",
+    "title": "Dungeon Explorer",
+    "desc": "Completed your first dungeon run. The trials have only just begun.",
+    "category": "Dungeon",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DUNGEON_CLEARED", "value": 1 },
+    "reward": { "xp": 200, "tokens": 25 }
+  },
+  {
+    "id": "DUNGEON_SHAME_MASTER",
+    "title": "Master of Shame",
+    "desc": "Cleared the Caves of Shame multiple times. You've embraced your darkest secrets.",
+    "category": "Dungeon",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DUNGEON_CLEARED", "value": 3 },
+    "reward": { "xp": 500, "tokens": 60 }
+  },
+  {
+    "id": "DUNGEON_OBEDIENCE_ADEPT",
+    "title": "Obedience Adept",
+    "desc": "Mastered the Temple of Obedience. Your submission knows no bounds.",
+    "category": "Dungeon",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DUNGEON_CLEARED", "value": 5 },
+    "reward": { "xp": 750, "tokens": 80 }
+  },
+  {
+    "id": "DUNGEON_DREAM_WALKER",
+    "title": "Dream Walker",
+    "desc": "Conquered the Labyrinth of Dreams. Reality bends to your will.",
+    "category": "Dungeon",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DUNGEON_CLEARED", "value": 7 },
+    "reward": { "xp": 1000, "tokens": 100 }
+  },
+  {
+    "id": "DUNGEON_MASTER",
+    "title": "Dungeon Master",
+    "desc": "Cleared all available dungeons. You are the master of trials and tribulations.",
+    "category": "Dungeon",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "DUNGEON_CLEARED", "value": 10 },
+    "reward": { "xp": 2000, "tokens": 200, "title": "Dungeon Master" }
   }
 ]

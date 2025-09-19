@@ -27,16 +27,6 @@
       "static/css/app/rpg/dashboard/page.css",
       "static/chunks/app/rpg/dashboard/page.js"
     ],
-    "/rpg/buffs/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/buffs/page.js"
-    ],
-    "/rpg/journal/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/journal/page.js"
-    ],
     "/rpg/quests/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -48,20 +38,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/rpg/map/page.js"
     ],
-    "/rpg/companions/page": [
+    "/rpg/dungeons/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/companions/page.js"
-    ],
-    "/rpg/inventory/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/inventory/page.js"
-    ],
-    "/rpg/dungeon/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/dungeon/page.js"
+      "static/chunks/app/rpg/dungeons/page.js"
     ]
   }
 }

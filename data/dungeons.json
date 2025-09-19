@@ -1,30 +1,178 @@
-[
-  {
-    "id": "d1",
-    "name": "Caves of Shame",
-    "rooms": [
-      {
-        "id": "r1",
-        "type": "encounter",
-        "desc": "A swarm of shadow panties attack!",
-        "loot": ["i2"],
-        "xp": 100
-      },
-      {
-        "id": "r2",
-        "type": "event",
-        "desc": "You found a hidden dream shard cache.",
-        "loot": ["i3"],
-        "xp": 50
-      },
-      {
-        "id": "r3",
-        "type": "boss",
-        "desc": "Face the Mistress of Chains.",
-        "loot": ["i1"],
-        "xp": 500
+{
+  "dungeons": [
+    {
+      "id": "d1",
+      "name": "Caves of Shame",
+      "description": "Dark caverns where past regrets echo through twisted passages. Only by confronting your shame can you claim the treasures within.",
+      "difficulty": 1,
+      "cleared": false,
+      "timesCleared": 0,
+      "unlocked": true,
+      "background": "cave",
+      "roomPool": [
+        { "type": "trial", "subtype": "shame", "desc": "Confess a filthy act to proceed", "weight": 3 },
+        { "type": "trial", "subtype": "obedience", "desc": "Submit to a humiliating ritual", "weight": 2 },
+        { "type": "trial", "subtype": "combat", "desc": "Face shadow creatures born from guilt", "weight": 2 },
+        { "type": "loot", "desc": "Discover a hidden cache of mystical items", "weight": 2 },
+        { "type": "boss", "desc": "Confront the Shame Wraith that guards this place", "weight": 1 }
+      ],
+      "lootPool": [
+        { "id": "shame_relic", "name": "Panty Relic of Shame", "type": "artifact", "effect": "+15 shame XP", "rarity": "rare" },
+        { "id": "guilt_stone", "name": "Guilt Stone", "type": "curse", "effect": "-10% confidence for 2 hours", "rarity": "common" },
+        { "id": "submission_charm", "name": "Submission Charm", "type": "buff", "effect": "+20% obedience for 3 hours", "rarity": "uncommon" }
+      ],
+      "boss": {
+        "name": "Shame Wraith",
+        "health": 100,
+        "attacks": ["Guilt Lash", "Regret Storm", "Humiliation Wave"],
+        "weakness": "confession",
+        "rewards": {
+          "xp": 500,
+          "tokens": 50,
+          "items": ["shame_relic"]
+        }
       }
-    ],
-    "completed": false
+    },
+    {
+      "id": "d2", 
+      "name": "Temple of Obedience",
+      "description": "Sacred halls where submission is the only path forward. Ancient rituals await those brave enough to surrender control.",
+      "difficulty": 2,
+      "cleared": false,
+      "timesCleared": 0,
+      "unlocked": false,
+      "background": "temple",
+      "roomPool": [
+        { "type": "trial", "subtype": "obedience", "desc": "Kneel before the altar of submission", "weight": 4 },
+        { "type": "trial", "subtype": "shame", "desc": "Expose your deepest secrets", "weight": 2 },
+        { "type": "trial", "subtype": "ritual", "desc": "Perform the ancient rites of devotion", "weight": 3 },
+        { "type": "loot", "desc": "Find sacred implements of worship", "weight": 2 },
+        { "type": "boss", "desc": "Face Mistress Ekram in her divine form", "weight": 1 }
+      ],
+      "lootPool": [
+        { "id": "devotion_collar", "name": "Collar of Devotion", "type": "artifact", "effect": "+25% ritual effectiveness", "rarity": "rare" },
+        { "id": "obedience_mark", "name": "Mark of Obedience", "type": "buff", "effect": "+30% submission for 4 hours", "rarity": "uncommon" },
+        { "id": "divine_essence", "name": "Divine Essence", "type": "consumable", "effect": "Instant full energy restore", "rarity": "epic" }
+      ],
+      "boss": {
+        "name": "Mistress Ekram",
+        "health": 150,
+        "attacks": ["Divine Command", "Submission Strike", "Obedience Binding"],
+        "weakness": "ritual_offering", 
+        "rewards": {
+          "xp": 750,
+          "tokens": 75,
+          "items": ["devotion_collar", "divine_essence"]
+        }
+      }
+    },
+    {
+      "id": "d3",
+      "name": "Labyrinth of Dreams", 
+      "description": "An ever-shifting maze where reality bends to desire. Navigate twisted pathways to reach the dream core.",
+      "difficulty": 3,
+      "cleared": false,
+      "timesCleared": 0,
+      "unlocked": false,
+      "background": "dream",
+      "roomPool": [
+        { "type": "trial", "subtype": "psychic", "desc": "Resist the pull of forbidden fantasies", "weight": 3 },
+        { "type": "trial", "subtype": "combat", "desc": "Battle nightmare manifestations", "weight": 3 },
+        { "type": "trial", "subtype": "puzzle", "desc": "Solve the riddle of desire", "weight": 2 },
+        { "type": "loot", "desc": "Discover dream fragments of power", "weight": 2 },
+        { "type": "boss", "desc": "Confront the Dream Sovereign", "weight": 1 }
+      ],
+      "lootPool": [
+        { "id": "dream_shard", "name": "Lucid Dream Shard", "type": "artifact", "effect": "+50% dream recall for 24 hours", "rarity": "epic" },
+        { "id": "nightmare_ward", "name": "Nightmare Ward", "type": "buff", "effect": "Immunity to fear effects", "rarity": "rare" },
+        { "id": "desire_crystal", "name": "Crystal of Desire", "type": "consumable", "effect": "Double XP gain for next ritual", "rarity": "legendary" }
+      ],
+      "boss": {
+        "name": "Dream Sovereign",
+        "health": 200,
+        "attacks": ["Reality Warp", "Nightmare Cascade", "Dream Drain"],
+        "weakness": "lucid_awareness",
+        "rewards": {
+          "xp": 1000,
+          "tokens": 100,
+          "items": ["dream_shard", "desire_crystal"]
+        }
+      }
+    }
+  ],
+  "activeRun": null,
+  "roomTypes": {
+    "trial": {
+      "shame": {
+        "description": "Face your deepest shame and confess to proceed",
+        "requirements": ["confession_entry"],
+        "rewards": { "xp": 50, "tokens": 5 }
+      },
+      "obedience": {
+        "description": "Submit to humiliating commands",
+        "requirements": ["submission_act"],
+        "rewards": { "xp": 75, "tokens": 8 }
+      },
+      "combat": {
+        "description": "Fight shadow creatures and manifestations",
+        "requirements": ["energy_cost"],
+        "rewards": { "xp": 100, "tokens": 10 }
+      },
+      "ritual": {
+        "description": "Perform sacred rites and ceremonies",
+        "requirements": ["ritual_knowledge"],
+        "rewards": { "xp": 80, "tokens": 12 }
+      },
+      "psychic": {
+        "description": "Resist mental intrusions and illusions",
+        "requirements": ["willpower_check"],
+        "rewards": { "xp": 90, "tokens": 15 }
+      },
+      "puzzle": {
+        "description": "Solve complex riddles and challenges",
+        "requirements": ["intelligence_check"],
+        "rewards": { "xp": 60, "tokens": 7 }
+      }
+    },
+    "loot": {
+      "description": "Discover treasure chests and hidden caches",
+      "rewards": { "tokens": 20 }
+    },
+    "boss": {
+      "description": "Face powerful guardians and dungeon masters",
+      "rewards": { "xp": 300, "tokens": 50 }
+    }
+  },
+  "achievements": {
+    "first_dungeon": {
+      "name": "Dungeon Explorer",
+      "description": "Complete your first dungeon",
+      "reward": { "xp": 200, "tokens": 25 }
+    },
+    "boss_slayer": {
+      "name": "Boss Slayer", 
+      "description": "Defeat your first dungeon boss",
+      "reward": { "xp": 300, "tokens": 40 }
+    },
+    "shame_master": {
+      "name": "Master of Shame",
+      "description": "Clear Caves of Shame 3 times",
+      "reward": { "xp": 500, "tokens": 60 }
+    },
+    "obedience_adept": {
+      "name": "Obedience Adept",
+      "description": "Clear Temple of Obedience",
+      "reward": { "xp": 750, "tokens": 80 }
+    },
+    "dream_walker": {
+      "name": "Dream Walker",
+      "description": "Clear Labyrinth of Dreams",
+      "reward": { "xp": 1000, "tokens": 100 }
+    },
+    "dungeon_master": {
+      "name": "Dungeon Master",
+      "description": "Clear all dungeons at least once",
+      "reward": { "xp": 2000, "tokens": 200 }
+    }
   }
-]
+}
