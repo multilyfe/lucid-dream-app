@@ -96,7 +96,7 @@ export function useCompanions() {
   );
 
   return {
-    companions,
+    companions: companions ?? [],
     gainXp,
     gainXpForCompanions,
     changeForm,

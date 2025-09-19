@@ -1,4 +1,4 @@
-export type AchievementCategory = 'Dream' | 'Ritual' | 'Shame' | 'Dungeon' | 'Companion' | 'All';
+export type AchievementCategory = 'Dream' | 'Ritual' | 'Shame' | 'Dungeon' | 'Companion' | 'Map' | 'All';
 
 export type AchievementTrigger = 
   | { type: 'DREAM_TAG'; value: string }
@@ -7,7 +7,9 @@ export type AchievementTrigger =
   | { type: 'DUNGEON_CLEARED'; value: number }
   | { type: 'COMPANION_EVOLVED'; value: number }
   | { type: 'RITUAL_COMPLETED'; value: number }
-  | { type: 'PUNISHMENT_TIER_REACHED'; value: number };
+  | { type: 'PUNISHMENT_TIER_REACHED'; value: number }
+  | { type: 'MAP_NODE_UNLOCKED'; value: string }
+  | { type: 'MAP_ALL_NODES_UNLOCKED' };
 
 export type AchievementReward = {
   xp?: number;

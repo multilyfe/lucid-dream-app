@@ -27,21 +27,10 @@
       "static/css/app/rpg/dashboard/page.css",
       "static/chunks/app/rpg/dashboard/page.js"
     ],
-    "/rpg/shame/page": [
+    "/rpg/journal/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/shame/page.js"
-    ],
-    "/rpg/achievements/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/achievements/page.js"
-    ],
-    "/rpg/quests/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/rpg/quests/page.css",
-      "static/chunks/app/rpg/quests/page.js"
+      "static/chunks/app/rpg/journal/page.js"
     ]
   }
 }

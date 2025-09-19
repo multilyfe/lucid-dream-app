@@ -13,27 +13,25 @@ export function useCompanionAchievements() {
   const { companions } = useCompanions();
 
   const evolvedCompanionsCount = useMemo(() => {
-    if (!companions) return 0;
-    // A companion is considered "evolved" if it has more than one form.
-    return companions.filter(c => c.forms.length > 1).length;
+    const list = companions ?? [];
+    // A companion is considered "evolved" if it has more than one form in the evolution tree.
+    return list.filter((c: any) => Array.isArray((c as any).evolutionTree) && (c as any).evolutionTree.length > 1).length;
   }, [companions]);
 
   useEffect(() => {
-    // Don't run if achievements or companions haven't loaded yet
-    if (!achievements || achievements.length === 0 || !companions) return;
+    if (!achievements || achievements.length === 0) return;
 
-    // Filter for only un-unlocked Companion achievements to check
     const companionAchievements = achievements.filter(
-      a => !a.unlocked && a.category === 'Companion'
+      (a) => !a.unlocked && a.category === 'Companion'
     );
 
     if (companionAchievements.length === 0) return;
 
-    companionAchievements.forEach(achievement => {
-      const { trigger } = achievement;
+    companionAchievements.forEach((achievement) => {
+      const { trigger } = achievement as any;
       let conditionMet = false;
 
-      if (trigger.type === 'COMPANION_EVOLVED' && evolvedCompanionsCount >= trigger.value) {
+      if (trigger?.type === 'COMPANION_EVOLVED' && evolvedCompanionsCount >= (trigger.value ?? 1)) {
         conditionMet = true;
       }
 
@@ -41,6 +39,5 @@ export function useCompanionAchievements() {
         unlockAchievement(achievement.id);
       }
     });
-    // This effect should re-run whenever the player's companions or achievements change.
   }, [evolvedCompanionsCount, achievements, unlockAchievement]);
 }

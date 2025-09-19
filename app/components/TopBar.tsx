@@ -25,7 +25,8 @@ export function TopBar({
     setIsClient(true);
   }, []);
 
-  const progressPercent = Math.max(0, Math.min(1, xpProgress));
+  // Ensure consistent progress calculation between server and client
+  const progressPercent = isClient ? Math.max(0, Math.min(1, xpProgress)) : 0;
   const xpDisplay = isClient ? xp.toLocaleString() : "...";
   const capDisplay = isClient ? xpSegmentCap.toLocaleString() : "...";
   const obedienceDisplay = isClient && typeof obedience === "number" ? obedience.toLocaleString() : null;
@@ -54,7 +55,7 @@ export function TopBar({
           <div className="relative h-2 w-48 overflow-hidden rounded-full border border-white/10 bg-slate-900/80 shadow-inner shadow-slate-950/60">
             <span
               className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-fuchsia-500 via-rose-400 to-sky-400 transition-all duration-500"
-              style={{ width: `${progressPercent * 100}%` }}
+              style={isClient ? { width: `${progressPercent * 100}%` } : { width: '0%' }}
             />
           </div>
         </div>

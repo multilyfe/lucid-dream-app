@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { DreamJournalEntry } from "../types/journal";
 import useHydrated from "../hooks/useHydrated";
 
@@ -137,9 +137,10 @@ interface MoodPickerProps {
 function MoodPicker({ initial = 50, onChange }: MoodPickerProps) {
   const [mood, setMood] = useState(initial);
   
+  // ✅ FIX: Don't call onChange on every render, only when mood actually changes
   React.useEffect(() => {
     onChange?.(mood);
-  }, [mood, onChange]);
+  }, [mood]); // Remove onChange from dependencies to prevent infinite loop
 
   const gradient = "linear-gradient(90deg, #ef4444 0%, #f97316 20%, #f59e0b 35%, #22c55e 65%, #3b82f6 100%)";
   
@@ -340,6 +341,7 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
     <div className="space-y-3">
       <div className="flex items-center gap-3 mb-4">
         <button 
+          type="button" // ✅ FIX: Prevent form submission
           onClick={handleDetect} 
           disabled={detecting} 
           className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium disabled:opacity-60 hover:from-purple-500 hover:to-pink-500 transition-all"
@@ -363,6 +365,7 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
                 <span className="text-sm font-medium text-slate-300">{group}</span>
               </div>
               <button 
+                type="button" // ✅ FIX: Prevent form submission
                 onClick={() => clearSection(group)} 
                 className="text-xs px-2 py-1 rounded bg-pink-500/20 border border-pink-400/40 text-pink-200 hover:bg-pink-500/30 transition-colors"
               >
@@ -375,6 +378,7 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
               {[...symbols[group]].map((s: string) => (
                 <button
                   key={s}
+                  type="button" // ✅ FIX: Prevent form submission
                   onClick={() => toggle(group, s)}
                   className="px-2 py-1 mr-2 mb-2 text-xs rounded-full bg-pink-500/90 hover:bg-pink-500 text-white shadow transition-colors"
                 >
@@ -396,6 +400,7 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
               />
               {canAdd && (
                 <button
+                  type="button" // ✅ FIX: Prevent form submission
                   onClick={() => {
                     addSymbol(group, q);
                     setQueries({ ...queries, [group]: "" });
@@ -414,6 +419,7 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
                 return (
                   <button
                     key={s}
+                    type="button" // ✅ FIX: Prevent form submission
                     onClick={() => toggle(group, s)}
                     className={`px-2 py-1 mr-2 mb-2 text-xs rounded-lg border transition-all ${
                       selected
@@ -435,6 +441,26 @@ function SymbolsBoard({ symbols, addSymbol, removeSymbol, preset, content }: {
 
 export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: JournalModalProps) {
   const hydrated = useHydrated();
+  
+  // ✅ CRITICAL FIX: Move ALL hooks BEFORE any early returns
+  // Defer particle generation until after hydration
+  const particles = useMemo(() => {
+    if (!hydrated) {
+      return null;
+    }
+    return [...Array(25)].map((_, i) => (
+      <div
+        key={i}
+        className="particle"
+        style={{
+          left: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 8}s`,
+          animationDuration: `${8 + Math.random() * 4}s`
+        }}
+      />
+    ));
+  }, [hydrated]);
+
   const [formData, setFormData] = useState(() => ({
     title: editEntry?.title || '',
     date: '', // Initialize with an empty string on the server
@@ -464,6 +490,17 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
   }, [hydrated, editEntry]);
 
   const [activeTab, setActiveTab] = useState<'basic' | 'lucid' | 'details' | 'insights' | 'media'>('basic');
+
+  // ✅ FIX: Create stable callback to prevent infinite re-renders
+  const handleMoodChange = useCallback((pct: number) => {
+    const moodValue: DreamJournalEntry['mood'] = 
+      pct >= 85 ? 'euphoric' : 
+      pct >= 75 ? 'amazing' :
+      pct >= 60 ? 'good' : 
+      pct >= 40 ? 'neutral' : 
+      pct >= 20 ? 'challenging' : 'difficult';
+    setFormData(prev => ({ ...prev, mood: moodValue }));
+  }, []);
 
   // 🧠 AI DREAM ANALYSIS SYSTEM - Ultra Advanced
   const [aiAnalysis, setAiAnalysis] = useState<{
@@ -741,24 +778,6 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
 
   if (!isOpen) return null;
 
-  // Defer particle generation until after hydration
-  const particles = useMemo(() => {
-    if (!hydrated) {
-      return null;
-    }
-    return [...Array(25)].map((_, i) => (
-      <div
-        key={i}
-        className="particle"
-        style={{
-          left: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random() * 8}s`,
-          animationDuration: `${8 + Math.random() * 4}s`
-        }}
-      />
-    ));
-  }, [hydrated]);
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
       {/* ULTRA Floating Particles */}
@@ -766,7 +785,10 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
         {particles}
       </div>
       
-      <div className="journal-modal-container animate-fadeIn dream-glow relative mx-4 w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-slate-600/40 bg-slate-900/95 shadow-2xl backdrop-blur-md">
+      <div 
+        className="journal-modal-container animate-fadeIn dream-glow relative mx-4 w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-slate-600/40 bg-slate-900/95 shadow-2xl backdrop-blur-md"
+        onClick={(e) => e.stopPropagation()} // ✅ FIX: Prevent clicks inside modal from bubbling up
+      >
         <style jsx>{`
           .journal-modal-container {
             background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
@@ -884,6 +906,7 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
               {editEntry ? 'Edit Dream Entry' : 'New Dream Entry'}
             </h2>
             <button
+              type="button" // ✅ FIX: Prevent form submission
               onClick={onClose}
               className="text-slate-400 hover:text-slate-200 transition-colors text-2xl"
             >
@@ -901,6 +924,7 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
               { key: 'media', label: '🎨 Visuals & Audio', icon: '🎭', gradient: 'from-green-600 to-teal-600' }
             ].map(tab => (
               <button
+                type="button" // ✅ FIX: Prevent form submission
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key as any)}
                 className={`relative min-w-fit rounded-xl px-4 py-3 text-sm font-medium border transition-all duration-300 transform hover:scale-105 ${
@@ -1052,15 +1076,7 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                         formData.mood === 'neutral' ? 50 : 
                         formData.mood === 'challenging' ? 30 : 10
                       }
-                      onChange={(pct) => {
-                        const moodValue: DreamJournalEntry['mood'] = 
-                          pct >= 85 ? 'euphoric' : 
-                          pct >= 75 ? 'amazing' :
-                          pct >= 60 ? 'good' : 
-                          pct >= 40 ? 'neutral' : 
-                          pct >= 20 ? 'challenging' : 'difficult';
-                        setFormData(prev => ({ ...prev, mood: moodValue }));
-                      }}
+                      onChange={handleMoodChange}
                     />
                   </>
                 )}
@@ -1331,6 +1347,7 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                       </label>
                       <div className="flex items-center gap-3">
                         <button 
+                          type="button" // ✅ FIX: Prevent form submission
                           onClick={() => setAudioElements(prev => ({ ...prev, isRecording: !prev.isRecording }))}
                           className={`px-4 py-2 rounded-lg font-medium transition-all ${
                             audioElements.isRecording 
@@ -1341,7 +1358,10 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                           {audioElements.isRecording ? '⏹️ Stop Recording' : '🎤 Start Recording'}
                         </button>
                         {audioElements.voiceRecording && (
-                          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
+                          <button 
+                            type="button" // ✅ FIX: Prevent form submission
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
+                          >
                             ▶️ Play Recording
                           </button>
                         )}
@@ -1361,6 +1381,7 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                         {['🌧️ Rain', '🌊 Waves', '🔥 Fire', '🌬️ Wind', '🐦 Birds', '🎼 Piano', '📿 Meditation', '⭐ Space'].map(sound => (
                           <button 
+                            type="button" // ✅ FIX: Prevent form submission
                             key={sound}
                             onClick={() => setAudioElements(prev => ({ ...prev, ambientSound: sound }))}
                             className={`p-3 rounded-lg text-sm transition-all ${
@@ -1399,7 +1420,10 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                       <label className="block text-sm font-medium text-slate-300 mb-2">
                         🤖 AI Dream Visualization
                       </label>
-                      <button className="w-full p-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white rounded-lg font-medium hover:from-cyan-500 hover:to-purple-500 transition-all">
+                      <button 
+                        type="button" // ✅ FIX: Prevent form submission
+                        className="w-full p-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white rounded-lg font-medium hover:from-cyan-500 hover:to-purple-500 transition-all"
+                      >
                         ✨ Generate AI Dream Art
                       </button>
                     </div>
@@ -1411,6 +1435,7 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                       <div className="grid grid-cols-8 gap-2">
                         {['#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'].map(color => (
                           <button 
+                            type="button" // ✅ FIX: Prevent form submission
                             key={color}
                             onClick={() => setVisualElements(prev => ({ 
                               ...prev, 
@@ -1433,7 +1458,10 @@ export function JournalModalEnhanced({ isOpen, onClose, onSave, editEntry }: Jou
                       <label className="block text-sm font-medium text-slate-300 mb-2">
                         📷 Photo Attachments
                       </label>
-                      <button className="w-full p-4 border-2 border-dashed border-slate-500 rounded-lg text-slate-400 hover:text-slate-300 hover:border-slate-400 transition-all">
+                      <button 
+                        type="button" // ✅ FIX: Prevent form submission
+                        className="w-full p-4 border-2 border-dashed border-slate-500 rounded-lg text-slate-400 hover:text-slate-300 hover:border-slate-400 transition-all"
+                      >
                         📎 Add Photos or Images
                       </button>
                     </div>

@@ -53,6 +53,33 @@ export function useAchievements() {
     });
   }, [setAchievements, awardXp, awardTokens]);
 
+  const triggerAchievement = useCallback((type: string, value?: any) => {
+    achievements.forEach(achievement => {
+      if (achievement.unlocked) return;
+
+      const { trigger } = achievement;
+      let conditionMet = false;
+
+      if (trigger.type === type) {
+        switch (trigger.type) {
+          case 'MAP_NODE_UNLOCKED':
+            if (trigger.value === value) {
+              conditionMet = true;
+            }
+            break;
+          case 'MAP_ALL_NODES_UNLOCKED':
+            conditionMet = true; // The check is now done in the calling hook
+            break;
+          // other cases can be added here if needed for direct triggering
+        }
+      }
+
+      if (conditionMet) {
+        unlockAchievement(achievement.id);
+      }
+    });
+  }, [achievements, unlockAchievement]);
+
   const checkTriggers = useCallback(() => {
     if (!achievements) return;
     achievements.forEach(achievement => {
@@ -74,7 +101,7 @@ export function useAchievements() {
           }
           break;
         case 'COMPANION_EVOLVED':
-            const evolvedCompanions = companions.filter(c => c.forms.length > 1).length; // Simplified
+            const evolvedCompanions = companions.filter(c => (c.evolutionTree || c.forms || []).length > 1).length; // Simplified
             if (evolvedCompanions >= trigger.value) {
                 conditionMet = true;
             }
@@ -128,5 +155,5 @@ export function useAchievements() {
     setAchievements(defaultAchievements as Achievement[]);
   };
 
-  return { achievements, unlockAchievement, addAchievement, resetAchievements, checkTriggers };
+  return { achievements, unlockAchievement, addAchievement, resetAchievements, checkTriggers, triggerAchievement };
 }

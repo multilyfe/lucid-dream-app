@@ -41,6 +41,7 @@ export type SidebarNavKey =
   | "companions"
   | "achievements"
   | "shame"
+  | "map"
   | "settings";
 
 export type SidebarProps = {
@@ -55,19 +56,18 @@ const NAV_ITEMS: Array<{
 }> = [
   { key: "dashboard", label: "Dashboard", href: "/rpg/dashboard", Icon: LayoutDashboard },
   { key: "journal", label: "Journal", href: "/rpg/journal", Icon: BookOpen },
-  { key: "temple", label: "Temple", href: "/rpg/temple", Icon: Landmark },
-  { key: "analytics", label: "Analytics", href: "/rpg/analytics", Icon: LineChart },
   { key: "quests", label: "Quests", href: "/rpg/quests", Icon: Swords },
-  { key: "dungeon", label: "Dungeon", href: "/rpg/dungeon", Icon: Skull },
-  { key: "shop", label: "Shop", href: "/rpg/shop", Icon: ShoppingBag },
-  { key: "profile", label: "Profile", href: "/rpg/profile", Icon: UserCircle2 },
-  { key: "npcs", label: "NPCs", href: "/rpg/npcs", Icon: Users },
-  { key: "calendar", label: "Calendar", href: "/rpg/calendar", Icon: CalendarDays },
-  { key: "inventory", label: "Inventory", href: "/rpg/inventory", Icon: Backpack },
-  { key: "rituals", label: "Rituals", href: "/rpg/rituals", Icon: Lock },
-  { key: "people", label: "Guild Hall", href: "/rpg/people", Icon: Users },
-  { key: "places", label: "Astral Map", href: "/rpg/places", Icon: MapIcon },
+  { key: "map", label: "Map", href: "/rpg/map", Icon: MapIcon },
   { key: "companions", label: "Companions", href: "/rpg/companions", Icon: Sparkles },
+  { key: "inventory", label: "Inventory", href: "/rpg/inventory", Icon: Backpack },
+  { key: "dungeon", label: "Dungeon", href: "/rpg/dungeon", Icon: Skull },
+  { key: "rituals", label: "Rituals", href: "/rpg/rituals", Icon: Lock },
+  { key: "temple", label: "Temple", href: "/rpg/temple", Icon: Landmark },
+  { key: "shop", label: "Shop", href: "/rpg/shop", Icon: ShoppingBag },
+  { key: "npcs", label: "NPCs", href: "/rpg/npcs", Icon: Users },
+  { key: "profile", label: "Profile", href: "/rpg/profile", Icon: UserCircle2 },
+  { key: "calendar", label: "Calendar", href: "/rpg/calendar", Icon: CalendarDays },
+  { key: "analytics", label: "Analytics", href: "/rpg/analytics", Icon: LineChart },
   { key: "achievements", label: "Achievements", href: "/rpg/achievements", Icon: Trophy },
   { key: "shame", label: "Shame", href: "/rpg/shame", Icon: Skull },
   { key: "settings", label: "Settings", href: "/rpg/settings", Icon: Cog },

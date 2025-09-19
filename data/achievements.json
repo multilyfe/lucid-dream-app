@@ -75,5 +75,27 @@
     "date": null,
     "trigger": { "type": "PUNISHMENT_TIER_REACHED", "value": 5 },
     "reward": { "xp": 1000, "tokens": 50, "title": "Utterly Degraded" }
+  },
+  {
+    "id": "MAP_VOYAGER",
+    "title": "Multiverse Voyager",
+    "desc": "Explored every known node on the Multiverse Map.",
+    "category": "Map",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "MAP_ALL_NODES_UNLOCKED" },
+    "reward": { "xp": 1000, "title": "Multiverse Voyager" }
+  },
+  {
+    "id": "MAP_PANTY_REALM_DISCOVERER",
+    "title": "Panty Realm Discoverer",
+    "desc": "Unlocked the fabled Panty Realm. A new world of lewd adventures awaits.",
+    "category": "Map",
+    "secret": true,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "MAP_NODE_UNLOCKED", "value": "r2" },
+    "reward": { "xp": 250, "tokens": 20 }
   }
 ]

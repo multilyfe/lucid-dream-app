@@ -40,6 +40,14 @@ export const DEFAULT_ORB_ACTIONS: OrbActionConfig[] = [
     enabled: true,
   },
   {
+    id: "map",
+    label: "Multiverse Map",
+    icon: "🗺️",
+    type: "link",
+    href: "/rpg/map",
+    enabled: true,
+  },
+  {
     id: "random-dream",
     label: "Random Dream",
     icon: "🔀",

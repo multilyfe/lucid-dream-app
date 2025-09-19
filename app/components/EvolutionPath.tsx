@@ -8,14 +8,26 @@ type EvolutionPathProps = {
 };
 
 export default function EvolutionPath({ companion }: EvolutionPathProps) {
-  const unlockedForms = companion.evolutionTree.filter(form => companion.level >= form.unlockLevel);
-  const lockedForms = companion.evolutionTree.filter(form => companion.level < form.unlockLevel);
+  // Guard against undefined evolutionTree
+  const evolutionTree = companion?.evolutionTree || [];
+  const unlockedForms = evolutionTree.filter(form => companion.level >= form.unlockLevel);
+  const lockedForms = evolutionTree.filter(form => companion.level < form.unlockLevel);
 
   const springProps = useSpring({
     from: { opacity: 0, transform: 'translateY(20px)' },
     to: { opacity: 1, transform: 'translateY(0px)' },
     config: { tension: 280, friction: 60 },
   });
+
+  // If no evolution tree exists, show a message
+  if (evolutionTree.length === 0) {
+    return (
+      <animated.div style={springProps} className="themed-card p-6">
+        <h3 className="text-2xl font-bold mb-4 text-amber-300 text-shadow-amber">Evolution Path</h3>
+        <p className="text-slate-400">No evolution forms available for this companion.</p>
+      </animated.div>
+    );
+  }
 
   return (
     <animated.div style={springProps} className="themed-card p-6">

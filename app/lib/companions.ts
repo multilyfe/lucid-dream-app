@@ -89,10 +89,18 @@ function clampXp(xp: number, level: number): number {
 }
 
 export function getActiveForm(companion: Companion): CompanionForm | undefined {
+  if (!companion || !companion.evolutionTree) {
+    return undefined;
+  }
   return companion.evolutionTree.find((form) => form.id === companion.currentForm);
 }
 
 export function getNextForm(companion: Companion): CompanionForm | undefined {
+  // ✅ FIX: Guard against undefined evolutionTree
+  if (!companion?.evolutionTree) {
+    return undefined;
+  }
+  
   const next = companion.evolutionTree
     .filter((form) => form.unlockLevel > (getActiveForm(companion)?.unlockLevel ?? 0))
     .sort((a, b) => a.unlockLevel - b.unlockLevel)[0];
