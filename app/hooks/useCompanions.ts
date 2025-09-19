@@ -20,6 +20,11 @@ export function useCompanions() {
 
   const gainXp = useCallback(
     (companionId: string, source: CompanionXpEvent, amount: number) => {
+      const { applyEvent } = useBuffs();
+      
+      // Apply buff effects to XP gain
+      const buffedAmount = applyEvent('xp', amount);
+      
       setCompanions((prev) => {
         const companionIndex = prev.findIndex((c) => c.id === companionId);
         if (companionIndex === -1) return prev;
@@ -27,7 +32,7 @@ export function useCompanions() {
         const updatedCompanions = [...prev];
         const companion = { ...updatedCompanions[companionIndex] };
 
-        let newXp = companion.xp + amount;
+        let newXp = companion.xp + buffedAmount;
         let newLevel = companion.level;
         let neededXp = xpNeededForLevel(newLevel + 1);
 
@@ -75,10 +80,16 @@ export function useCompanions() {
 
   const adjustBond = useCallback(
     (companionId: string, amount: number) => {
+      const { getEffectMultiplier } = useBuffs();
+      
+      // Apply bond multiplier from buffs
+      const bondMultiplier = getEffectMultiplier('bondMultiplier');
+      const buffedAmount = amount * bondMultiplier;
+      
       setCompanions((prev) =>
         prev.map((c) => {
           if (c.id === companionId) {
-            const newBond = Math.max(0, Math.min(100, c.bond + amount));
+            const newBond = Math.max(0, Math.min(100, c.bond + buffedAmount));
             return { ...c, bond: newBond };
           }
           return c;

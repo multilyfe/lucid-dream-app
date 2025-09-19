@@ -1,198 +1,251 @@
 'use client';
 
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePersistentState } from "./usePersistentState";
-import {
-  applyBuffs,
-  cloneDefaultBuffs,
-  computeRemaining,
-  isBuffActive,
-  isBuffExpired,
-  parseDuration,
-  type Buff,
-  type BuffEvent,
-  type BuffType,
-} from "../lib/buffEngine";
 
-function normaliseBuff(buff: Buff): Buff {
-  return {
-    ...buff,
-    expiresAt: typeof buff.expiresAt === "number" ? buff.expiresAt : null,
-  };
+export interface BuffEffect {
+  xpMultiplier?: number;
+  bondMultiplier?: number;
+  dreamClarity?: number;
+  movementSpeed?: number;
+  lucidXpMultiplier?: number;
+  ritualSuccessRate?: number;
+  obedienceGain?: number;
+  tokenMultiplier?: number;
 }
 
+export interface Buff {
+  id: string;
+  name: string;
+  type: 'buff' | 'curse';
+  desc: string;
+  duration: string;
+  durationMs: number;
+  createdAt: number;
+  expiresAt: number;
+  source: string;
+  icon: string;
+  rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+  effects: BuffEffect;
+}
+
+export interface ExpiredBuff extends Omit<Buff, 'durationMs' | 'createdAt' | 'expiresAt'> {
+  expiredAt: number;
+}
+
+export interface BuffData {
+  active: Buff[];
+  history: ExpiredBuff[];
+}
+
+// Load initial data from JSON
+import buffDataJson from "../../data/buffs.json";
+const defaultBuffData: BuffData = buffDataJson as BuffData;
+
 export function useBuffs() {
-  const [buffs, setBuffs] = usePersistentState<Buff[]>("buffs", cloneDefaultBuffs);
+  const [buffData, setBuffData] = usePersistentState<BuffData>('buffData_v2', () => defaultBuffData);
+  const [currentTime, setCurrentTime] = useState(Date.now());
 
-  const activeBuffs = useMemo(() => {
-    const current = Date.now();
-    return buffs.filter((buff) => isBuffActive(buff, current));
-  }, [buffs]);
+  console.log('useBuffs Debug:', {
+    buffData,
+    defaultBuffData,
+    activeCount: buffData?.active?.length || 0,
+    historyCount: buffData?.history?.length || 0
+  });
 
-  const applyEvent = useCallback(
-    (event: BuffEvent, baseValue: number) => {
-      if (baseValue <= 0) return 0;
-      const snapshot = buffs;
-      const { value, expiredIds } = applyBuffs(snapshot, event, baseValue, Date.now());
-
-      if (expiredIds.length > 0) {
-        setBuffs((previous) =>
-          previous.map((buff) =>
-            expiredIds.includes(buff.id)
-              ? { ...buff, active: false, expiresAt: null }
-              : buff
-          )
-        );
-      }
-
-      const shouldRound = event !== "clarity";
-      const rounded = shouldRound ? Math.round(value) : Number(value.toFixed(2));
-      return rounded > 0 ? rounded : 0;
-    },
-    [buffs, setBuffs]
-  );
-
-  const setBuffActive = useCallback(
-    (id: string, active: boolean) => {
-      setBuffs((previous) =>
-        previous.map((buff) =>
-          buff.id === id
-            ? {
-                ...buff,
-                active,
-                expiresAt: active ? buff.expiresAt ?? null : null,
-              }
-            : buff
-        )
-      );
-    },
-    [setBuffs]
-  );
-
-  const activateBuffsBySource = useCallback(
-    (source: string) => {
-      setBuffs((previous) =>
-        previous.map((buff) =>
-          buff.source === source
-            ? { ...buff, active: true }
-            : buff
-        )
-      );
-    },
-    [setBuffs]
-  );
-
-  const deactivateBuffsBySource = useCallback(
-    (source: string) => {
-      setBuffs((previous) =>
-        previous.map((buff) =>
-          buff.source === source
-            ? { ...buff, active: false, expiresAt: null }
-            : buff
-        )
-      );
-    },
-    [setBuffs]
-  );
-
-  const triggerBuffBySource = useCallback(
-    (source: string) => {
-      const activatedAt = Date.now();
-      setBuffs((previous) =>
-        previous.map((buff) => {
-          if (buff.source !== source) return buff;
-          const durationMs = parseDuration(buff.duration);
-          return {
-            ...buff,
-            active: true,
-            expiresAt: durationMs ? activatedAt + durationMs : buff.expiresAt ?? null,
-          };
-        })
-      );
-    },
-    [setBuffs]
-  );
-
-  const addBuff = useCallback(
-    (buff: Buff) => {
-      setBuffs((previous) => {
-        if (previous.some((entry) => entry.id === buff.id)) {
-          return previous.map((entry) => (entry.id === buff.id ? normaliseBuff(buff) : entry));
-        }
-        return [...previous, normaliseBuff(buff)];
-      });
-    },
-    [setBuffs]
-  );
-
-  const updateBuff = useCallback(
-    (id: string, patch: Partial<Buff>) => {
-      setBuffs((previous) =>
-        previous.map((buff) =>
-          buff.id === id
-            ? normaliseBuff({ ...buff, ...patch })
-            : buff
-        )
-      );
-    },
-    [setBuffs]
-  );
-
-  const removeBuff = useCallback(
-    (id: string) => {
-      setBuffs((previous) => previous.filter((buff) => buff.id !== id));
-    },
-    [setBuffs]
-  );
-
-  const toggleBuff = useCallback(
-    (id: string) => {
-      setBuffs((previous) =>
-        previous.map((buff) =>
-          buff.id === id
-            ? { ...buff, active: !buff.active, expiresAt: !buff.active ? buff.expiresAt : null }
-            : buff
-        )
-      );
-    },
-    [setBuffs]
-  );
-
-  const clearExpired = useCallback(() => {
-    const current = Date.now();
-    setBuffs((previous) =>
-      previous.map((buff) =>
-        isBuffExpired(buff, current)
-          ? { ...buff, active: false, expiresAt: null }
-          : buff
-      )
-    );
-  }, [setBuffs]);
-
+  // Update current time every second for real-time countdown
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const interval = window.setInterval(clearExpired, 60 * 1000);
-    return () => window.clearInterval(interval);
-  }, [clearExpired]);
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 1000);
 
-  const getRemainingForBuff = useCallback(
-    (buff: Buff, at?: number) => computeRemaining(buff, at ?? Date.now()),
-    []
-  );
+    return () => clearInterval(interval);
+  }, []);
+
+  // Auto-expire buffs when they expire
+  useEffect(() => {
+    const now = Date.now();
+    const expired = buffData.active.filter(buff => buff.expiresAt <= now);
+    
+    if (expired.length > 0) {
+      const stillActive = buffData.active.filter(buff => buff.expiresAt > now);
+      const expiredHistory: ExpiredBuff[] = expired.map(buff => ({
+        id: buff.id,
+        name: buff.name,
+        type: buff.type,
+        desc: buff.desc,
+        duration: buff.duration,
+        source: buff.source,
+        icon: buff.icon,
+        rarity: buff.rarity,
+        effects: buff.effects,
+        expiredAt: now
+      }));
+
+      setBuffData({
+        active: stillActive,
+        history: [...expiredHistory, ...buffData.history].slice(0, 50) // Keep last 50 history entries
+      });
+    }
+  }, [currentTime, buffData.active, setBuffData, buffData.history]);
+
+  // Calculate combined effects from all active buffs
+  const calculateEffects = useCallback((): BuffEffect => {
+    const effects: BuffEffect = {};
+    
+    buffData.active.forEach(buff => {
+      Object.entries(buff.effects).forEach(([key, value]) => {
+        const effectKey = key as keyof BuffEffect;
+        
+        if (typeof value === 'number') {
+          if (effectKey.includes('Multiplier')) {
+            // For multipliers, multiply them together
+            effects[effectKey] = (effects[effectKey] || 1) * value;
+          } else {
+            // For additive effects, add them together
+            effects[effectKey] = (effects[effectKey] || 0) + value;
+          }
+        }
+      });
+    });
+
+    return effects;
+  }, [buffData.active]);
+
+  // Add a new buff
+  const addBuff = useCallback((buffInput: Omit<Buff, 'id' | 'createdAt' | 'expiresAt'>) => {
+    const now = Date.now();
+    const newBuff: Buff = {
+      ...buffInput,
+      id: `${buffInput.type[0]}${now}`, // Generate unique ID
+      createdAt: now,
+      expiresAt: now + buffInput.durationMs
+    };
+
+    setBuffData(prev => ({
+      ...prev,
+      active: [...prev.active, newBuff]
+    }));
+
+    return newBuff.id;
+  }, [setBuffData]);
+
+  // Remove an active buff manually
+  const removeBuff = useCallback((buffId: string) => {
+    const buffToRemove = buffData.active.find(b => b.id === buffId);
+    if (!buffToRemove) return false;
+
+    const now = Date.now();
+    const expiredBuff: ExpiredBuff = {
+      id: buffToRemove.id,
+      name: buffToRemove.name,
+      type: buffToRemove.type,
+      desc: buffToRemove.desc,
+      duration: buffToRemove.duration,
+      source: buffToRemove.source,
+      icon: buffToRemove.icon,
+      rarity: buffToRemove.rarity,
+      effects: buffToRemove.effects,
+      expiredAt: now
+    };
+
+    setBuffData(prev => ({
+      active: prev.active.filter(b => b.id !== buffId),
+      history: [expiredBuff, ...prev.history].slice(0, 50)
+    }));
+
+    return true;
+  }, [buffData.active, setBuffData]);
+
+  // Clear all expired buffs from history
+  const clearHistory = useCallback(() => {
+    setBuffData(prev => ({
+      ...prev,
+      history: []
+    }));
+  }, [setBuffData]);
+
+  // Get time remaining for a buff
+  const getTimeRemaining = useCallback((buff: Buff): number => {
+    return Math.max(0, buff.expiresAt - currentTime);
+  }, [currentTime]);
+
+  // Get formatted time remaining
+  const getFormattedTimeRemaining = useCallback((buff: Buff): string => {
+    const remaining = getTimeRemaining(buff);
+    
+    if (remaining === 0) return 'Expired';
+    
+    const seconds = Math.floor(remaining / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (days > 0) return `${days}d ${hours % 24}h`;
+    if (hours > 0) return `${hours}h ${minutes % 60}m`;
+    if (minutes > 0) return `${minutes}m ${seconds % 60}s`;
+    return `${seconds}s`;
+  }, [getTimeRemaining]);
+
+  // Get active buffs by type
+  const getActiveBuffs = useCallback(() => {
+    return buffData.active.filter(b => b.type === 'buff');
+  }, [buffData.active]);
+
+  const getActiveCurses = useCallback(() => {
+    return buffData.active.filter(b => b.type === 'curse');
+  }, [buffData.active]);
+
+  // Get effect multiplier for specific effect type
+  const getEffectMultiplier = useCallback((effectType: keyof BuffEffect): number => {
+    const effects = calculateEffects();
+    return effects[effectType] || (effectType.includes('Multiplier') ? 1 : 0);
+  }, [calculateEffects]);
+
+  // Legacy compatibility methods for existing code
+  const applyEvent = useCallback((event: string, baseValue: number) => {
+    const effects = calculateEffects();
+    let multiplier = 1;
+    
+    switch (event) {
+      case 'xp':
+        multiplier = effects.xpMultiplier || 1;
+        break;
+      case 'obedience':
+        multiplier = effects.obedienceGain || 1;
+        break;
+      case 'tokens':
+        multiplier = effects.tokenMultiplier || 1;
+        break;
+      case 'clarity':
+        multiplier = effects.dreamClarity || 1;
+        break;
+    }
+    
+    return Math.round(baseValue * multiplier);
+  }, [calculateEffects]);
 
   return {
-    buffs,
-    activeBuffs,
-    applyEvent,
-    setBuffActive,
-    activateBuffsBySource,
-    deactivateBuffsBySource,
-    triggerBuffBySource,
+    // New API
+    activeBuffs: getActiveBuffs(),
+    activeCurses: getActiveCurses(),
+    allActive: buffData.active,
+    history: buffData.history,
+    effects: calculateEffects(),
+    getEffectMultiplier,
     addBuff,
-    updateBuff,
     removeBuff,
-    toggleBuff,
-    clearExpired,
-    getRemainingForBuff,
+    clearHistory,
+    getTimeRemaining,
+    getFormattedTimeRemaining,
+    currentTime,
+    totalActive: buffData.active.length,
+    buffCount: getActiveBuffs().length,
+    curseCount: getActiveCurses().length,
+    historyCount: buffData.history.length,
+    
+    // Legacy compatibility for existing code
+    buffs: buffData.active,
+    applyEvent
   };
 }

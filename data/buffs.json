@@ -1,30 +1,99 @@
-[
-  {
-    "id": "b1",
-    "name": "Lucid Boost",
-    "source": "Lucid Amulet",
-    "type": "xpMultiplier",
-    "value": 1.2,
-    "active": true,
-    "icon": "🌙"
-  },
-  {
-    "id": "b2",
-    "name": "Panty Shame",
-    "source": "Ekram's Panties",
-    "type": "obedienceGain",
-    "value": 1.5,
-    "active": false,
-    "icon": "🩲"
-  },
-  {
-    "id": "b3",
-    "name": "Dream Shard Aura",
-    "source": "Dream Shard",
-    "type": "tokenMultiplier",
-    "value": 2,
-    "active": false,
-    "duration": "1h",
-    "icon": "💎"
-  }
-]
+{
+  "active": [
+    {
+      "id": "b1",
+      "name": "Lucid Focus",
+      "type": "buff",
+      "desc": "+20% dream clarity",
+      "duration": "2 hours",
+      "durationMs": 7200000,
+      "createdAt": 1758249350151,
+      "expiresAt": 1758256550151,
+      "source": "Lucid Amulet",
+      "icon": "🔮",
+      "rarity": "rare",
+      "effects": {
+        "xpMultiplier": 1.2,
+        "dreamClarity": 20
+      }
+    },
+    {
+      "id": "b2",
+      "name": "Companion Aura",
+      "type": "buff",
+      "desc": "+15% bond growth",
+      "duration": "3 hours",
+      "durationMs": 10800000,
+      "createdAt": 1758249350151,
+      "expiresAt": 1758260150151,
+      "source": "Mommy Luma",
+      "icon": "🌸",
+      "rarity": "common",
+      "effects": {
+        "bondMultiplier": 1.15
+      }
+    },
+    {
+      "id": "c1",
+      "name": "Panty Stink",
+      "type": "curse",
+      "desc": "-10% XP gain",
+      "duration": "1 day",
+      "durationMs": 86400000,
+      "createdAt": 1758249350151,
+      "expiresAt": 1758335750151,
+      "source": "Panty Realm",
+      "icon": "👙",
+      "rarity": "common",
+      "effects": {
+        "xpMultiplier": 0.9
+      }
+    },
+    {
+      "id": "c2",
+      "name": "Shame Weight",
+      "type": "curse",
+      "desc": "-5% movement speed",
+      "duration": "1 hour",
+      "durationMs": 3600000,
+      "createdAt": 1758249350151,
+      "expiresAt": 1758252950151,
+      "source": "Shame Tracker",
+      "icon": "😳",
+      "rarity": "uncommon",
+      "effects": {
+        "movementSpeed": -5
+      }
+    }
+  ],
+  "history": [
+    {
+      "id": "h1",
+      "name": "Dream Boost",
+      "type": "buff",
+      "desc": "+30% lucid XP",
+      "duration": "1 hour",
+      "source": "Temple Meditation",
+      "icon": "✨",
+      "rarity": "epic",
+      "expiredAt": 1758245750151,
+      "effects": {
+        "lucidXpMultiplier": 1.3
+      }
+    },
+    {
+      "id": "h2",
+      "name": "Ritual Fatigue",
+      "type": "curse",
+      "desc": "-20% ritual success",
+      "duration": "2 hours",
+      "source": "Failed Ritual",
+      "icon": "💀",
+      "rarity": "uncommon",
+      "expiredAt": 1758242150151,
+      "effects": {
+        "ritualSuccessRate": -20
+      }
+    }
+  ]
+}

@@ -24,7 +24,32 @@ const EVENT_TO_TYPES: Record<BuffEvent, BuffType[]> = {
   clarity: ["clarityBoost"],
 };
 
-const DEFAULT_BUFFS = (defaultBuffs as Buff[]).map((buff) => ({ ...buff }));
+// Convert new buff format to legacy format for compatibility
+const convertNewBuffToLegacy = (newBuff: any): Buff => ({
+  id: newBuff.id,
+  name: newBuff.name,
+  source: newBuff.source,
+  type: newBuff.effects.xpMultiplier ? "xpMultiplier" :
+        newBuff.effects.obedienceGain ? "obedienceGain" :
+        newBuff.effects.tokenMultiplier ? "tokenMultiplier" :
+        newBuff.effects.dreamClarity ? "clarityBoost" : "xpMultiplier",
+  value: newBuff.effects.xpMultiplier || 
+         newBuff.effects.obedienceGain || 
+         newBuff.effects.tokenMultiplier || 
+         newBuff.effects.dreamClarity || 1,
+  active: true,
+  icon: newBuff.icon,
+  duration: newBuff.duration,
+  expiresAt: newBuff.expiresAt
+});
+
+// Extract legacy buffs from new format, defaulting to empty array
+const buffData = defaultBuffs as any;
+const legacyBuffs = Array.isArray(buffData) 
+  ? buffData 
+  : (buffData.active || []).map(convertNewBuffToLegacy);
+
+const DEFAULT_BUFFS = legacyBuffs.map((buff: Buff) => ({ ...buff }));
 
 export const BUFF_TYPE_OPTIONS: BuffType[] = [
   "xpMultiplier",

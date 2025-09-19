@@ -28,6 +28,7 @@ const TAB_TO_KEY: Record<string, SidebarNavKey> = {
   "reality checks": "quests",
   achievements: "achievements",
   xp: "achievements",
+  buffs: "buffs",
   settings: "settings",
 };
 
@@ -48,6 +49,7 @@ const PATH_TO_KEY: Record<string, SidebarNavKey> = {
   places: "places",
   companions: "companions",
   achievements: "achievements",
+  buffs: "buffs",
   settings: "settings",
   "panty-realm": "quests",
   "astral-map": "places",

@@ -9,7 +9,9 @@ import { useRitualsEngine } from './useRitualsEngine';
 import { useQuestlines } from './useQuestlines';
 
 export function useMap() {
-  const [mapData, setMapData] = usePersistentState<MapData>('map', cloneDefaultMap);
+  // Force use the updated coordinates immediately, no caching
+  const freshMapData = cloneDefaultMap();
+  const [mapData, setMapData] = usePersistentState<MapData>('map_v2', () => freshMapData);
   const { awardXp } = useInventory();
   const { shame } = useShame();
   const { logs: ritualLogs } = useRitualsEngine();
