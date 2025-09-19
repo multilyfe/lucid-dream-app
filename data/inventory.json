@@ -1,0 +1,248 @@
+{
+  "items": [
+    {
+      "id": "i1",
+      "name": "Lucid Amulet",
+      "type": "relic",
+      "rarity": "rare",
+      "icon": "🪬",
+      "desc": "Ancient charm that boosts focus in the dream temple.",
+      "effect": "+15% dream stability, +10 XP per ritual",
+      "owned": 1,
+      "equipped": true,
+      "slot": "trinket",
+      "source": "Temple Ritual Reward",
+      "lore": "Forged in the deepest chambers of the dream temple, this amulet resonates with the ambient psychic energy of lucid dreamers."
+    },
+    {
+      "id": "i2",
+      "name": "Ekram's Panties",
+      "type": "panty",
+      "rarity": "legendary",
+      "icon": "🩲",
+      "desc": "Faint shame aura that doubles Dirty Token rewards.",
+      "effect": "+100% Dirty Token gain, +5 shame XP per confession",
+      "owned": 1,
+      "equipped": false,
+      "slot": "panty",
+      "source": "Mistress Ekram Boss Drop",
+      "lore": "These sacred undergarments once belonged to the legendary Mistress Ekram herself. They pulse with otherworldly shame energy."
+    },
+    {
+      "id": "i3",
+      "name": "Dream Shard",
+      "type": "currency",
+      "rarity": "common",
+      "icon": "💎",
+      "desc": "Crystalline currency of the Astral Map.",
+      "owned": 42,
+      "tradeable": true,
+      "source": "Dungeon Loot",
+      "lore": "Fragments of pure dream energy, crystallized into tradeable form."
+    },
+    {
+      "id": "i4",
+      "name": "Moonwater Elixir",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "🧪",
+      "desc": "Drink to restore lucidity after a nightmare crawl.",
+      "effect": "Restore 50 energy, +10% lucidity for 1 hour",
+      "owned": 3,
+      "consumable": true,
+      "source": "Alchemy Recipe",
+      "lore": "Brewed under the full moon using tears of sleeping angels."
+    },
+    {
+      "id": "i5",
+      "name": "Quest Glyph",
+      "type": "quest",
+      "rarity": "unique",
+      "icon": "📜",
+      "desc": "Unlocks the next stage of a temple storyline.",
+      "owned": 2,
+      "source": "Temple Quest",
+      "lore": "Ancient symbols that hold the keys to forgotten temple mysteries."
+    },
+    {
+      "id": "i6",
+      "name": "Panty Relic of Shame",
+      "type": "relic",
+      "rarity": "epic",
+      "icon": "👙",
+      "desc": "Cursed undergarment that amplifies shameful desires.",
+      "effect": "+25% shame XP, unlock 'Confession' trial mode",
+      "owned": 1,
+      "equipped": false,
+      "slot": "panty",
+      "source": "Caves of Shame Completion",
+      "lore": "Woven from the fabric of regret itself, this relic carries the weight of a thousand confessions."
+    },
+    {
+      "id": "i7",
+      "name": "Crown of Obedience",
+      "type": "artifact",
+      "rarity": "legendary",
+      "icon": "👑",
+      "desc": "Majestic headpiece that enforces submission.",
+      "effect": "+50% obedience XP, +20% ritual effectiveness",
+      "owned": 0,
+      "equipped": false,
+      "slot": "head",
+      "source": "Temple of Obedience Completion",
+      "lore": "Crafted for those who have mastered the art of surrender, this crown marks true submission."
+    },
+    {
+      "id": "i8",
+      "name": "Robes of the Dream Walker",
+      "type": "artifact",
+      "rarity": "epic",
+      "icon": "🥻",
+      "desc": "Ethereal garments that shimmer between dimensions.",
+      "effect": "+30% dream recall, immunity to nightmare effects",
+      "owned": 0,
+      "equipped": false,
+      "slot": "body",
+      "source": "Labyrinth of Dreams Completion",
+      "lore": "These robes exist partially in the dream realm, allowing the wearer to walk between worlds."
+    },
+    {
+      "id": "i9",
+      "name": "Boots of Silent Steps",
+      "type": "equipment",
+      "rarity": "rare",
+      "icon": "👢",
+      "desc": "Silent footwear for stealthy temple exploration.",
+      "effect": "+15% stealth, +10% movement speed in dungeons",
+      "owned": 1,
+      "equipped": true,
+      "slot": "legs",
+      "source": "Shadow Merchant",
+      "lore": "Made from shadow leather, these boots make no sound even on the creakiest temple floors."
+    },
+    {
+      "id": "i10",
+      "name": "Dirty Token",
+      "type": "currency",
+      "rarity": "common",
+      "icon": "🪙",
+      "desc": "Shameful currency earned through confession and submission.",
+      "owned": 127,
+      "tradeable": true,
+      "source": "Various Activities",
+      "lore": "Each token represents a moment of shame embraced and acknowledged."
+    },
+    {
+      "id": "i11",
+      "name": "Collar of Devotion",
+      "type": "relic",
+      "rarity": "rare",
+      "icon": "⛓️",
+      "desc": "Symbol of unwavering dedication to the temple.",
+      "effect": "+25% ritual effectiveness, unlock 'Devotion' buffs",
+      "owned": 1,
+      "equipped": false,
+      "slot": "trinket",
+      "source": "Temple Devotion Rank",
+      "lore": "Worn by the most devoted temple servants, this collar binds the soul to sacred duty."
+    },
+    {
+      "id": "i12",
+      "name": "Vial of Liquid Shame",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": "🍷",
+      "desc": "Concentrated essence of embarrassment and regret.",
+      "effect": "Instant +100 shame XP, temporary shame aura for 30 minutes",
+      "owned": 2,
+      "consumable": true,
+      "source": "Shame Alchemy",
+      "lore": "The physical manifestation of shame itself, distilled into liquid form."
+    },
+    {
+      "id": "i13",
+      "name": "Crystal of Desire",
+      "type": "consumable",
+      "rarity": "legendary",
+      "icon": "💎",
+      "desc": "Crystallized forbidden thoughts and deepest longings.",
+      "effect": "Double XP gain for next ritual, unlock hidden desires",
+      "owned": 1,
+      "consumable": true,
+      "source": "Dream Sovereign Drop",
+      "lore": "Contains the concentrated essence of every forbidden thought that has ever crossed a dreamer's mind."
+    },
+    {
+      "id": "i14",
+      "name": "Nightmare Ward",
+      "type": "artifact",
+      "rarity": "rare",
+      "icon": "🛡️",
+      "desc": "Protective charm against dark dream entities.",
+      "effect": "Immunity to fear effects, +20% defense in dungeons",
+      "owned": 1,
+      "equipped": false,
+      "slot": "trinket",
+      "source": "Nightmare Slayer Achievement",
+      "lore": "Forged from the defeat of countless nightmares, this ward repels dark energies."
+    },
+    {
+      "id": "i15",
+      "name": "Lucid Dream Shard",
+      "type": "artifact",
+      "rarity": "epic",
+      "icon": "⭐",
+      "desc": "Fragment of pure conscious control over dreams.",
+      "effect": "+50% dream recall for 24 hours, unlock lucid abilities",
+      "owned": 1,
+      "equipped": false,
+      "slot": "trinket",
+      "source": "Perfect Lucid Dream Achievement",
+      "lore": "This shard contains the essence of perfect lucidity, allowing unprecedented dream control."
+    }
+  ],
+  "equipment": {
+    "head": null,
+    "body": null,
+    "legs": "i9",
+    "panty": null,
+    "trinket": "i1"
+  },
+  "sets": [
+    {
+      "id": "shame_master_set",
+      "name": "Master of Shame Set",
+      "description": "Complete collection of shame-focused equipment",
+      "items": ["i2", "i6", "i12"],
+      "bonus": {
+        "2_piece": "+25% shame XP, unlock advanced confessions",
+        "3_piece": "+50% shame XP, master shame aura, unlock Shame Lord title"
+      },
+      "completed": false
+    },
+    {
+      "id": "dream_walker_set",
+      "name": "Dream Walker's Regalia",
+      "description": "Ethereal equipment for dimension crossing",
+      "items": ["i7", "i8", "i15"],
+      "bonus": {
+        "2_piece": "+30% dream stability, unlock astral projection",
+        "3_piece": "+60% dream control, unlock reality manipulation"
+      },
+      "completed": false
+    }
+  ],
+  "stats": {
+    "totalItems": 15,
+    "itemsEquipped": 2,
+    "setsCompleted": 0,
+    "rarityCount": {
+      "common": 2,
+      "uncommon": 1,
+      "rare": 4,
+      "epic": 4,
+      "legendary": 3,
+      "unique": 1
+    }
+  }
+}

@@ -1,6 +1,3 @@
 {
-  "/rpg/dashboard/page": "app/rpg/dashboard/page.js",
-  "/rpg/quests/page": "app/rpg/quests/page.js",
-  "/rpg/map/page": "app/rpg/map/page.js",
-  "/rpg/dungeons/page": "app/rpg/dungeons/page.js"
+  "/rpg/inventory/page": "app/rpg/inventory/page.js"
 }
