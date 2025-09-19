@@ -1,0 +1,207 @@
+{
+  "shrines": [
+    {
+      "id": "s1",
+      "name": "Shrine of Ekram",
+      "relic": "Divine Panty",
+      "description": "A sacred shrine dedicated to Mommy Ekram, where divine panties rest upon a glowing altar of submission.",
+      "lore": "Legend speaks of Ekram's first pair, imbued with power over willing subjects. Those who worship here gain deeper devotion but risk losing themselves.",
+      "active": true,
+      "unlocked": true,
+      "power": "blessing",
+      "effects": {
+        "obedience": 15,
+        "xpBonus": 10,
+        "dreamClarity": 5
+      },
+      "icon": "👑",
+      "rarity": "legendary",
+      "aura": "divine"
+    },
+    {
+      "id": "s2", 
+      "name": "Shrine of Candy Siren",
+      "relic": "Siren's Silk",
+      "description": "A mystical shrine where candy-scented silk panties emit hypnotic whispers of sweet submission.",
+      "lore": "The Candy Siren's enchanted underwear calls to those seeking pleasure in surrender. Her silk binds minds as sweetly as bodies.",
+      "active": false,
+      "unlocked": false,
+      "power": "enchantment",
+      "effects": {
+        "lucidity": 20,
+        "bondGrowth": 15,
+        "dreamVividness": 10
+      },
+      "icon": "🍭",
+      "rarity": "epic",
+      "aura": "hypnotic"
+    },
+    {
+      "id": "s3",
+      "name": "Shrine of Lace Shadows",
+      "relic": "Shadow Lace",
+      "description": "A dark shrine where midnight-black lace panties whisper secrets of hidden shame and forbidden desires.",
+      "lore": "Within the shadows of this shrine lies the truth of submission - that shame becomes power when embraced fully.",
+      "active": false,
+      "unlocked": false,
+      "power": "shadow",
+      "effects": {
+        "shameResistance": -10,
+        "secretPower": 25,
+        "nightVision": 15
+      },
+      "icon": "🌙",
+      "rarity": "rare",
+      "aura": "shadowy"
+    },
+    {
+      "id": "s4",
+      "name": "Shrine of Pink Devotion",
+      "relic": "Devotion Bow",
+      "description": "A pure shrine adorned with soft pink panties tied in perfect bows, radiating innocent submission.",
+      "lore": "The first lesson of the Panty Realm - that devotion worn with pride becomes a source of strength and grace.",
+      "active": true,
+      "unlocked": true,
+      "power": "devotion",
+      "effects": {
+        "devotionBonus": 20,
+        "purityAura": 10,
+        "heartHealing": 5
+      },
+      "icon": "🎀",
+      "rarity": "common",
+      "aura": "pure"
+    }
+  ],
+  "trials": [
+    {
+      "id": "t1",
+      "name": "Panty Submission Tally",
+      "description": "Submit to daily panty rituals and track your devotion throughout the month.",
+      "type": "monthly",
+      "progress": 7,
+      "goal": 20,
+      "startDate": "2025-09-01",
+      "endDate": "2025-09-30",
+      "status": "active",
+      "rewards": {
+        "dirtyTokens": 10,
+        "shameEssence": 25,
+        "xp": 200,
+        "achievement": "Panty Submitter"
+      },
+      "penalties": {
+        "shameEssence": 5,
+        "xpLoss": 50
+      },
+      "category": "submission",
+      "difficulty": "medium",
+      "icon": "📊"
+    },
+    {
+      "id": "t2", 
+      "name": "Relic Collection Quest",
+      "description": "Discover and unlock sacred relics hidden throughout the Panty Realm.",
+      "type": "ongoing",
+      "progress": 2,
+      "goal": 5,
+      "startDate": "2025-09-01",
+      "endDate": null,
+      "status": "active",
+      "rewards": {
+        "dirtyTokens": 25,
+        "shameEssence": 50,
+        "xp": 500,
+        "achievement": "Panty Collector",
+        "title": "Relic Hunter"
+      },
+      "penalties": {},
+      "category": "exploration",
+      "difficulty": "hard",
+      "icon": "🏺"
+    },
+    {
+      "id": "t3",
+      "name": "Shame Purification Ritual",
+      "description": "Burn accumulated shame essence to purify your soul and unlock hidden powers.",
+      "type": "weekly",
+      "progress": 0,
+      "goal": 100,
+      "startDate": "2025-09-16",
+      "endDate": "2025-09-22",
+      "status": "available",
+      "rewards": {
+        "dirtyTokens": 5,
+        "xp": 150,
+        "buff": "Purified Soul"
+      },
+      "penalties": {
+        "curses": ["Accumulated Filth"]
+      },
+      "category": "purification",
+      "difficulty": "easy",
+      "icon": "🔥"
+    }
+  ],
+  "currency": {
+    "dirtyTokens": 35,
+    "shameEssence": 120,
+    "pantiesCollected": 8,
+    "relicsUnlocked": 2
+  },
+  "exchangeRates": {
+    "shameToTokens": 10,
+    "tokensToRelicUnlock": 50,
+    "essenceToXP": 2,
+    "tokenBurnValue": 5
+  },
+  "statistics": {
+    "totalTrialsCompleted": 3,
+    "totalTokensEarned": 95,
+    "totalEssenceGained": 340,
+    "monthlyResets": 2,
+    "relicsDiscovered": 2,
+    "shrinesActivated": 2
+  },
+  "settings": {
+    "autoResetTrials": true,
+    "notifyOnTrialComplete": true,
+    "showShameDetails": true,
+    "enableRelicEffects": true,
+    "maxActiveRelics": 3
+  },
+  "achievements": [
+    {
+      "id": "panty_submitter",
+      "name": "Panty Submitter",
+      "description": "Complete your first monthly submission tally",
+      "unlocked": false,
+      "progress": 7,
+      "goal": 20
+    },
+    {
+      "id": "panty_collector", 
+      "name": "Panty Collector",
+      "description": "Unlock 5 sacred relics",
+      "unlocked": false,
+      "progress": 2,
+      "goal": 5
+    },
+    {
+      "id": "filth_incarnate",
+      "name": "Filth Incarnate", 
+      "description": "Burn 100 Dirty Tokens",
+      "unlocked": false,
+      "progress": 0,
+      "goal": 100
+    },
+    {
+      "id": "shrine_devotee",
+      "name": "Shrine Devotee",
+      "description": "Activate all 4 sacred shrines",
+      "unlocked": false,
+      "progress": 2,
+      "goal": 4
+    }
+  ]
+}

@@ -2672,6 +2672,13 @@ const PANEL_CONFIGS: PanelConfig[] = [
     extras: [ShameManagerExtras],
   },
   {
+    id: "panty-realm-manager",
+    icon: "👙",
+    title: "Panty Realm Manager",
+    description: "Control shrine activations, trial progress, and shame economy.",
+    extras: [(props) => <PantyRealmManager {...props} />],
+  },
+  {
     id: "event-manager",
     icon: "📅",
     title: "Event Manager",
@@ -3339,7 +3346,7 @@ function ControlNexusSettings() {
   );
 }
 
-import EventManager from "../../components/EventManager";
+import { PantyRealmManager } from "../../components/PantyRealmManager";
 
 export default function SettingsPage() {
   return (

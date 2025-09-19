@@ -49,6 +49,66 @@
       transform: translateY(-10px) rotate(180deg);
     }
   }
+
+  /* Panty Realm Animations */
+  @keyframes float {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px);
+    }
+    25% { 
+      transform: translateY(-20px) translateX(10px);
+    }
+    50% { 
+      transform: translateY(-10px) translateX(-5px);
+    }
+    75% { 
+      transform: translateY(-15px) translateX(15px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% { 
+      background-position: -100% 0;
+    }
+    100% { 
+      background-position: 100% 0;
+    }
+  }
+
+  @keyframes realmPulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(236, 72, 153, 0.6);
+      transform: scale(1.02);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .animate-realm-pulse {
+    animation: realmPulse 3s ease-in-out infinite;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
   
   @keyframes questGlow {
     0%, 100% { 

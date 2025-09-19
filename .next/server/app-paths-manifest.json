@@ -1,6 +1,5 @@
 {
   "/rpg/dashboard/page": "app/rpg/dashboard/page.js",
-  "/rpg/quests/page": "app/rpg/quests/page.js",
-  "/rpg/journal/page": "app/rpg/journal/page.js",
-  "/rpg/settings/page": "app/rpg/settings/page.js"
+  "/rpg/pantyrealm/page": "app/rpg/pantyrealm/page.js",
+  "/rpg/journal/page": "app/rpg/journal/page.js"
 }

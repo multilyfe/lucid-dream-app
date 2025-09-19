@@ -45,6 +45,7 @@ export type SidebarNavKey =
   | "shame"
   | "map"
   | "buffs"
+  | "pantyrealm"
   | "settings";
 
 export type SidebarProps = {
@@ -66,6 +67,7 @@ const NAV_ITEMS: Array<{
   { key: "dungeons", label: "Dungeons", href: "/rpg/dungeons", Icon: Castle },
   { key: "rituals", label: "Rituals", href: "/rpg/rituals", Icon: Lock },
   { key: "buffs", label: "Buffs & Curses", href: "/rpg/buffs", Icon: Wand2 },
+  { key: "pantyrealm", label: "Panty Realm", href: "/rpg/pantyrealm", Icon: Skull },
   { key: "temple", label: "Temple", href: "/rpg/temple", Icon: Landmark },
   { key: "shop", label: "Shop", href: "/rpg/shop", Icon: ShoppingBag },
   { key: "npcs", label: "NPCs", href: "/rpg/npcs", Icon: Users },

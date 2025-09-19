@@ -6,10 +6,20 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
     "/rpg/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/rpg/layout.js"
+    ],
+    "/rpg/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rpg/page.js"
     ],
     "/rpg/dashboard/page": [
       "static/chunks/webpack.js",
@@ -17,15 +27,10 @@
       "static/css/app/rpg/dashboard/page.css",
       "static/chunks/app/rpg/dashboard/page.js"
     ],
-    "/rpg/quests/page": [
+    "/rpg/pantyrealm/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/quests/page.js"
-    ],
-    "/rpg/settings/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/settings/page.js"
+      "static/chunks/app/rpg/pantyrealm/page.js"
     ],
     "/rpg/journal/page": [
       "static/chunks/webpack.js",
