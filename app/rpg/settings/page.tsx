@@ -2365,6 +2365,80 @@ function renderPanelContent(config: PanelConfig, control: ControlNexus, setContr
   );
 }
 
+// Missing ManagerExtras Components
+const ProfileManagerExtras = (_props: PanelRenderProps) => {
+  const { settings, updateSettings } = useProfileSettings();
+  
+  return (
+    <div className="space-y-5 rounded-3xl border border-purple-500/30 bg-slate-950/70 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <SectionLabel>Profile Settings</SectionLabel>
+      </div>
+      <div className="text-sm text-slate-400">
+        Profile customization features coming soon...
+      </div>
+    </div>
+  );
+};
+
+const NpcManagerExtras = (_props: PanelRenderProps) => {
+  const { npcs } = useNpcs();
+  
+  return (
+    <div className="space-y-5 rounded-3xl border border-blue-500/30 bg-slate-950/70 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <SectionLabel>NPC Relationships</SectionLabel>
+      </div>
+      <div className="text-sm text-slate-400">
+        Found {npcs.length} NPCs. Relationship management coming soon...
+      </div>
+    </div>
+  );
+};
+
+const EventsManagerExtras = (_props: PanelRenderProps) => {
+  const { events } = useEvents();
+  
+  return (
+    <div className="space-y-5 rounded-3xl border border-green-500/30 bg-slate-950/70 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <SectionLabel>Event Management</SectionLabel>
+      </div>
+      <div className="text-sm text-slate-400">
+        Total events: {events.length}. Advanced event management coming soon...
+      </div>
+    </div>
+  );
+};
+
+const JournalManagerExtras = (_props: PanelRenderProps) => {
+  return (
+    <div className="space-y-5 rounded-3xl border border-pink-500/30 bg-slate-950/70 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <SectionLabel>Journal Settings</SectionLabel>
+      </div>
+      <div className="text-sm text-slate-400">
+        Advanced journal configuration coming soon...
+      </div>
+    </div>
+  );
+};
+
+const DungeonManagerExtras = (_props: PanelRenderProps) => {
+  const { dungeons } = useDungeons();
+  
+  return (
+    <div className="space-y-5 rounded-3xl border border-orange-500/30 bg-slate-950/70 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <SectionLabel>Dungeon Management</SectionLabel>
+      </div>
+      <div className="text-sm text-slate-400">
+        Available dungeons: {dungeons.length}. Advanced dungeon management coming soon...
+      </div>
+    </div>
+  );
+};
+
 const PANEL_CONFIGS: PanelConfig[] = [
   {
     id: "appearance",

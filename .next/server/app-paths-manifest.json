@@ -1,3 +1,6 @@
 {
+  "/page": "app/page.js",
+  "/rpg/page": "app/rpg/page.js",
+  "/rpg/dashboard/page": "app/rpg/dashboard/page.js",
   "/rpg/journal/page": "app/rpg/journal/page.js"
 }
