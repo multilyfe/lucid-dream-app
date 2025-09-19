@@ -152,5 +152,38 @@
     "date": null,
     "trigger": { "type": "DUNGEON_CLEARED", "value": 10 },
     "reward": { "xp": 2000, "tokens": 200, "title": "Dungeon Master" }
+  },
+  {
+    "id": "QUEST_DREAMGATE_EXPLORER",
+    "title": "Dreamgate Explorer",
+    "desc": "Found the mystical Dreamgate and stepped through to new realms of consciousness.",
+    "category": "Dream",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "QUEST_COMPLETED", "value": "q1" },
+    "reward": { "xp": 100, "tokens": 25, "title": "Dream Explorer" }
+  },
+  {
+    "id": "QUEST_BOUND_FEMBOY",
+    "title": "Bound Femboy",
+    "desc": "Completed 7 days of obedience training. Your submission has deepened significantly.",
+    "category": "Ritual",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "QUEST_COMPLETED", "value": "q2" },
+    "reward": { "xp": 200, "tokens": 50, "title": "Bound Femboy" }
+  },
+  {
+    "id": "QUEST_MASTER",
+    "title": "Quest Master",
+    "desc": "Completed 10 quests. Your dedication to growth is unmatched.",
+    "category": "All",
+    "secret": false,
+    "unlocked": false,
+    "date": null,
+    "trigger": { "type": "QUESTS_COMPLETED", "value": 10 },
+    "reward": { "xp": 500, "tokens": 100, "title": "Quest Master" }
   }
 ]

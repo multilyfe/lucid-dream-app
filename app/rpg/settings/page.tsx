@@ -35,6 +35,7 @@ import { SectionLabel } from "../../components/SectionLabel";
 import { ShameManagerExtras } from "../../components/ShameManagerSettings";
 import { type Npc } from "../../lib/npcs";
 import MapManager from "../../components/MapManager";
+import { QuestManager } from "../../components/QuestManager";
 
 const DEFAULT_CONTROL_NEXUS = {
   appearance: {
@@ -2035,6 +2036,10 @@ const ShopManagerExtras = (_props: PanelRenderProps) => {
   );
 };
 
+const QuestManagerExtras = (_props: PanelRenderProps) => {
+  return <QuestManager />;
+};
+
 function renderPanelContent(config: PanelConfig, control: ControlNexus, setControl: Dispatch<SetStateAction<ControlNexus>>) {
   const toggles = config.toggles?.length
     ? (
@@ -2817,6 +2822,13 @@ const PANEL_CONFIGS: PanelConfig[] = [
     title: "Dream Shop",
     description: "Curate shop stock, prices, and limited supply.",
     extras: [ShopManagerExtras],
+  },
+  {
+    id: "quest-manager",
+    icon: "⚔️",
+    title: "Quest Manager",
+    description: "Create, edit, and manage dream and IRL quests.",
+    extras: [QuestManagerExtras],
   },
   {
     id: "advanced",

@@ -11,10 +11,26 @@
       "static/chunks/main-app.js",
       "static/chunks/app/rpg/layout.js"
     ],
-    "/rpg/inventory/page": [
+    "/rpg/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/inventory/page.js"
+      "static/css/app/rpg/dashboard/page.css",
+      "static/chunks/app/rpg/dashboard/page.js"
+    ],
+    "/rpg/quests/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rpg/quests/page.js"
+    ],
+    "/rpg/settings/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rpg/settings/page.js"
+    ],
+    "/rpg/journal/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rpg/journal/page.js"
     ]
   }
 }

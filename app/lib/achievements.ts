@@ -9,7 +9,9 @@ export type AchievementTrigger =
   | { type: 'RITUAL_COMPLETED'; value: number }
   | { type: 'PUNISHMENT_TIER_REACHED'; value: number }
   | { type: 'MAP_NODE_UNLOCKED'; value: string }
-  | { type: 'MAP_ALL_NODES_UNLOCKED' };
+  | { type: 'MAP_ALL_NODES_UNLOCKED' }
+  | { type: 'QUEST_COMPLETED'; value: string }
+  | { type: 'QUESTS_COMPLETED'; value: number };
 
 export type AchievementReward = {
   xp?: number;

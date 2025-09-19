@@ -6,6 +6,78 @@
   .text-shadow-amber {
     text-shadow: 0 0 15px rgba(252, 211, 77, 0.6);
   }
+  
+  /* Quest Magic Animations */
+  @keyframes slideInFromLeft {
+    0% { 
+      transform: translateX(-100%) scale(0.8);
+      opacity: 0;
+    }
+    100% { 
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    0% { 
+      transform: translateX(100%) scale(0.8);
+      opacity: 0;
+    }
+    100% { 
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { 
+      opacity: 0; 
+      transform: scale(0.5) rotate(0deg);
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1.2) rotate(180deg);
+    }
+  }
+  
+  @keyframes magicalFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% { 
+      transform: translateY(-10px) rotate(180deg);
+    }
+  }
+  
+  @keyframes questGlow {
+    0%, 100% { 
+      box-shadow: 0 0 5px currentColor;
+    }
+    50% { 
+      box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+  }
+  
+  .animate-slideInFromLeft {
+    animation: slideInFromLeft 0.6s ease-out forwards;
+  }
+  
+  .animate-slideInFromRight {
+    animation: slideInFromRight 0.6s ease-out forwards;
+  }
+  
+  .animate-fadeInOut {
+    animation: fadeInOut 4s ease-in-out infinite;
+  }
+  
+  .animate-magicalFloat {
+    animation: magicalFloat 3s ease-in-out infinite;
+  }
+  
+  .animate-questGlow {
+    animation: questGlow 2s ease-in-out infinite;
+  }
 }
 
 /* Import journal styles */

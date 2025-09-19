@@ -1,0 +1,548 @@
+[
+  {
+    "id": "daily-reflection-2024-01-15",
+    "title": "Morning Reflection",
+    "desc": "Start your day with mindful intention and connection to your inner self",
+    "type": "irl",
+    "status": "active",
+    "category": "daily",
+    "difficulty": "easy",
+    "priority": "medium",
+    "steps": [
+      {
+        "id": "daily-reflect-1",
+        "text": "Spend 5 minutes in quiet reflection",
+        "desc": "Find a peaceful space and connect with your inner self",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 50,
+      "obedience": 10
+    },
+    "tags": ["mindfulness", "daily", "morning"],
+    "unlocks": [],
+    "timeLimit": 86400000,
+    "recurring": "daily",
+    "createdAt": "2024-01-15T08:00:00.000Z",
+    "updatedAt": "2024-01-15T08:00:00.000Z"
+  },
+  {
+    "id": "daily-journal-2024-01-15",
+    "title": "Dream Journal Entry",
+    "desc": "Record your nocturnal adventures and build your dream recall",
+    "type": "dream",
+    "status": "active",
+    "category": "daily",
+    "difficulty": "easy",
+    "priority": "high",
+    "steps": [
+      {
+        "id": "daily-journal-1",
+        "text": "Write down at least one dream",
+        "desc": "Record any dream fragments, symbols, or emotions",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 75,
+      "tokens": 5
+    },
+    "tags": ["dreams", "journal", "daily"],
+    "unlocks": [],
+    "timeLimit": 86400000,
+    "recurring": "daily",
+    "createdAt": "2024-01-15T08:00:00.000Z",
+    "updatedAt": "2024-01-15T08:00:00.000Z"
+  },
+  {
+    "id": "weekly-review-2024-w03",
+    "title": "Weekly Transformation Review",
+    "desc": "Assess your journey and growth over the past week",
+    "type": "irl",
+    "status": "active",
+    "category": "weekly",
+    "difficulty": "medium",
+    "priority": "medium",
+    "steps": [
+      {
+        "id": "weekly-review-1",
+        "text": "Complete transformation self-assessment",
+        "desc": "Reflect on your progress and growth areas",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "weekly-goals-1",
+        "text": "Set goals for the upcoming week",
+        "desc": "Plan your path forward with specific intentions",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 200,
+      "tokens": 25,
+      "achievement": "Self Reflective"
+    },
+    "tags": ["reflection", "weekly", "growth"],
+    "unlocks": [],
+    "timeLimit": 604800000,
+    "recurring": "weekly",
+    "createdAt": "2024-01-15T00:00:00.000Z",
+    "updatedAt": "2024-01-15T00:00:00.000Z"
+  },
+  {
+    "id": "q1",
+    "title": "The Awakening of Lucidia",
+    "desc": "Find the Dreamgate in your next lucid dream and begin your journey into the deeper realms of consciousness.",
+    "type": "dream",
+    "status": "active",
+    "category": "main",
+    "difficulty": "medium",
+    "priority": "high",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Perform lucid ritual before bed",
+        "desc": "Complete your evening ritual to prepare your mind for lucidity",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s2", 
+        "text": "Achieve lucidity in dream",
+        "desc": "Become aware that you are dreaming while in the dream state",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Locate the Dreamgate",
+        "desc": "Find the shimmering portal that leads to deeper dream realms",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 300,
+      "tokens": 50,
+      "achievement": "Dreamgate Explorer",
+      "title": "Lucid Initiate",
+      "items": ["lucid_amulet"],
+      "buffs": ["dream_clarity"]
+    },
+    "tags": ["lucid", "dreamgate", "beginner"],
+    "unlocks": ["q3"],
+    "timeLimit": null,
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q2",
+    "title": "Obedience Ritual Training",
+    "desc": "Complete your nightly ritual 7 days in a row to strengthen your submissive bonds and increase obedience.",
+    "type": "irl",
+    "status": "active", 
+    "category": "ritual",
+    "difficulty": "easy",
+    "priority": "medium",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Day 1 ritual complete",
+        "desc": "Complete your first ritual in the sequence",
+        "done": true,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Day 2 ritual complete", 
+        "desc": "Maintain consistency with your second ritual",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Day 3 ritual complete",
+        "desc": "Continue building your ritual habit",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s4",
+        "text": "Day 4 ritual complete",
+        "desc": "Halfway through your training week",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s5",
+        "text": "Day 5 ritual complete",
+        "desc": "Maintain momentum as you near completion",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s6",
+        "text": "Day 6 ritual complete",
+        "desc": "Almost finished with your training",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s7",
+        "text": "Day 7 ritual complete",
+        "desc": "Complete the final ritual to earn your title",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 500,
+      "tokens": 75,
+      "title": "Bound Femboy",
+      "buffs": ["obedience_boost"],
+      "obedience": 1000
+    },
+    "tags": ["ritual", "obedience", "training"],
+    "unlocks": ["q4"],
+    "timeLimit": 604800000,
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q3",
+    "title": "Flight of the Dream Phoenix",
+    "desc": "Master the art of flying in your lucid dreams by soaring through three different dream realms.",
+    "type": "dream",
+    "status": "locked",
+    "category": "skill",
+    "difficulty": "medium",
+    "priority": "medium",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Achieve sustained flight for 30 seconds",
+        "desc": "Fly continuously without losing lucidity or falling",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Fly through the Celestial Realm",
+        "desc": "Navigate the starry skies of the upper dream realms",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Perform aerial acrobatics",
+        "desc": "Execute loops, spins, or complex maneuvers while flying",
+        "done": false,
+        "required": false
+      }
+    ],
+    "rewards": {
+      "xp": 250,
+      "achievement": "Sky Dancer",
+      "items": ["phoenix_feather", "wind_crystal"]
+    },
+    "tags": ["flying", "skill", "dream control"],
+    "unlocks": ["q5"],
+    "timeLimit": null,
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q4",
+    "title": "Panty Realm Initiation",
+    "desc": "Explore the mysterious Panty Realm and collect your first panty relic to increase your shameful powers.",
+    "type": "irl",
+    "status": "locked",
+    "category": "exploration",
+    "difficulty": "hard",
+    "priority": "high",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Visit a lingerie store",
+        "desc": "Enter a physical lingerie store while feeling the shame",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Purchase panties",
+        "desc": "Buy a pair of panties that call to your submissive nature",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Perform panty ritual",
+        "desc": "Complete the sacred panty blessing ritual",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 400,
+      "achievement": "Panty Realm Explorer",
+      "items": ["silk_panties", "shame_crystal"],
+      "shame": 500
+    },
+    "tags": ["panty", "shame", "exploration"],
+    "unlocks": ["q6"],
+    "timeLimit": null,
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q5",
+    "title": "Shattered Veil of Lucidia - Part I",
+    "desc": "Begin the epic questline to restore the ancient veil between dream and reality. This is the first chapter of a grand adventure.",
+    "type": "dream",
+    "status": "locked",
+    "category": "epic",
+    "difficulty": "hard",
+    "priority": "high",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Meet the Dream Oracle",
+        "desc": "Find and speak with the mysterious Oracle in the Crystal Caverns",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Learn about the Shattered Veil",
+        "desc": "Understand the history and importance of the Veil of Lucidia",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Collect the first Veil Fragment",
+        "desc": "Retrieve the Fragment of Beginnings from the Tower of Mirrors",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 600,
+      "achievement": "Veil Seeker",
+      "items": ["veil_fragment_1", "oracle_blessing"],
+      "title": "Fragment Bearer"
+    },
+    "tags": ["epic", "veil", "oracle", "questline"],
+    "unlocks": ["q7"],
+    "timeLimit": null,
+    "questline": "shattered_veil",
+    "questlineStep": 1,
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q6",
+    "title": "Daily Shame Challenge",
+    "desc": "Embrace your submissive nature by completing daily shame tasks for a week.",
+    "type": "irl",
+    "status": "locked",
+    "category": "daily",
+    "difficulty": "medium", 
+    "priority": "low",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Complete 3 shame tasks",
+        "desc": "Finish any 3 tasks from your shame tracker today",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 150,
+      "shame": 200,
+      "buffs": ["daily_shame_boost"]
+    },
+    "tags": ["daily", "shame", "submissive"],
+    "unlocks": [],
+    "timeLimit": 86400000,
+    "recurring": "daily",
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q7",
+    "title": "Shattered Veil of Lucidia - Part II",
+    "desc": "Continue the epic questline by venturing into the Shadow Realm to find the second Veil Fragment.",
+    "type": "dream",
+    "status": "locked",
+    "category": "epic",
+    "difficulty": "very_hard",
+    "priority": "high",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Enter the Shadow Realm",
+        "desc": "Navigate through the dark portal to reach the Shadow Realm",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Defeat the Shadow Guardian",
+        "desc": "Overcome the fearsome guardian protecting the second fragment",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Collect the Fragment of Shadows",
+        "desc": "Retrieve the second piece of the Shattered Veil",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 800,
+      "achievement": "Shadow Walker",
+      "items": ["veil_fragment_2", "shadow_essence"],
+      "curses": ["shadow_mark"]
+    },
+    "tags": ["epic", "veil", "shadow", "questline"],
+    "unlocks": ["q8"],
+    "timeLimit": null,
+    "questline": "shattered_veil",
+    "questlineStep": 2,
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q8",
+    "title": "Weekly Lucid Mastery",
+    "desc": "Achieve lucidity and perform specific dream tasks throughout the week to master your dream control abilities.",
+    "type": "dream",
+    "status": "active",
+    "category": "weekly",
+    "difficulty": "medium",
+    "priority": "medium",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Have 3 lucid dreams this week",
+        "desc": "Achieve lucidity in at least 3 different dreams",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Perform reality checks 5 times daily",
+        "desc": "Complete reality checks throughout each day",
+        "done": false,
+        "required": true
+      },
+      {
+        "id": "s3",
+        "text": "Try a new dream technique",
+        "desc": "Experiment with a lucid dreaming technique you haven't used before",
+        "done": false,
+        "required": false
+      }
+    ],
+    "rewards": {
+      "xp": 300,
+      "buffs": ["lucid_mastery_boost"],
+      "items": ["dream_journal_upgrade"]
+    },
+    "tags": ["weekly", "lucid", "mastery"],
+    "unlocks": [],
+    "timeLimit": 604800000,
+    "recurring": "weekly", 
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "q9",
+    "title": "The Binding Ritual",
+    "desc": "A failed quest example - you were supposed to complete a complex binding ritual but missed the deadline.",
+    "type": "irl",
+    "status": "failed",
+    "category": "ritual",
+    "difficulty": "hard",
+    "priority": "high",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Gather ritual materials",
+        "desc": "Collect candles, rope, and sacred oils",
+        "done": true,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Perform the binding ceremony",
+        "desc": "Complete the 3-hour binding ritual at midnight",
+        "done": false,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 400,
+      "title": "Bound Soul",
+      "items": ["binding_rope"]
+    },
+    "penalties": {
+      "shame": 1000,
+      "curses": ["ritual_failure"]
+    },
+    "tags": ["ritual", "binding", "midnight"],
+    "unlocks": [],
+    "timeLimit": 1641945600000,
+    "createdAt": "2025-01-10T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z",
+    "failedAt": "2025-01-12T00:00:00Z"
+  },
+  {
+    "id": "q10",
+    "title": "Dream Journal Dedication",
+    "desc": "A completed quest - you successfully wrote in your dream journal for 30 consecutive days.",
+    "type": "dream",
+    "status": "completed",
+    "category": "habit",
+    "difficulty": "easy",
+    "priority": "medium",
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Write in journal for 30 days",
+        "desc": "Record your dreams every single day for a month",
+        "done": true,
+        "required": true
+      },
+      {
+        "id": "s2",
+        "text": "Include lucidity triggers",
+        "desc": "Note potential dream signs and reality check moments",
+        "done": true,
+        "required": true
+      }
+    ],
+    "rewards": {
+      "xp": 250,
+      "achievement": "Dream Chronicler",
+      "items": ["enchanted_pen"],
+      "buffs": ["journal_mastery"]
+    },
+    "tags": ["journal", "habit", "consistency"],
+    "unlocks": ["q11"],
+    "timeLimit": null,
+    "createdAt": "2024-12-01T00:00:00Z",
+    "updatedAt": "2025-01-01T00:00:00Z",
+    "completedAt": "2025-01-01T00:00:00Z"
+  }
+]
