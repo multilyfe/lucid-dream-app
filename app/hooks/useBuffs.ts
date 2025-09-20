@@ -202,6 +202,34 @@ export function useBuffs() {
     return effects[effectType] || (effectType.includes('Multiplier') ? 1 : 0);
   }, [calculateEffects]);
 
+  // Apply buff - used by simulation system
+  const applyBuff = useCallback((buffData: {
+    id: string;
+    name: string;
+    description: string;
+    icon: string;
+    duration: number; // in milliseconds
+    effects: Record<string, any>;
+    tier: string;
+  }) => {
+    const newBuff: Omit<Buff, 'id' | 'createdAt' | 'expiresAt'> = {
+      name: buffData.name,
+      type: 'buff',
+      desc: buffData.description,
+      duration: `${Math.floor(buffData.duration / 3600000)}h`, // Convert ms to hours
+      durationMs: buffData.duration,
+      source: 'simulation',
+      icon: buffData.icon,
+      rarity: (buffData.tier === 'legendary' ? 'legendary' : 
+               buffData.tier === 'epic' ? 'epic' : 
+               buffData.tier === 'rare' ? 'rare' : 
+               buffData.tier === 'uncommon' ? 'uncommon' : 'common') as any,
+      effects: buffData.effects as BuffEffect
+    };
+    
+    addBuff(newBuff);
+  }, [addBuff]);
+
   // Legacy compatibility methods for existing code
   const applyEvent = useCallback((event: string, baseValue: number) => {
     const effects = calculateEffects();
@@ -234,6 +262,7 @@ export function useBuffs() {
     effects: calculateEffects(),
     getEffectMultiplier,
     addBuff,
+    applyBuff, // For simulation system
     removeBuff,
     clearHistory,
     getTimeRemaining,

@@ -106,11 +106,35 @@ export function useCompanions() {
     [companions, gainXp]
   );
 
+  // Get companion by name - for companion scanner
+  const getCompanionByName = useCallback(
+    (name: string) => {
+      return companions.find(c => 
+        c.name.toLowerCase() === name.toLowerCase() ||
+        c.id.toLowerCase() === name.toLowerCase()
+      );
+    },
+    [companions]
+  );
+
+  // Update companion bond - for companion scanner
+  const updateCompanionBond = useCallback(
+    (companionName: string, bondStrength: number) => {
+      const companion = getCompanionByName(companionName);
+      if (companion) {
+        adjustBond(companion.id, bondStrength - companion.bond);
+      }
+    },
+    [getCompanionByName, adjustBond]
+  );
+
   return {
     companions: companions ?? [],
     gainXp,
     gainXpForCompanions,
     changeForm,
     adjustBond,
+    getCompanionByName,
+    updateCompanionBond,
   };
 }

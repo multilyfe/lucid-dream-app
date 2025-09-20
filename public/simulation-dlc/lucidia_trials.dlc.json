@@ -1,0 +1,117 @@
+{
+  "id": "lucidia_trials",
+  "name": "🔮 Lucidia Trials: Awakening the Third Eye",
+  "description": "Journey through mystical trials that awaken your lucid dreaming powers through cosmic consciousness expansion.",
+  "theme": "spiritual",
+  "icon": "🔮",
+  "banner": "/images/dlc/lucidia_trials_banner.jpg",
+  
+  "unlockCondition": "xp_total",
+  "unlockValue": 1000,
+  "isUnlocked": false,
+  
+  "difficultyMultiplier": 1.8,
+  "xpMultiplier": 2.0,
+  "companionAffinityBonus": {
+    "lucidia": 75,
+    "cosmic_sage": 40
+  },
+  
+  "chapters": [
+    {
+      "id": "trial_of_awareness",
+      "name": "Trial of Awareness",
+      "description": "Learn to recognize the signs that you are dreaming through ancient meditation techniques.",
+      "type": "deck",
+      "deckDefinition": {
+        "id": "awareness_deck",
+        "name": "Cards of Awakening",
+        "theme": "consciousness",
+        "drawMechanic": "guided",
+        "cards": [
+          {
+            "id": "reality_check",
+            "name": "Reality Check",
+            "description": "Look at your hands - do they appear normal?",
+            "emotionTriggers": ["curiosity", "awareness", "questioning"],
+            "realismBonus": 15,
+            "emotionBonus": 10,
+            "companionHints": ["lucidia"],
+            "rarity": "uncommon"
+          },
+          {
+            "id": "dream_sign",
+            "name": "Dream Sign Recognition", 
+            "description": "Notice the impossible architecture around you",
+            "emotionTriggers": ["wonder", "realization", "clarity"],
+            "realismBonus": 20,
+            "emotionBonus": 15,
+            "companionHints": ["cosmic_sage"],
+            "rarity": "rare"
+          },
+          {
+            "id": "lucid_trigger",
+            "name": "Lucid Trigger",
+            "description": "The moment of awakening within the dream",
+            "emotionTriggers": ["euphoria", "power", "freedom"],
+            "realismBonus": 25,
+            "emotionBonus": 30,
+            "companionHints": ["lucidia"],
+            "rarity": "epic"
+          }
+        ]
+      },
+      "targetRealism": 70,
+      "targetEmotion": 75,
+      "targetClimax": 80,
+      "targetBond": 60,
+      "baseXP": 200,
+      "chapterBuffs": ["Third Eye Opening", "Dream Sight"],
+      "unlockables": ["awareness_mastery", "lucid_triggers"],
+      "isUnlocked": true,
+      "isCompleted": false,
+      "attempts": 0
+    },
+    {
+      "id": "trial_of_control",
+      "name": "Trial of Control",
+      "description": "Master the art of dream manipulation and reality shaping within lucid consciousness.",
+      "type": "text",
+      "textPrompt": "I am lucid now, standing in a vast cosmic void filled with swirling galaxies. Lucidia appears before me, her ethereal form glowing with starlight. 'Now,' she says, 'show me you can reshape this reality with pure intention...'",
+      "targetRealism": 85,
+      "targetEmotion": 90,
+      "targetClimax": 85,
+      "targetBond": 80,
+      "baseXP": 300,
+      "chapterBuffs": ["Reality Shaper", "Cosmic Control"],
+      "unlockables": ["dream_manipulation", "reality_bending"],
+      "isUnlocked": false,
+      "isCompleted": false,
+      "attempts": 0
+    },
+    {
+      "id": "trial_of_transcendence",
+      "name": "Trial of Transcendence",
+      "description": "Achieve ultimate consciousness fusion with the cosmic dream matrix itself.",
+      "type": "passive",
+      "passiveNarrative": "You dissolve into pure consciousness as Lucidia guides you through the final trial - becoming one with the dream itself. Watch as your awareness expands beyond all boundaries...",
+      "targetRealism": 95,
+      "targetEmotion": 100,
+      "targetClimax": 100,
+      "targetBond": 100,
+      "baseXP": 500,
+      "chapterBuffs": ["Cosmic Consciousness", "Dream Matrix Unity"],
+      "unlockables": ["transcendence_mastery", "cosmic_awareness"],
+      "isUnlocked": false,
+      "isCompleted": false,
+      "attempts": 0
+    }
+  ],
+  
+  "totalChapters": 3,
+  "completedChapters": 0,
+  "author": "Cosmic Dream Academy",
+  "version": "1.2.0",
+  "tags": ["spiritual", "lucid_dreaming", "consciousness", "trials", "cosmic"],
+  "prerequisites": []
+}

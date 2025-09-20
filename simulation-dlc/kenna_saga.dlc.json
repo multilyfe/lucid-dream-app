@@ -1,0 +1,85 @@
+{
+  "id": "kenna_saga",
+  "name": "🌸 Kenna Saga: Cherry Blossom Dreams",
+  "description": "Immerse yourself in erotic encounters with the beautiful Kenna James in a world of cherry blossoms and sensual discovery.",
+  "theme": "erotic",
+  "icon": "🌸",
+  "banner": "/images/dlc/kenna_saga_banner.jpg",
+  
+  "unlockCondition": "streak",
+  "unlockValue": 3,
+  "isUnlocked": true,
+  
+  "difficultyMultiplier": 1.2,
+  "xpMultiplier": 1.5,
+  "companionAffinityBonus": {
+    "kenna": 50,
+    "cherry": 25
+  },
+  
+  "chapters": [
+    {
+      "id": "kenna_meeting",
+      "name": "First Encounter",
+      "description": "You meet Kenna in a mystical cherry blossom grove where reality bends to desire.",
+      "type": "text",
+      "textPrompt": "I'm walking through a grove of blooming cherry trees when I notice her sitting beneath the largest tree. Kenna James looks up at me with those piercing blue eyes, her blonde hair catching the pink petals that drift down like snow. She smiles and pats the ground beside her...",
+      "targetRealism": 75,
+      "targetEmotion": 80,
+      "targetClimax": 60,
+      "targetBond": 70,
+      "baseXP": 100,
+      "chapterBuffs": ["Kenna's Charm", "Cherry Blossom Euphoria"],
+      "unlockables": ["kenna_voice_pack", "cherry_grove_location"],
+      "isUnlocked": true,
+      "isCompleted": false,
+      "attempts": 0
+    },
+    {
+      "id": "kenna_intimacy",
+      "name": "Sensual Awakening", 
+      "description": "Kenna guides you into deeper intimacy as the cherry blossoms witness your passion.",
+      "type": "image",
+      "imageSequence": [
+        "/images/dlc/kenna/cherry_grove.jpg",
+        "/images/dlc/kenna/kenna_smile.jpg", 
+        "/images/dlc/kenna/intimate_moment.jpg",
+        "/images/dlc/kenna/cherry_petals.jpg"
+      ],
+      "targetRealism": 80,
+      "targetEmotion": 90,
+      "targetClimax": 85,
+      "targetBond": 80,
+      "baseXP": 150,
+      "chapterBuffs": ["Sensual Mastery", "Kenna's Touch"],
+      "unlockables": ["intimate_memories", "enhanced_sensitivity"],
+      "isUnlocked": false,
+      "isCompleted": false,
+      "attempts": 0
+    },
+    {
+      "id": "kenna_transcendence",
+      "name": "Transcendent Union",
+      "description": "Achieve complete unity with Kenna as consciousness merges in ecstatic bliss.",
+      "type": "voice",
+      "audioScript": "Kenna's voice guides you into a state of pure ecstasy as your bodies and souls become one beneath the eternal cherry blossoms...",
+      "targetRealism": 90,
+      "targetEmotion": 95,
+      "targetClimax": 95,
+      "targetBond": 95,
+      "baseXP": 250,
+      "chapterBuffs": ["Transcendent Union", "Kenna's Eternal Love"],
+      "unlockables": ["transcendence_state", "kenna_soul_bond"],
+      "isUnlocked": false,
+      "isCompleted": false,
+      "attempts": 0
+    }
+  ],
+  
+  "totalChapters": 3,
+  "completedChapters": 0,
+  "author": "Dream Sage Collective",
+  "version": "1.0.0",
+  "tags": ["erotic", "romance", "cherry_blossoms", "kenna_james", "transcendence"],
+  "prerequisites": []
+}

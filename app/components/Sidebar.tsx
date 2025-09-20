@@ -23,6 +23,7 @@ import {
   Wand2,
   Castle,
   Brain,
+  Zap,
 } from "lucide-react";
 import { usePersistentState } from "../hooks/usePersistentState";
 
@@ -31,6 +32,7 @@ export type SidebarNavKey =
   | "journal"
   | "temple"
   | "mindfuck"
+  | "simulations"
   | "analytics"
   | "quests"
   | "dungeons"
@@ -72,6 +74,7 @@ const NAV_ITEMS: Array<{
   { key: "pantyrealm", label: "Panty Realm", href: "/rpg/pantyrealm", Icon: Skull },
   { key: "temple", label: "Temple", href: "/rpg/temple", Icon: Landmark },
   { key: "mindfuck", label: "Mindfuck Cathedral", href: "/rpg/mindfuck", Icon: Brain },
+  { key: "simulations", label: "Simulation Rituals", href: "/rpg/simulations", Icon: Zap },
   { key: "shop", label: "Shop", href: "/rpg/shop", Icon: ShoppingBag },
   { key: "npcs", label: "NPCs", href: "/rpg/npcs", Icon: Users },
   { key: "profile", label: "Profile", href: "/rpg/profile", Icon: UserCircle2 },

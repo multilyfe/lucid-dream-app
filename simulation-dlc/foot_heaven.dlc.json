@@ -1,0 +1,85 @@
+{
+  "id": "foot_heaven",
+  "name": "👠 Foot Heaven: Goddess Worship Dreams",
+  "description": "Surrender to divine feminine energy through foot worship and submission in ethereal dreamscapes.",
+  "theme": "erotic",
+  "icon": "👠",
+  "banner": "/images/dlc/foot_heaven_banner.jpg",
+  
+  "unlockCondition": "companion_bond",
+  "unlockValue": 80,
+  "isUnlocked": false,
+  
+  "difficultyMultiplier": 1.4,
+  "xpMultiplier": 1.8,
+  "companionAffinityBonus": {
+    "goddess": 60,
+    "divine_feminine": 45
+  },
+  
+  "chapters": [
+    {
+      "id": "temple_arrival",
+      "name": "Temple of Divine Feet",
+      "description": "You arrive at a mystical temple where goddess energy flows through sacred foot worship.",
+      "type": "image",
+      "imageSequence": [
+        "/images/dlc/foot_heaven/temple_entrance.jpg",
+        "/images/dlc/foot_heaven/goddess_throne.jpg",
+        "/images/dlc/foot_heaven/perfect_feet.jpg",
+        "/images/dlc/foot_heaven/worship_pose.jpg"
+      ],
+      "targetRealism": 70,
+      "targetEmotion": 85,
+      "targetClimax": 75,
+      "targetBond": 90,
+      "baseXP": 150,
+      "chapterBuffs": ["Divine Submission", "Goddess Grace"],
+      "unlockables": ["temple_access", "worship_mastery"],
+      "isUnlocked": true,
+      "isCompleted": false,
+      "attempts": 0
+    },
+    {
+      "id": "goddess_blessing",
+      "name": "Goddess Blessing Ritual",
+      "description": "Receive the goddess's blessing through intimate foot worship and energy exchange.",
+      "type": "text",
+      "textPrompt": "The goddess extends her perfect foot toward me, her skin glowing with divine light. I kneel reverently, feeling waves of submission and bliss wash over me as I prepare to worship her sacred feet...",
+      "targetRealism": 80,
+      "targetEmotion": 90,
+      "targetClimax": 85,
+      "targetBond": 95,
+      "baseXP": 200,
+      "chapterBuffs": ["Sacred Submission", "Divine Bliss"],
+      "unlockables": ["goddess_blessing", "submission_mastery"],
+      "isUnlocked": false,
+      "isCompleted": false,
+      "attempts": 0
+    },
+    {
+      "id": "transcendent_worship",
+      "name": "Transcendent Worship",
+      "description": "Achieve spiritual transcendence through complete devotion and worship of the divine feminine.",
+      "type": "voice",
+      "audioScript": "The goddess's voice fills your mind as you worship her feet with complete devotion, your consciousness expanding into realms of pure submission and bliss...",
+      "targetRealism": 90,
+      "targetEmotion": 95,
+      "targetClimax": 90,
+      "targetBond": 100,
+      "baseXP": 300,
+      "chapterBuffs": ["Transcendent Devotion", "Divine Union"],
+      "unlockables": ["transcendent_worship", "goddess_unity"],
+      "isUnlocked": false,
+      "isCompleted": false,
+      "attempts": 0
+    }
+  ],
+  
+  "totalChapters": 3,
+  "completedChapters": 0,
+  "author": "Divine Feminine Collective",
+  "version": "1.1.0",
+  "tags": ["erotic", "worship", "submission", "goddess", "divine_feminine"],
+  "prerequisites": ["kenna_saga"]
+}

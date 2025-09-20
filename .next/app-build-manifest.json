@@ -27,10 +27,15 @@
       "static/css/app/rpg/dashboard/page.css",
       "static/chunks/app/rpg/dashboard/page.js"
     ],
-    "/rpg/mindfuck/page": [
+    "/rpg/simulations/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/mindfuck/page.js"
+      "static/chunks/app/rpg/simulations/page.js"
+    ],
+    "/rpg/quests/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rpg/quests/page.js"
     ]
   }
 }
