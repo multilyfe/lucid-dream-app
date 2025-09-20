@@ -1,0 +1,405 @@
+{
+  "tripLogs": [
+    {
+      "id": "trip-001",
+      "date": "2025-09-15T20:30:00Z",
+      "substance": "LSD",
+      "dosage": "150μg",
+      "duration": 720,
+      "setting": "Forest clearing under stars",
+      "intention": "Explore consciousness boundaries and dissolve ego attachment",
+      "entities": [
+        {
+          "name": "The Fractal Goddess",
+          "description": "Crystalline being made of infinite geometric patterns",
+          "message": "You are already what you seek to become",
+          "encountered_at": "Peak +3 hours"
+        }
+      ],
+      "insights": [
+        {
+          "id": "insight-001",
+          "timestamp": "2025-09-15T23:45:00Z",
+          "content": "Reality is a collaborative hallucination. Consciousness creates the universe, not the other way around.",
+          "emotional_intensity": 9,
+          "type": "ontological"
+        },
+        {
+          "id": "insight-002", 
+          "timestamp": "2025-09-16T01:20:00Z",
+          "content": "Every fear is just love wearing a mask. Death is the ultimate teacher, not enemy.",
+          "emotional_intensity": 8,
+          "type": "existential"
+        }
+      ],
+      "emotional_spikes": [
+        {
+          "timestamp": "2025-09-15T22:15:00Z",
+          "type": "terror",
+          "intensity": 9,
+          "description": "Complete dissolution of self-boundary, felt like dying",
+          "duration": 15
+        },
+        {
+          "timestamp": "2025-09-16T00:30:00Z",
+          "type": "bliss",
+          "intensity": 10,
+          "description": "Oceanic unity with all existence, pure love",
+          "duration": 45
+        }
+      ],
+      "ego_death_level": 4,
+      "integration_notes": "Spent 3 days journaling. Key insight: stop fighting the flow of life.",
+      "tags": ["ego_death", "nature", "entities", "breakthrough"],
+      "phase_breakdown": {
+        "onset": "Gentle tingles, reality softening",
+        "come_up": "Geometric patterns emerging, time dilation",
+        "peak": "Complete ego dissolution, entity contact",
+        "plateau": "Integration phase, deep insights",
+        "come_down": "Gentle return, profound gratitude"
+      },
+      "vault_file": "Vaults/Mindfuck Cathedral/2025-09-15-LSD-Forest-Journey.md",
+      "xp_awarded": 500,
+      "tokens_earned": 25
+    },
+    {
+      "id": "trip-002",
+      "date": "2025-08-28T19:00:00Z",
+      "substance": "Psilocybin",
+      "dosage": "3.5g dried",
+      "duration": 360,
+      "setting": "Meditation room with incense and crystals",
+      "intention": "Heal childhood trauma and release shame patterns",
+      "entities": [],
+      "insights": [
+        {
+          "id": "insight-003",
+          "timestamp": "2025-08-28T21:30:00Z",
+          "content": "Shame is just fear of not being loved. I am already whole.",
+          "emotional_intensity": 7,
+          "type": "therapeutic"
+        }
+      ],
+      "emotional_spikes": [
+        {
+          "timestamp": "2025-08-28T20:45:00Z",
+          "type": "crying",
+          "intensity": 8,
+          "description": "Deep cathartic release of stored grief",
+          "duration": 30
+        }
+      ],
+      "ego_death_level": 2,
+      "integration_notes": "Continued therapy work. Shame patterns significantly reduced.",
+      "tags": ["healing", "trauma", "introspection"],
+      "phase_breakdown": {
+        "onset": "Mild nausea, colors becoming vivid",
+        "come_up": "Emotional opening, childhood memories surfacing",
+        "peak": "Deep therapeutic work, releasing stored pain",
+        "plateau": "Integration and self-compassion",
+        "come_down": "Peaceful resolution"
+      },
+      "vault_file": "Vaults/Mindfuck Cathedral/2025-08-28-Mushroom-Healing.md",
+      "xp_awarded": 300,
+      "tokens_earned": 15
+    }
+  ],
+  "mindfuckQuests": [
+    {
+      "id": "quest-ego-death",
+      "title": "The Great Dissolution",
+      "description": "Experience complete ego death and return to tell the tale",
+      "type": "ego_trial",
+      "difficulty": "legendary",
+      "requirements": {
+        "ego_death_level": 4,
+        "substances": ["LSD", "Psilocybin", "DMT"],
+        "consecutive_sessions": 3
+      },
+      "rewards": {
+        "xp": 1000,
+        "tokens": 100,
+        "title": "Void Diver",
+        "unlock": "DMT Hyperspace Portal"
+      },
+      "status": "completed",
+      "completed_date": "2025-09-15",
+      "icon": "💀"
+    },
+    {
+      "id": "quest-entity-contact",
+      "title": "Communion with the Other",
+      "description": "Establish communication with non-human entities",
+      "type": "entity_contact",
+      "difficulty": "epic",
+      "requirements": {
+        "entity_encounters": 3,
+        "substances": ["DMT", "LSD"],
+        "documented_messages": 2
+      },
+      "rewards": {
+        "xp": 750,
+        "tokens": 75,
+        "title": "Entity Whisperer",
+        "unlock": "Akashic Records Access"
+      },
+      "status": "in_progress",
+      "progress": {
+        "entity_encounters": 1,
+        "documented_messages": 1
+      },
+      "icon": "👁️"
+    },
+    {
+      "id": "quest-integration-master",
+      "title": "The Integration Odyssey",
+      "description": "Successfully integrate 10 psychedelic experiences into daily life",
+      "type": "integration",
+      "difficulty": "hard",
+      "requirements": {
+        "trips_logged": 10,
+        "integration_days": 30,
+        "behavioral_changes": 5
+      },
+      "rewards": {
+        "xp": 500,
+        "tokens": 50,
+        "title": "Lucid Shaman",
+        "unlock": "Advanced Trip Planning Tools"
+      },
+      "status": "available",
+      "icon": "🔮"
+    }
+  ],
+  "egoDeathCounter": {
+    "total_experiences": 7,
+    "by_substance": {
+      "LSD": 3,
+      "Psilocybin": 2,
+      "DMT": 2,
+      "5-MeO-DMT": 0
+    },
+    "intensity_breakdown": {
+      "level_1": 2,
+      "level_2": 1,
+      "level_3": 2,
+      "level_4": 1,
+      "level_5": 1
+    },
+    "first_experience": "2024-12-03",
+    "most_recent": "2025-09-15",
+    "deepest_level": 5,
+    "average_level": 2.8
+  },
+  "insightScrolls": [
+    {
+      "id": "scroll-001",
+      "content": "Time is not linear but spiral. Every moment contains eternity.",
+      "date": "2025-09-15T23:45:00Z",
+      "trip_id": "trip-001",
+      "category": "ontological",
+      "intensity": 9,
+      "tags": ["time", "consciousness", "eternity"],
+      "integration_status": "active"
+    },
+    {
+      "id": "scroll-002",
+      "content": "Fear and love are the same energy at different frequencies.",
+      "date": "2025-09-16T01:20:00Z",
+      "trip_id": "trip-001",
+      "category": "existential",
+      "intensity": 8,
+      "tags": ["emotions", "duality", "frequency"],
+      "integration_status": "integrated"
+    }
+  ],
+  "spiralTimelines": [
+    {
+      "id": "timeline-2025",
+      "year": 2025,
+      "breakthroughs": [
+        {
+          "date": "2025-09-15",
+          "type": "breakthrough",
+          "title": "Unity Consciousness Activation",
+          "description": "Complete dissolution into universal love",
+          "intensity": 10,
+          "related_trip": "trip-001"
+        },
+        {
+          "date": "2025-08-28",
+          "type": "healing",
+          "title": "Childhood Trauma Release",
+          "description": "Deep cathartic healing of core shame",
+          "intensity": 8,
+          "related_trip": "trip-002"
+        }
+      ],
+      "loops": [
+        {
+          "pattern": "Resistance to surrender",
+          "frequency": 3,
+          "first_noticed": "2025-06-15",
+          "resolution": "Breathwork integration practice"
+        }
+      ],
+      "flashbacks": [
+        {
+          "date": "2025-09-18",
+          "trigger": "Meditation in nature",
+          "experience": "Brief return to unity state",
+          "intensity": 6,
+          "duration": 10
+        }
+      ]
+    }
+  ],
+  "dmtPortalLogs": [
+    {
+      "id": "portal-001",
+      "date": "2025-07-22T21:00:00Z",
+      "method": "vaporized",
+      "dosage": "40mg",
+      "duration": 12,
+      "breakthrough": true,
+      "entities_encountered": [
+        {
+          "type": "Machine Elves",
+          "description": "Geometric beings performing reality surgery",
+          "interaction": "Showed me the construction of space-time",
+          "communication_method": "visual_telepathy"
+        },
+        {
+          "type": "Chrysanthemum Entity",
+          "description": "Flower-like consciousness made of pure fractals",
+          "interaction": "Welcomed me to hyperspace",
+          "communication_method": "feeling_transmission"
+        }
+      ],
+      "hyperspace_description": "Infinite cathedral of living geometry, impossible colors",
+      "key_visuals": [
+        "Flowing impossible architectures",
+        "Self-transforming machine entities",
+        "Crystalline information streams"
+      ],
+      "integration_insights": "Reality is far more magical than consensus allows",
+      "return_experience": "Gentle fade back to baseline reality",
+      "vault_file": "Vaults/Mindfuck Cathedral/2025-07-22-DMT-Hyperspace.md"
+    }
+  ],
+  "vaultSyncLogs": [
+    {
+      "id": "sync-001",
+      "timestamp": "2025-09-19T10:30:00Z",
+      "files_detected": 3,
+      "files_imported": 3,
+      "files_updated": 0,
+      "status": "success",
+      "last_sync": "2025-09-19T10:30:00Z",
+      "vault_path": "Vaults/Mindfuck Cathedral/",
+      "files": [
+        {
+          "filename": "2025-09-15-LSD-Forest-Journey.md",
+          "size": 4096,
+          "modified": "2025-09-16T08:00:00Z",
+          "status": "synced"
+        },
+        {
+          "filename": "2025-08-28-Mushroom-Healing.md", 
+          "size": 2048,
+          "modified": "2025-08-29T09:15:00Z",
+          "status": "synced"
+        },
+        {
+          "filename": "2025-07-22-DMT-Hyperspace.md",
+          "size": 1536,
+          "modified": "2025-07-23T07:30:00Z",
+          "status": "synced"
+        }
+      ]
+    }
+  ],
+  "currency": {
+    "mindfuck_tokens": 140,
+    "total_earned": 140,
+    "total_spent": 0,
+    "exchange_rate": {
+      "xp_per_token": 10,
+      "tokens_per_trip": 25
+    }
+  },
+  "achievements": [
+    {
+      "id": "first_breakthrough",
+      "title": "First Contact",
+      "description": "Complete your first breakthrough experience",
+      "unlocked": true,
+      "date_unlocked": "2024-12-03",
+      "icon": "🚀"
+    },
+    {
+      "id": "ego_death_master",
+      "title": "Void Diver",
+      "description": "Experience complete ego death 5+ times",
+      "unlocked": true,
+      "date_unlocked": "2025-09-15",
+      "icon": "💀"
+    },
+    {
+      "id": "entity_communicator",
+      "title": "Entity Whisperer",
+      "description": "Establish communication with entities",
+      "unlocked": false,
+      "progress": 1,
+      "required": 3,
+      "icon": "👁️"
+    }
+  ],
+  "titles": [
+    {
+      "id": "void_diver",
+      "name": "Void Diver",
+      "description": "One who has returned from the absolute",
+      "unlocked": true,
+      "rarity": "legendary"
+    },
+    {
+      "id": "lucid_shaman",
+      "name": "Lucid Shaman",
+      "description": "Bridge between worlds",
+      "unlocked": false,
+      "rarity": "epic"
+    },
+    {
+      "id": "ego_blender",
+      "name": "Ego Blender",
+      "description": "Master of identity dissolution",
+      "unlocked": false,
+      "rarity": "rare"
+    },
+    {
+      "id": "memory_hacker",
+      "name": "Memory Hacker",
+      "description": "Architect of consciousness",
+      "unlocked": false,
+      "rarity": "uncommon"
+    }
+  ],
+  "settings": {
+    "show_disclaimer": true,
+    "vault_sync_enabled": true,
+    "auto_generate_insights": true,
+    "emotional_spike_detection": true,
+    "entity_encounter_tracking": true,
+    "integration_reminders": true,
+    "trip_planning_mode": "advanced"
+  },
+  "statistics": {
+    "total_trips": 12,
+    "total_hours_traveled": 4320,
+    "total_insights": 47,
+    "total_entity_encounters": 8,
+    "integration_success_rate": 85,
+    "consciousness_expansion_level": 7.2
+  }
+}

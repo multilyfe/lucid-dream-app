@@ -27,15 +27,10 @@
       "static/css/app/rpg/dashboard/page.css",
       "static/chunks/app/rpg/dashboard/page.js"
     ],
-    "/rpg/pantyrealm/page": [
+    "/rpg/mindfuck/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rpg/pantyrealm/page.js"
-    ],
-    "/rpg/journal/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rpg/journal/page.js"
+      "static/chunks/app/rpg/mindfuck/page.js"
     ]
   }
 }

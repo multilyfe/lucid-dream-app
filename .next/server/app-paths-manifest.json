@@ -1,5 +1,6 @@
 {
+  "/page": "app/page.js",
+  "/rpg/page": "app/rpg/page.js",
   "/rpg/dashboard/page": "app/rpg/dashboard/page.js",
-  "/rpg/pantyrealm/page": "app/rpg/pantyrealm/page.js",
-  "/rpg/journal/page": "app/rpg/journal/page.js"
+  "/rpg/mindfuck/page": "app/rpg/mindfuck/page.js"
 }

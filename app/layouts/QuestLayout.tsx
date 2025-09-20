@@ -36,6 +36,7 @@ const PATH_TO_KEY: Record<string, SidebarNavKey> = {
   dashboard: "dashboard",
   journal: "journal",
   temple: "temple",
+  mindfuck: "mindfuck",
   analytics: "analytics",
   quests: "quests",
   dungeons: "dungeons",

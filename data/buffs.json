@@ -94,6 +94,66 @@
       "effects": {
         "ritualSuccessRate": -20
       }
+    },
+    {
+      "id": "psy1",
+      "name": "Consciousness Expansion",
+      "type": "buff",
+      "desc": "+50% XP from psychedelic experiences",
+      "duration": "24 hours",
+      "durationMs": 86400000,
+      "source": "Successful Trip Integration",
+      "icon": "🧠",
+      "rarity": "epic",
+      "effects": {
+        "xpMultiplier": 1.5,
+        "psychedelicBonus": 50
+      }
+    },
+    {
+      "id": "psy2",
+      "name": "Ego Dissolution",
+      "type": "buff", 
+      "desc": "+100% Mindfuck Token gain",
+      "duration": "8 hours",
+      "durationMs": 28800000,
+      "source": "High Ego Death Experience",
+      "icon": "🌀",
+      "rarity": "legendary",
+      "effects": {
+        "tokenMultiplier": 2.0,
+        "egoDeathBonus": 100
+      }
+    },
+    {
+      "id": "psy3",
+      "name": "Entity Contact",
+      "type": "buff",
+      "desc": "+25% companion XP and enhanced communication",
+      "duration": "12 hours", 
+      "durationMs": 43200000,
+      "source": "Entity Encounter",
+      "icon": "👁️",
+      "rarity": "rare",
+      "effects": {
+        "companionXpMultiplier": 1.25,
+        "entityCommunication": 25
+      }
+    },
+    {
+      "id": "psy4",
+      "name": "Dimensional Bleed",
+      "type": "curse",
+      "desc": "-10% reality anchor, +15% psychic sensitivity",
+      "duration": "6 hours",
+      "durationMs": 21600000,
+      "source": "Reality Fracture",
+      "icon": "🔀",
+      "rarity": "uncommon",
+      "effects": {
+        "realityAnchor": -10,
+        "psychicSensitivity": 15
+      }
     }
   ]
 }

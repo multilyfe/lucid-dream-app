@@ -22,6 +22,7 @@ import {
   CalendarDays,
   Wand2,
   Castle,
+  Brain,
 } from "lucide-react";
 import { usePersistentState } from "../hooks/usePersistentState";
 
@@ -29,6 +30,7 @@ export type SidebarNavKey =
   | "dashboard"
   | "journal"
   | "temple"
+  | "mindfuck"
   | "analytics"
   | "quests"
   | "dungeons"
@@ -69,6 +71,7 @@ const NAV_ITEMS: Array<{
   { key: "buffs", label: "Buffs & Curses", href: "/rpg/buffs", Icon: Wand2 },
   { key: "pantyrealm", label: "Panty Realm", href: "/rpg/pantyrealm", Icon: Skull },
   { key: "temple", label: "Temple", href: "/rpg/temple", Icon: Landmark },
+  { key: "mindfuck", label: "Mindfuck Cathedral", href: "/rpg/mindfuck", Icon: Brain },
   { key: "shop", label: "Shop", href: "/rpg/shop", Icon: ShoppingBag },
   { key: "npcs", label: "NPCs", href: "/rpg/npcs", Icon: Users },
   { key: "profile", label: "Profile", href: "/rpg/profile", Icon: UserCircle2 },
@@ -147,15 +150,28 @@ export function Sidebar({ activeKey }: SidebarProps) {
       <nav className="mt-8 flex flex-1 flex-col gap-2">
         {NAV_ITEMS.map(({ key, label, href, Icon }) => {
           const active = resolvedActive === key;
+          const isMindfuck = key === "mindfuck";
+          
           const base = collapsed
             ? "group relative flex items-center justify-center rounded-2xl px-3 py-3 transition"
             : "group relative flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition";
+          
+          // Special psychedelic styling for Mindfuck Cathedral
           const state = active
-            ? "bg-gradient-to-r from-fuchsia-500 via-rose-400 to-sky-400 text-slate-950 shadow-lg shadow-fuchsia-500/40"
-            : "text-slate-300 hover:bg-slate-800/60";
+            ? isMindfuck
+              ? "bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white shadow-lg shadow-purple-500/50 animate-pulse"
+              : "bg-gradient-to-r from-fuchsia-500 via-rose-400 to-sky-400 text-slate-950 shadow-lg shadow-fuchsia-500/40"
+            : isMindfuck
+              ? "text-purple-300 hover:bg-gradient-to-r hover:from-purple-900/30 hover:via-pink-900/30 hover:to-blue-900/30 hover:shadow-lg hover:shadow-purple-500/20"
+              : "text-slate-300 hover:bg-slate-800/60";
+              
           const iconBg = active
-            ? "bg-slate-950/90 text-slate-100"
-            : "bg-slate-900/60 text-slate-200 group-hover:text-white";
+            ? isMindfuck
+              ? "bg-slate-950/90 text-purple-200"
+              : "bg-slate-950/90 text-slate-100"
+            : isMindfuck
+              ? "bg-gradient-to-br from-purple-900/60 to-pink-900/60 text-purple-200 group-hover:text-purple-100"
+              : "bg-slate-900/60 text-slate-200 group-hover:text-white";
 
           return (
             <Link
@@ -167,16 +183,24 @@ export function Sidebar({ activeKey }: SidebarProps) {
               title={label}
             >
               <span
-                className={`flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-white/5 via-transparent to-transparent text-base shadow-inner transition-all duration-300 group-hover:shadow-[0_0_18px_rgba(244,114,182,0.35)] ${iconBg}`}
+                className={`flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-white/5 via-transparent to-transparent text-base shadow-inner transition-all duration-300 ${
+                  isMindfuck 
+                    ? "group-hover:shadow-[0_0_18px_rgba(168,85,247,0.6)] border-purple-500/20" 
+                    : "group-hover:shadow-[0_0_18px_rgba(244,114,182,0.35)]"
+                } ${iconBg}`}
               >
-                <Icon className="h-5 w-5 drop-shadow-[0_0_6px_rgba(244,114,182,0.45)]" />
+                <Icon className={`h-5 w-5 ${
+                  isMindfuck 
+                    ? "drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" 
+                    : "drop-shadow-[0_0_6px_rgba(244,114,182,0.45)]"
+                }`} />
               </span>
               {collapsed ? (
                 <span className="pointer-events-none absolute left-full top-1/2 ml-3 -translate-y-1/2 whitespace-nowrap rounded-md bg-slate-900/95 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 opacity-0 shadow-lg shadow-slate-950/40 transition-opacity duration-200 group-hover:opacity-100">
                   {label}
                 </span>
               ) : (
-                <span>{label}</span>
+                <span className={isMindfuck ? "animate-pulse" : ""}>{label}</span>
               )}
             </Link>
           );
